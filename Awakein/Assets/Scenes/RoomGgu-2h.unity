@@ -1025,7 +1025,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1039133220
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2450,7 +2450,7 @@ GameObject:
   - component: {fileID: 1866664185422803235}
   - component: {fileID: 4380405915113453852}
   - component: {fileID: 7433673248542594784}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2586,7 +2586,7 @@ GameObject:
   - component: {fileID: 6037823836863130241}
   - component: {fileID: 5782281163831921204}
   - component: {fileID: 4814363826827194877}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: WallLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2860,7 +2860,7 @@ Transform:
   m_GameObject: {fileID: 5889452762567949876}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.53, y: -4.71, z: 2.56}
+  m_LocalPosition: {x: -10.47, y: -4.71, z: 2.56}
   m_LocalScale: {x: 15, y: 15, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2924,6 +2924,7 @@ GameObject:
   - component: {fileID: 8719235909834585587}
   - component: {fileID: 2116367635931408831}
   - component: {fileID: 8233578562649807010}
+  - component: {fileID: 8719235909834585588}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -3176,7 +3177,7 @@ GameObject:
   - component: {fileID: 7767722164751549644}
   - component: {fileID: 496263545556092023}
   - component: {fileID: 6779497690860791857}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Floor (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3195,7 +3196,7 @@ GameObject:
   - component: {fileID: 8172300229417810705}
   - component: {fileID: 548157965609971215}
   - component: {fileID: 2804499859798588828}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: WallRight (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3350,7 +3351,7 @@ GameObject:
   - component: {fileID: 5329837947662547903}
   - component: {fileID: 6863668385481585746}
   - component: {fileID: 2004725628366562672}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: WallBack (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3592,12 +3593,12 @@ GameObject:
   - component: {fileID: 8179972491396929806}
   - component: {fileID: 3297241415709724008}
   - component: {fileID: 3385804089305292217}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: WallBack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 1
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!23 &5052363368557556619
 MeshRenderer:
@@ -3737,7 +3738,7 @@ GameObject:
   - component: {fileID: 7090841132157257954}
   - component: {fileID: 2572264161036771839}
   - component: {fileID: 8179401696164034731}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: WallRight (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3852,7 +3853,7 @@ GameObject:
   - component: {fileID: 6262862877344091725}
   - component: {fileID: 1070256890126144332}
   - component: {fileID: 8120943629005780969}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: WallBack (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4102,7 +4103,7 @@ GameObject:
   - component: {fileID: 7870342053372164752}
   - component: {fileID: 7410173372053820147}
   - component: {fileID: 370480765474620837}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: WallRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4753,6 +4754,20 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &8719235909834585588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2369235359273532944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aefbb04770b46490d815b0bae4566987, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 8719235909834585587}
+  zoomSpeed: 2
 --- !u!1 &8986326616254796336
 GameObject:
   m_ObjectHideFlags: 0
