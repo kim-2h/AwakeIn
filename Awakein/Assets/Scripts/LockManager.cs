@@ -21,43 +21,17 @@ void Start()
 }
 
 // 숫자를 올리거나 내리는 함수
-public void IncreaseNumber1()
-{
-    currentNumbers[0] = (currentNumbers[0] + 1) % 10; // 첫 번째 숫자창의 숫자를 증가시킴
-    UpdateNumberDisplay(0);
-}
+    public void IncreaseNumber(int panelIndex)
+    {
+        currentNumbers[panelIndex] = (currentNumbers[panelIndex] + 1) % 10;
+        UpdateNumberDisplay(panelIndex);
+    }
 
-public void DecreaseNumber1()
-{
-    currentNumbers[0] = (currentNumbers[0] + 9) % 10; // 첫 번째 숫자창의 숫자를 감소시킴
-    UpdateNumberDisplay(0);
-}
-
-// 상버튼2와 하버튼2에 대한 함수
-public void IncreaseNumber2()
-{
-    currentNumbers[1] = (currentNumbers[1] + 1) % 10; // 두 번째 숫자창의 숫자를 증가시킴
-    UpdateNumberDisplay(1);
-}
-
-public void DecreaseNumber2()
-{
-    currentNumbers[1] = (currentNumbers[1] + 9) % 10; // 두 번째 숫자창의 숫자를 감소시킴
-    UpdateNumberDisplay(1);
-}
-
-// 상버튼3와 하버튼3에 대한 함수
-public void IncreaseNumber3()
-{
-    currentNumbers[2] = (currentNumbers[2] + 1) % 10; // 세 번째 숫자창의 숫자를 증가시킴
-    UpdateNumberDisplay(2);
-}
-
-public void DecreaseNumber3()
-{
-    currentNumbers[2] = (currentNumbers[2] + 9) % 10; // 세 번째 숫자창의 숫자를 감소시킴
-    UpdateNumberDisplay(2);
-}
+    public void DecreaseNumber(int panelIndex)
+    {
+        currentNumbers[panelIndex] = (currentNumbers[panelIndex] + 9) % 10;
+        UpdateNumberDisplay(panelIndex);
+    }
 
 // 패널에 숫자 업데이트
 void UpdateNumberDisplay(int panelIndex)
