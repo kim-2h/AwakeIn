@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 
 public class CameraMoving2 : MonoBehaviour
 {   
+    public DialogueManager dialogueManager;
     public GameObject InvenManager;
     public Camera cam; // 확대할 카메라 이름
     public float zoomSpeed = 0.5f; // 확대 속도
@@ -27,19 +28,36 @@ public class CameraMoving2 : MonoBehaviour
             // 레이캐스트를 수행하여 클릭된 객체를 결정
             RaycastHit hit;
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-
+            Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 100f);
             if (EventSystem.current.IsPointerOverGameObject() == false && Physics.Raycast(ray, out hit))
             {
-                if (isFirstClick)
+                if (hit.transform.name == "Window")
                 {
+                    dialogueManager.WindowDialogue();
+                }
+                else if (hit.transform.name == "Door")
+                {
+                    dialogueManager.DoorDialogue();
+                }
+                if (hit.transform.tag == "Item") 
+                {
+                    Debug.Log("Item Clicked: " + hit.transform.name);
+                    ItemClicked(hit.transform.name);
+                }    
+                else if (isFirstClick)
+                {
+                    Debug.Log("Puzzle Clicked: " + hit.transform.name);
                     StartCoroutine(ZoomCoroutine(hit.point)); // 클릭된 객체 위치를 기준으로 확대 시작
-                    isFirstClick = false;
-
-                    if (hit.transform.tag == "Item")
+                    IPuzzle puzzle = hit.transform.gameObject.GetComponent<IPuzzle>();
+                    if (puzzle != null)
                     {
-                        Debug.Log("Item Clicked: " + hit.transform.name);
-                        ItemClicked(hit.transform.name);
+                        puzzle.StartPuzzle();
                     }
+                    else
+                    {
+                        Debug.Log("No puzzle script found");
+                    }
+                    isFirstClick = false;
                 }
                 else
                 {
@@ -49,6 +67,12 @@ public class CameraMoving2 : MonoBehaviour
                 }
             }
         }
+        // else if (Input.GetMouseButtonDown(0) && !isFirstClick) // 만약 오른쪽 클릭이 발생하고 확대 중이 아니면
+        // {
+        //     // 처음 상태로 되돌림
+        //     cam.transform.position = initialPosition;
+        //     isFirstClick = true;
+        // }
     }
     public void ItemClicked(string iName)
     {

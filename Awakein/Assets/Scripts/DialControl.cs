@@ -8,6 +8,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using Unity.VisualScripting;
 
+
 public class DialControl: MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     private Vector3 Origin = new Vector3(250, -100, 0);
@@ -17,12 +18,15 @@ public class DialControl: MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
     private Vector3 CurrentRotation;
     
 
-    List<int> Numbers = new List<int>(25);
+    public List<int> Numbers = new List<int>(25);
     public int Offset = 15;
     public int NumBefore = -1;
     public Button button;
     public Slider slider;
     public int[] Password = { 12, 9, 12, 3, 12, 9, 6, 0};
+    public GameObject RadioManager;
+   
+    private bool isSolved = false;
     public void OnBeginDrag(PointerEventData eventData)
     {
         InitialRotation = transform.eulerAngles;
@@ -109,7 +113,7 @@ public class DialControl: MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
 
     public void ButtonClick()
     {
-        int correct = 1;
+        int correct = 0;
         Debug.Log("Button Clicked");
         if (Numbers.Count >= Password.Length)
         {
@@ -118,7 +122,7 @@ public class DialControl: MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
         }
         else
         {
-            for (int i = 0; i < Password.Length-1; i++)
+            for (int i = 0; i < Password.Length-1 && Numbers.Count >i; i++)
             {
                 if (Password[i] != Numbers[i])
                 {
@@ -126,11 +130,22 @@ public class DialControl: MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
                     correct = 0;
                     break;
                 }
+                else if (i == Password.Length - 2)
+                {
+                    correct = 1;
+                }
             }
             if (correct == 1)
             {
                 Debug.Log("Correct Password");
                 this.gameObject.GetComponent<RawImage>().raycastTarget = false;
+                RadioManager.gameObject.GetComponent<IPuzzle>().IsSolved = true;
+                isSolved = true;
+
+            }
+            else
+            {
+                Debug.Log("Wrong Password");
             }
         }
     }
@@ -138,6 +153,21 @@ public class DialControl: MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
     {
         //slider.value += 360/Password.Length;
         StartCoroutine(SliderUp(360/(Password.Length-1)));
+    }
+    public void RadioReset()
+    {
+        if (!isSolved)
+        {
+            this.transform.eulerAngles = new Vector3(0, 0, 0);
+            Numbers.Clear();
+            NumBefore = -1;
+            slider.value = -10;
+        }
+        else
+        {
+            this.gameObject.GetComponent<RawImage>().raycastTarget = false;
+            RadioManager.gameObject.GetComponent<IPuzzle>().IsSolved = true;
+        }
     }
     IEnumerator SliderUp( double K)
     {
