@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 
 public class DiskDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    GameObject Manager;
+    public GameObject Manager, RealManager;
     private Vector3 initialPosition;
     public GameObject RodTemp;
     private GameObject StartRod;
@@ -70,6 +70,8 @@ public class DiskDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         if (Manager.gameObject.GetComponent<HanoiManager>().Rods[2].transform.childCount == 4)
         {
             Debug.Log("~~~Game End!!!~~~");
+            RealManager.gameObject.GetComponent<IPuzzle>().IsSolved = true;
+            RealManager.gameObject.GetComponent<HanoiRealManager>().StartPuzzle();
         }
     }
     private int SetFinalPosition(Vector3 position)
@@ -105,10 +107,10 @@ public class DiskDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
     void Start()
     {
-        Manager = GameObject.Find("HanoiManager");
+
         initialPosition = transform.position;
-        RoadPosition[0] = (Vector3)Manager.GetComponent<HanoiManager>().Rods[0].transform.position;
-        RoadPosition[1] = (Vector3)Manager.GetComponent<HanoiManager>().Rods[1].transform.position;
+        RoadPosition[0] = Manager.GetComponent<HanoiManager>().Rods[0].transform.position;
+        RoadPosition[1] = Manager.GetComponent<HanoiManager>().Rods[1].transform.position;
         RoadPosition[2] = Manager.GetComponent<HanoiManager>().Rods[2].transform.position;
     }
 

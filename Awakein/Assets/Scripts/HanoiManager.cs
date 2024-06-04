@@ -1,16 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class HanoiManager : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> Disks = new List<GameObject>();
+    public Canvas canvas;
+    [SerializeField] public bool IsSolved { get; set; }
+    [SerializeField] public List<GameObject> Disks = new List<GameObject>();
     public List<GameObject> Rods = new List<GameObject>();
     private Vector3[] RoadPosition = {new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(0, 0, 0)};
-    void InitDisk() //get rocation of first rod and place each disk on it
+    public void InitDisk() //get rocation of first rod and place each disk on it
     {
         Vector3 rodPos = Rods[0].transform.position;
-
+        Debug.Log("init hanoi");
         for (int i = 0; i < 4; i++)
         {
             Debug.Log(rodPos.y + i * 100 + "\n");
@@ -51,9 +55,11 @@ public class HanoiManager : MonoBehaviour
         disk.transform.SetParent(rod.transform);
     }
 
+
     void Start()
     {
         InitDisk();
+        IsSolved = false;
     }
 
     // Update is called once per frame

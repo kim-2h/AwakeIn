@@ -22,6 +22,9 @@ public class Item : ScriptableObject
     [SerializeField] private bool inInventory; 
     public bool InInventory { get { return inInventory; } } 
 
+    [SerializeField] private bool isUsed; 
+    public bool IsUsed { get { return isUsed; } } 
+
     public void ItsClicked(string iName)
     {
         Debug.Log(iName);       
