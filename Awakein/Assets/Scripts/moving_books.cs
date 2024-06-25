@@ -11,7 +11,6 @@ Vector3 startPosition;
 [SerializeField] public Transform onDragParent;
 [HideInInspector] public Transform startParent;
 
-
   
 public void OnBeginDrag(PointerEventData eventData){
     beingDraggedIcon=gameObject;
@@ -32,4 +31,5 @@ public void OnEndDrag(PointerEventData eventData){
         transform.position=startPosition;
     }
 }
+
 }
