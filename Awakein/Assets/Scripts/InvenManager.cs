@@ -165,7 +165,7 @@ public class InvenManager : MonoBehaviour,  IBeginDragHandler, IDragHandler, IEn
         // //아이템 위에 드랍했을 때
         RaycastHit hit2;
         Ray ray2 = Camera.main.ScreenPointToRay(Input.mousePosition); 
-        Debug.DrawRay(ray2.origin, ray2.direction * 100, Color.blue, 100f);
+        Debug.DrawRay(ray2.origin, ray2.direction * 100, Color.blue, 10f);
         Debug.Log("Raycast " + ray2);
         if (Physics.Raycast(ray2, out hit2, 100f))
         {

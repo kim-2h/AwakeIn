@@ -23,13 +23,25 @@ public class CameraMoving2 : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && !isZooming) // 만약 왼쪽 클릭이 발생하고 확대 중이 아니면
+        if (Input.GetMouseButtonDown(0) && !isZooming && !EventSystem.current.IsPointerOverGameObject()) // 만약 왼쪽 클릭이 발생하고 확대 중이 아니면
         {
+
+            if (cam.transform.position == initialPosition) // 초기 위치에서 클릭 시 isFirstClick을 true로 설정
+            {                                          //초기위치로 돌아가는 함수가 다른곳에 있을때를 대비
+                isFirstClick = true; 
+            }
+
+            
             // 레이캐스트를 수행하여 클릭된 객체를 결정
             RaycastHit hit;
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-            Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 100f);
-            if (EventSystem.current.IsPointerOverGameObject() == false && Physics.Raycast(ray, out hit))
+            Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 10f);
+            if (!isFirstClick && !isZooming) // 확대된 상태고 줌인 중이 아니면 클릭 시 초기 위치로 되돌림
+            {
+                cam.transform.position = initialPosition;
+                isFirstClick = true;
+            }
+            else if (EventSystem.current.IsPointerOverGameObject() == false && Physics.Raycast(ray, out hit))
             {
                 if (hit.transform.name == "Window")
                 {
