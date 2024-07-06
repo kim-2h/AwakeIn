@@ -22,6 +22,7 @@ public class InvenManager : MonoBehaviour,  IBeginDragHandler, IDragHandler, IEn
     */
     public List<Item> ItemList = new List<Item>();
     public GameObject Popup;
+    public GameObject ItemManager;
     private Vector2 initialClick;
     private Vector2 finalClick;
     [SerializeField] public Button[] Slots;
@@ -97,19 +98,18 @@ public class InvenManager : MonoBehaviour,  IBeginDragHandler, IDragHandler, IEn
         {
             if (Item.IsClickable)
             {
-                Popup.SetActive(true);
+                ItemManager.GetComponent<ItemManager>().OpenPopUp(iName);
+                //Popup.SetActive(true); //일단 아이템 클릭하면 나오는 팝업은 하나인데. 이제 아이템매니저 
+                //만들어서 아이템 효과 나타나게, 혹은 아이템=퍼즐이라면 퍼즐 인터페이스 달아서 그냥 3d세상에서 퍼즐 클릭한것처럼 얘를위한 팝업이 열리게 해야함
             }
         }
-        
-    
         
     }
     public void OnBeginDrag(PointerEventData eventData)
     {
-        //initialClick = eventData.position;
+        ItemManager.GetComponent<ItemManager>().ClickNotDrag = false;
         Debug.Log("Begin Drag " + initialClick);
-        if (EventSystem.current.currentSelectedGameObject.TryGetComponent<Button>(out Button component) && 
-        Slots.Contains(component))
+        if (EventSystem.current.currentSelectedGameObject.TryGetComponent<Button>(out Button component) && Slots.Contains(component))
         {
             SlotClicked();
             selectedObject = Slots[NowMove].gameObject;
@@ -132,7 +132,8 @@ public class InvenManager : MonoBehaviour,  IBeginDragHandler, IDragHandler, IEn
     {
         //Debug.Log("Dragging");
         //finalClick = eventData.position;
-        Popup.SetActive(false); //이부분ㅅㅂ 왜 distance로 하면 안먹히지 일케하면 느린데; 
+        //Popup.SetActive(false); //이부분ㅅㅂ 왜 distance로 하면 안먹히지 일케하면 느린데; 
+        //ItemManager.GetComponent<ItemManager>().ClosePopUp(0);
         if (SlotOccu[NowMove] != 1)
         {
             return;
@@ -175,7 +176,7 @@ public class InvenManager : MonoBehaviour,  IBeginDragHandler, IDragHandler, IEn
                 
             }
         }
-
+        ItemManager.GetComponent<ItemManager>().ClickNotDrag = true;
         DestroyImmediate(temp);
         Debug.Log("End Drag");
     }

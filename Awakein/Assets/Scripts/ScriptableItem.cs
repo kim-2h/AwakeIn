@@ -20,10 +20,10 @@ public class Item : ScriptableObject
     public bool IsClickable { get { return isClickable; } } 
 
     [SerializeField] private bool inInventory; 
-    public bool InInventory { get { return inInventory; } } 
+    public bool InInventory { get { return inInventory; } set { inInventory = value; } }
 
     [SerializeField] private bool isUsed; 
-    public bool IsUsed { get { return isUsed; } } 
+    public bool IsUsed { get { return isUsed; } set { isUsed = value; } } 
 
     public void ItsClicked(string iName)
     {
