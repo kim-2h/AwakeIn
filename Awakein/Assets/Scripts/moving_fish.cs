@@ -1,20 +1,24 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class moving_fish : MonoBehaviour
 {
-    public float speed = 1.0f; // 움직이는 속도
-    private float timer = 0.0f; // 경과 시간
+        public float timer = 3f; // 경과 시간
     private bool isMoving = false; // 오른쪽으로 움직이는 중인지 여부
 
     public GameObject targetObject; 
-     SpriteRenderer rend;
+    private SpriteRenderer rend;
     private bool previousState;
-
+    public GameObject Next;
+    
+   GameObject canvas;
     void Start()
     {
         previousState = targetObject.activeSelf;
         rend = GetComponent<SpriteRenderer>();
-        gameObject.SetActive(true);
+        canvas = GameObject.Find("fishCanvas");
     }
 
     void Update()
@@ -22,34 +26,38 @@ public class moving_fish : MonoBehaviour
         if (targetObject.activeSelf != previousState && !targetObject.activeSelf)
         {
             isMoving = true;
-            timer = 0.0f; // 타이머 리셋
             gameObject.SetActive(true); 
         }
 
-        // 오른쪽으로 움직이는 중이면
         if (isMoving)
         {
-            // 3초 이하일 때는 오른쪽으로 이동
-            if (timer < 3.0f)
-            {
-                transform.Translate(Vector3.right * speed * Time.deltaTime);
-            }
-            // 3초 이후부터 6초까지는 왼쪽으로 이동
-            else if (timer < 6.0f)
-            {
-                rend.flipX = true;
-                transform.Translate(Vector3.left * speed * Time.deltaTime);
-            }
-            // 6초가 지나면 멈추고 비활성화
-            else
-            {
-                isMoving = false;
-                gameObject.SetActive(false); // 6초 후 비활성화
-            }
+            StartCoroutine(MoveFish());
+            isMoving = false;
+        }
+    }
 
-            timer += Time.deltaTime;
+    IEnumerator MoveFish()
+    {
+        Vector3 startPosition = transform.position;
+        Vector3 endPosition = new Vector3(transform.position.x + 100, transform.position.y, transform.position.z);
+        float elapsedTime = 0f;
+
+        while (elapsedTime < timer)
+        {
+            transform.position = Vector3.Lerp(startPosition, endPosition, elapsedTime / timer);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        
+        while( elapsedTime<6f&&elapsedTime>timer){
+             transform.position = Vector3.Lerp(endPosition, startPosition, elapsedTime / (timer+3f));
+             elapsedTime += Time.deltaTime;
+            yield return null;
         }
 
-        previousState = targetObject.activeSelf; 
+        transform.position = startPosition;
+        gameObject.SetActive(false); 
+        GameObject deadfish=Instantiate(Next,canvas.transform); 
+       
     }
 }

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.7
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12485506, g: 0.15633123, b: 0.21374723, a: 0.7}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 0.7}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -668,6 +668,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2509afc17c8f50640bbe1a7ec159e0e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Manager: {fileID: 0}
+  RealManager: {fileID: 0}
   RodTemp: {fileID: 2098315741}
 --- !u!212 &55065798
 SpriteRenderer:
@@ -6000,6 +6002,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2509afc17c8f50640bbe1a7ec159e0e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Manager: {fileID: 0}
+  RealManager: {fileID: 0}
   RodTemp: {fileID: 2098315741}
 --- !u!212 &931354002
 SpriteRenderer:
@@ -7481,6 +7485,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 418b6a21aa66db747a62776221adf97b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canvas: {fileID: 0}
   Disks:
   - {fileID: 931353997}
   - {fileID: 1527745812}
@@ -8460,11 +8465,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fed06f488bae1b54589acd8b48263ec0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Numbers: 
   Offset: 15
   NumBefore: -1
   button: {fileID: 2001270565}
   slider: {fileID: 469576858}
   Password: 0c000000090000000c000000030000000c000000090000000600000000000000
+  RadioManager: {fileID: 0}
 --- !u!114 &1328729872
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8627,6 +8634,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 44e3f0f317fb37944afbb4fef740abf8, type: 2}
   - {fileID: 11400000, guid: d0c39ceae604bf54c94d0194ee3a62de, type: 2}
   Popup: {fileID: 650401687}
+  ItemManager: {fileID: 0}
   Slots:
   - {fileID: 8935745045892931803}
   - {fileID: 7365619875746488156}
@@ -9765,6 +9773,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2509afc17c8f50640bbe1a7ec159e0e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Manager: {fileID: 0}
+  RealManager: {fileID: 0}
   RodTemp: {fileID: 2098315741}
 --- !u!212 &1527745817
 SpriteRenderer:
@@ -11438,6 +11448,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2509afc17c8f50640bbe1a7ec159e0e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Manager: {fileID: 0}
+  RealManager: {fileID: 0}
   RodTemp: {fileID: 2098315741}
 --- !u!212 &1942289013
 SpriteRenderer:
@@ -20004,6 +20016,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7914150b87ee43245ad9ab38b11da53b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dialogueManager: {fileID: 0}
   InvenManager: {fileID: 1358391605}
   cam: {fileID: 8719235909834585587}
   zoomSpeed: 2
@@ -21388,8 +21401,8 @@ SceneRoots:
   - {fileID: 5763073588925899533}
   - {fileID: 7365877994662500902}
   - {fileID: 1039133220}
-  - {fileID: 1272294200}
   - {fileID: 409621793}
+  - {fileID: 1272294200}
   - {fileID: 85030912}
   - {fileID: 24782518}
   - {fileID: 1177955263}
