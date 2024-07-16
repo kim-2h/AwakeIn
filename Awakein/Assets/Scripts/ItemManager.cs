@@ -63,7 +63,7 @@ public class ItemManager : MonoBehaviour
    
     void Start()
     {
-        
+        ClickNotDrag = true;
     }
 
     

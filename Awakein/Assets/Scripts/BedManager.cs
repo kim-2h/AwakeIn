@@ -7,16 +7,15 @@ using UnityEngine.EventSystems;
 
 public class BedManager : MonoBehaviour, IPuzzle
 {
-    public GameObject ImageChange;
-    public GameObject InvenManager;
+    public GameObject ImageChange, InvenManager, GameFlowManager;
     public Button BtDrawer;
     [SerializeField] public bool IsSolved { get; set; }
     public Canvas canvas;
     public TextMeshProUGUI Text;
-    private Vector3 CameraPosition;
-    private bool DrawerOpen = false;
-    private bool CoverOpen = false;
-    private Vector3 DrawerPlace;
+    private Vector3 CameraPosition, DrawerPlace;
+    private bool DrawerOpen = false, CoverOpen = false;
+    private Dictionary<string, Item> ItemMap = new Dictionary<string, Item>();
+
     public void StartPuzzle()
     {
         Debug.Log("Bed Puzzle Started");
@@ -80,8 +79,7 @@ public class BedManager : MonoBehaviour, IPuzzle
         }
         if (!IsSolved)
         {
-            if (InvenManager.GetComponent<InvenManager>().ItemList.Find(x => x.ItemName == "GasMask").InInventory &&
-                InvenManager.GetComponent<InvenManager>().ItemList.Find(x => x.ItemName == "Gear").InInventory)
+            if (ItemMap["GasMask"].InInventory &&  ItemMap["Gear"].InInventory)
             {
                 IsSolved = true;
                 Text.text = "Nothing to do here";
@@ -94,12 +92,13 @@ public class BedManager : MonoBehaviour, IPuzzle
         IsSolved = false;
         CameraPosition = Camera.main.transform.position;
         DrawerOpen = false;
-        DrawerPlace = BtDrawer.transform.parent.position;//new Vector3(8.8f, -79f, 0f);
+        DrawerPlace = new Vector3(962f, 439f, 0f);
         CoverOpen = false;
         BtDrawer.interactable = true;
         var CoverImage = canvas.gameObject.transform.Find("Cover").gameObject.GetComponent<Image>();
         CoverImage.alphaHitTestMinimumThreshold = 0.9f;
         canvas.gameObject.transform.Find("Bed").gameObject.GetComponent<Image>().alphaHitTestMinimumThreshold = 0.9f;
+        ItemMap = GameFlowManager.GetComponent<GameFlowManager>().ItemMap;
     }
 
     IEnumerator DrawerOpenAnimation()
@@ -127,9 +126,14 @@ public class BedManager : MonoBehaviour, IPuzzle
         if (Name == "GasMask" || Name == "Gear")
         {
             InvenManager.GetComponent<InvenManager>().ItemAdder(Name);
-            InvenManager.GetComponent<InvenManager>().ItemList.Find(x => x.ItemName == "GasMask").InInventory = true;
-            InvenManager.GetComponent<InvenManager>().ItemList.Find(x => x.ItemName == "Gear").InInventory = true;
+            //InvenManager.GetComponent<InvenManager>().ItemMap["GasMask"].InInventory = true;
+            //InvenManager.GetComponent<InvenManager>().ItemMap["Gear"].InInventory = true;
         }
     }
 
+    // void Awake()
+    // {
+    //     DrawerPlace = BtDrawer.transform.parent.position;
+    //     Debug.Log(BtDrawer.transform.parent.position);
+    // }
 }

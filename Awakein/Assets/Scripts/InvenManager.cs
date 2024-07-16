@@ -20,7 +20,9 @@ public class InvenManager : MonoBehaviour,  IBeginDragHandler, IDragHandler, IEn
     아이템 클릭, 스택으로 인벤토리에 추가, 아이템 사용, 인벤토리 이미지 등 관리
     아이템의 속성 자체는 ItemManager에서 관리
     */
-    public List<Item> ItemList = new List<Item>();
+    //public List<Item> ItemList = new List<Item>();
+    public Dictionary<string, Item> ItemMap = new Dictionary<string, Item>();
+    public GameObject GameFlow;
     public GameObject Popup;
     public GameObject ItemManager;
     private Vector2 initialClick;
@@ -52,6 +54,7 @@ public class InvenManager : MonoBehaviour,  IBeginDragHandler, IDragHandler, IEn
                 SlotNum--;
                 SlotOccu[i] = 1;
                 GameObject[] var = GameObject.FindGameObjectsWithTag("Item");
+                //클릭된 아이템의 이름을 받아와서, 월드에 그런 아이템이 있는지 확인 후 인벤에 추가. 월드에서는 비활성화
                 foreach (GameObject item in var)
                 {
                     if (item.name == iName)
@@ -66,6 +69,7 @@ public class InvenManager : MonoBehaviour,  IBeginDragHandler, IDragHandler, IEn
                         {
                             Slots[i].GetComponent<RawImage>().texture = newSprite;
                             Slots[i].GetComponent<RawImage>().color = new Color(255, 255, 255, 255);
+                            ItemMap[iName].InInventory = true;
                             item.SetActive(false);
                         }
   
@@ -81,15 +85,16 @@ public class InvenManager : MonoBehaviour,  IBeginDragHandler, IDragHandler, IEn
     public void OpenPopup(string iName)
     {
         Item Item = null;
-        foreach (Item item in ItemList)
-        {
-            if (item.ItemName == iName)
-            {
-                Debug.Log("Item Found");
-                Item = item;
-                break;
-            }
-        }
+        // foreach (Item item in ItemList)
+        // {
+        //     if (item.ItemName == iName)
+        //     {
+        //         Debug.Log("Item Found");
+        //         Item = item;
+        //         break;
+        //     }
+        // }
+        Item = ItemMap[iName];
         if (!Item)
         {
             Debug.Log("Item Not Found");
@@ -130,6 +135,7 @@ public class InvenManager : MonoBehaviour,  IBeginDragHandler, IDragHandler, IEn
     public GameObject temp;
     public void OnDrag(PointerEventData eventData)
     {
+        ItemManager.GetComponent<ItemManager>().ClickNotDrag = false;
         //Debug.Log("Dragging");
         //finalClick = eventData.position;
         //Popup.SetActive(false); //이부분ㅅㅂ 왜 distance로 하면 안먹히지 일케하면 느린데; 
@@ -190,6 +196,7 @@ public class InvenManager : MonoBehaviour,  IBeginDragHandler, IDragHandler, IEn
     }
     void Start()
     {
+        ItemMap = GameFlow.GetComponent<GameFlowManager>().ItemMap;
         NowMove = -1;
         for (int i = 0; i<Slots.Length; i++)
         {

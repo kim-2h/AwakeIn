@@ -7,5 +7,5 @@ public interface IPuzzle
     public bool IsSolved { get; set;} 
 
     void StartPuzzle();
-    
+    void ExitPuzzle();
 }

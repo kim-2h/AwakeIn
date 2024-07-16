@@ -7,7 +7,7 @@ using TMPro;
 
 public class ToyBoxManager : MonoBehaviour, IPuzzle
 {
-    public GameObject ImageChange;
+    public GameObject ImageChange, InvenManager;
     public Button HitBoxA, HitBoxH;
     [SerializeField] public bool IsSolved { get; set; }
     public Canvas canvas;
@@ -31,11 +31,13 @@ public class ToyBoxManager : MonoBehaviour, IPuzzle
     {
         Debug.Log("HitBoxA Clicked");
         HitBoxA.interactable = false;
-        Text.text = "you got the airplane";
+        Text.text = "you got the Orgel";
+        InvenManager.GetComponent<InvenManager>().ItemAdder("Orgel");
         if (HitBoxH.interactable == false)
         {
             ImageChange.GetComponent<ImageChange>().SwitchImage(canvas.gameObject.transform.Find("PopWindow").gameObject, 1);
             //인벤에 아이템 추가
+            
             IsSolved = true;
         }
 
@@ -45,10 +47,12 @@ public class ToyBoxManager : MonoBehaviour, IPuzzle
         Debug.Log("HitBoxH Clicked");
         HitBoxH.interactable = false;
         Text.text = "you got the human";
+        InvenManager.GetComponent<InvenManager>().ItemAdder("Doll");
         if (HitBoxA.interactable == false)
         {
             ImageChange.GetComponent<ImageChange>().SwitchImage(canvas.gameObject.transform.Find("PopWindow").gameObject, 1);
             //인벤에 아이템 추가
+
             IsSolved = true;
         }
 
