@@ -7,6 +7,7 @@ using UnityEngine.EventSystems;
 public class CameraMoving2 : MonoBehaviour
 {   
     public DialogueManager dialogueManager;
+    public GameFlowManager gameFlowManager;
     public GameObject InvenManager;
     public Camera cam; // 확대할 카메라 이름
     public float zoomSpeed = 0.5f; // 확대 속도
@@ -43,14 +44,20 @@ public class CameraMoving2 : MonoBehaviour
             }
             else if (EventSystem.current.IsPointerOverGameObject() == false && Physics.Raycast(ray, out hit))
             {
-                if (hit.transform.name == "Window")
+                string dialogue = "";
+                dialogue = gameFlowManager.ReturnDialogue(hit.transform.name);
+                if (dialogue != null)
                 {
-                    dialogueManager.WindowDialogue();
+                    dialogueManager.SimpleDialogue(dialogue);
                 }
-                else if (hit.transform.name == "Door")
-                {
-                    dialogueManager.DoorDialogue();
-                }
+                // else if (hit.transform.name == "Window")
+                // {
+                //     dialogueManager.WindowDialogue();
+                // }
+                // else if (hit.transform.name == "Door")
+                // {
+                //     dialogueManager.DoorDialogue();
+                // }
                 if (hit.transform.tag == "Item") 
                 {
                     Debug.Log("Item Clicked: " + hit.transform.name);
