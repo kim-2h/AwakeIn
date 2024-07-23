@@ -9,6 +9,7 @@ public class torneddoll : MonoBehaviour
      public List<GameObject> Appearing=new List<GameObject>(); 
      Canvas canvas;
      GameObject arm;
+     public GameObject InvenManager;
     // Start is called before the first frame update
     bool ONce=false;
     int n=0;
@@ -42,9 +43,16 @@ public class torneddoll : MonoBehaviour
         if (n==1) ONce=true;
        
     }
-        
+    public void ClosePopUp()
+    {
+        canvas.gameObject.SetActive(false);
+    }
     
-        
+    public void KeyClicked()
+    {
+        InvenManager.GetComponent<InvenManager>().ItemAdder("yewon_key");
+
+    }
     public IEnumerator Arm_torning(){
         
         Vector3 startposition=arm.transform.position;

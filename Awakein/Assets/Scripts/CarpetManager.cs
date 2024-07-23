@@ -6,8 +6,8 @@ using TMPro;
 
 public class CarpetManager : MonoBehaviour, IPuzzle
 {
-    public GameObject carpet;
-    public GameObject carpetPopupCanvas;
+    public GameObject carpet, Note;
+    public GameObject carpetPopupCanvas, InvenManager;
     public ImageChange imageChanger;
     public RawImage hitCarpetImage;
     public Texture[] carpetTextures;
@@ -23,35 +23,37 @@ public class CarpetManager : MonoBehaviour, IPuzzle
         IsSolved = false;
         imageChanger.ImgScene1.AddRange(carpetTextures);
         initialCameraPosition = Camera.main.transform.position;
+        hitCarpetImage.texture = carpetTextures[0];
+        Note.SetActive(false);
     }
 
     void Update()
     {
-        if (!isPopupActive && Input.GetMouseButtonDown(0))
-        {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit))
-            {
-                if (hit.transform.gameObject == carpet)
-                {
-                    OpenPopup();
-                }
-            }
-        }
+        // if (!isPopupActive && Input.GetMouseButtonDown(0))
+        // {
+        //     Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        //     RaycastHit hit;
+        //     if (Physics.Raycast(ray, out hit))
+        //     {
+        //         if (hit.transform.gameObject == carpet)
+        //         {
+        //             OpenPopup();
+        //         }
+        //     }
+        // }
 
-        if (isPopupActive && Input.GetMouseButtonDown(0))
-        {
-            Vector2 localMousePosition = carpetPopupCanvas.GetComponent<RectTransform>().InverseTransformPoint(Input.mousePosition);
-            if (carpetPopupCanvas.GetComponent<RectTransform>().rect.Contains(localMousePosition))
-            {
-                Vector2 hitLocalMousePosition = hitCarpetImage.GetComponent<RectTransform>().InverseTransformPoint(Input.mousePosition);
-                if (hitCarpetImage.GetComponent<RectTransform>().rect.Contains(hitLocalMousePosition))
-                {
-                    ChangeCarpetImage();
-                }
-            }
-        }
+        // if (isPopupActive && Input.GetMouseButtonDown(0))
+        // {
+        //     Vector2 localMousePosition = carpetPopupCanvas.GetComponent<RectTransform>().InverseTransformPoint(Input.mousePosition);
+        //     if (carpetPopupCanvas.GetComponent<RectTransform>().rect.Contains(localMousePosition))
+        //     {
+        //         Vector2 hitLocalMousePosition = hitCarpetImage.GetComponent<RectTransform>().InverseTransformPoint(Input.mousePosition);
+        //         if (hitCarpetImage.GetComponent<RectTransform>().rect.Contains(hitLocalMousePosition))
+        //         {
+        //             ChangeCarpetImage();
+        //         }
+        //     }
+        // }
     }
 
     void OpenPopup()
@@ -60,16 +62,20 @@ public class CarpetManager : MonoBehaviour, IPuzzle
         isPopupActive = true;
     }
 
-    void ChangeCarpetImage()
+    public void ChangeCarpetImage()
     {
         int currentTextureIndex = System.Array.IndexOf(carpetTextures, hitCarpetImage.texture);
         int nextTextureIndex = (currentTextureIndex + 1) % carpetTextures.Length;
         hitCarpetImage.texture = carpetTextures[nextTextureIndex];
-        imageChanger.SwitchImage(carpet, nextTextureIndex);
-        IsSolved = true;
-        popupText.text = "You changed the carpet!";
+        //imageChanger.SwitchImage(carpet, nextTextureIndex);
+        Note.SetActive(nextTextureIndex == 1 && !IsSolved);
+        popupText.text = !IsSolved ? "You changed the carpet!" : "You already found something!";
     }
-
+    public void NoteClicked()
+    {
+        InvenManager.GetComponent<InvenManager>().ItemAdder("Carpet_Note");
+        IsSolved = true;
+    }
     public void ClosePopup()
     {
         carpetPopupCanvas.SetActive(false);
@@ -82,6 +88,7 @@ public class CarpetManager : MonoBehaviour, IPuzzle
     {
         Debug.Log("Carpet Puzzle Started");
         carpetPopupCanvas.SetActive(true);
+        hitCarpetImage.texture = carpetTextures[0];
         if (IsSolved)
         {
             popupText.text = "There is nothing to do here";
@@ -97,6 +104,7 @@ public class CarpetManager : MonoBehaviour, IPuzzle
         if (carpetPopupCanvas.activeInHierarchy)
         {
             Debug.Log("Carpet Puzzle Exit");
+            Note.SetActive(false);
             ClosePopup();
         }
     }

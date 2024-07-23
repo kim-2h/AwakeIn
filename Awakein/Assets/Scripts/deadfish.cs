@@ -6,7 +6,7 @@ public class deadfish : MonoBehaviour
 {
 
     private float timer = 2f;
-    public GameObject targetObject; 
+    public GameObject targetObject, ClickBlocker; 
     private bool hasMoved = false;
 
     // Start is called before the first frame update
@@ -24,7 +24,7 @@ public class deadfish : MonoBehaviour
             hasMoved = true;
         }
     }
-IEnumerator MoveFish()
+    IEnumerator MoveFish()
     {
         Vector3 startPosition = transform.position;
         Vector3 endPosition = new Vector3(transform.position.x , transform.position.y+50, transform.position.z);
@@ -38,7 +38,7 @@ IEnumerator MoveFish()
         }
        
         transform.position = endPosition;
-        
+        ClickBlocker.SetActive(false);
 
-}
+    }
 }

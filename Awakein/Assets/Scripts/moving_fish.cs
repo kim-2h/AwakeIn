@@ -5,13 +5,14 @@ using UnityEngine.UI;
 
 public class moving_fish : MonoBehaviour
 {
-        public float timer = 3f; // 경과 시간
+    public float timer = 3f; // 경과 시간
     private bool isMoving = false; // 오른쪽으로 움직이는 중인지 여부
 
     public GameObject targetObject; 
     private SpriteRenderer rend;
     private bool previousState;
-    public GameObject Next;
+    public GameObject DeadFish, FishBowlManager;
+    public Item FishFood;
     
    GameObject canvas;
     void Start()
@@ -57,7 +58,8 @@ public class moving_fish : MonoBehaviour
 
         transform.position = startPosition;
         gameObject.SetActive(false); 
-        GameObject deadfish=Instantiate(Next,canvas.transform); 
+        DeadFish.SetActive(true);
+        FishBowlManager.GetComponent<FishBowlManager>().IsSolved = true;
        
     }
 }

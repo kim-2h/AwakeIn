@@ -72,6 +72,11 @@ public class CameraMoving2 : MonoBehaviour
                     {
                         puzzle.StartPuzzle();
                     }
+                    
+                    else if (hit.transform.tag == "Puzzle" && hit.transform.gameObject.transform.parent.GetComponent<IPuzzle>() != null)
+                    {
+                        hit.transform.gameObject.transform.parent.GetComponent<IPuzzle>().StartPuzzle();
+                    }
                     else
                     {
                         Debug.Log("No puzzle script found");

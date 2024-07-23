@@ -10,14 +10,15 @@ public class ClockManager : MonoBehaviour, IPuzzle
     public GameObject clock;
     public GameObject clockPopupCanvas;
     public ImageChange imageChanger;
-    public RawImage hitClockImage;
+    public GameObject ClockInPopUp;
+    private RawImage hitClockImage;
     public Texture[] clockTextures;
     public TextMeshProUGUI popupText;
     private Vector3 initialCameraPosition;
     private bool isPopupActive = false;
     public Button backButton;
     public InvenManager invenManager;
-    public GameObject Energy; // 에너지 아이템 오브젝트 (Energy에 backButton이 달려있다고 가정)
+    public GameObject Clock_Key; // 에너지 아이템 오브젝트 (Clock_Key에 backButton이 달려있다고 가정)
 
     [SerializeField] public bool IsSolved { get; set; }
 
@@ -27,6 +28,7 @@ public class ClockManager : MonoBehaviour, IPuzzle
     {
         clockPopupCanvas.SetActive(false);
         IsSolved = false;
+        hitClockImage = ClockInPopUp.GetComponent<RawImage>();
         if (imageChanger != null)
         {
             imageChanger.ImgScene1.AddRange(clockTextures);
@@ -45,49 +47,49 @@ public class ClockManager : MonoBehaviour, IPuzzle
         {
             Debug.LogError("BackButton is not assigned in ClockManager");
         }
-        if (Energy != null)
+        if (Clock_Key != null)
         {
-            Energy.SetActive(false); // Energy 초기 비활성화
+            Clock_Key.SetActive(false); // Clock_Key 초기 비활성화
         }
         else
         {
-            Debug.LogError("Energy object is not assigned in ClockManager");
+            Debug.LogError("Clock_Key object is not assigned in ClockManager");
         }
 
-        Debug.Log("ClockManager started. Initial state: Energy and backButton are inactive.");
+        Debug.Log("ClockManager started. Initial state: Clock_Key and backButton are inactive.");
     }
 
     void Update()
     {
-        if (!isPopupActive && Input.GetMouseButtonDown(0))
-        {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit))
-            {
-                if (hit.transform.gameObject == clock)
-                {
-                    OpenPopup();
-                }
-                else if (hit.transform.CompareTag("item"))
-                {
-                    HitEnergy(hit.transform.gameObject);
-                }
-            }
-        }
+        // if (!isPopupActive && Input.GetMouseButtonDown(0))
+        // {
+        //     Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        //     RaycastHit hit;
+        //     if (Physics.Raycast(ray, out hit))
+        //     {
+        //         if (hit.transform.gameObject == clock)
+        //         {
+        //             OpenPopup();
+        //         }
+        //         else if (hit.transform.CompareTag("item"))
+        //         {
+        //             HitClock_Key(hit.transform.gameObject);
+        //         }
+        //     }
+        // }
 
-        if (isPopupActive && Input.GetMouseButtonDown(0))
-        {
-            Vector2 localMousePosition = clockPopupCanvas.GetComponent<RectTransform>().InverseTransformPoint(Input.mousePosition);
-            if (clockPopupCanvas.GetComponent<RectTransform>().rect.Contains(localMousePosition))
-            {
-                Vector2 hitLocalMousePosition = hitClockImage.GetComponent<RectTransform>().InverseTransformPoint(Input.mousePosition);
-                if (hitClockImage.GetComponent<RectTransform>().rect.Contains(hitLocalMousePosition))
-                {
-                    ChangeClockImage();
-                }
-            }
-        }
+        // if (isPopupActive && Input.GetMouseButtonDown(0))
+        // {
+        //     Vector2 localMousePosition = clockPopupCanvas.GetComponent<RectTransform>().InverseTransformPoint(Input.mousePosition);
+        //     if (clockPopupCanvas.GetComponent<RectTransform>().rect.Contains(localMousePosition))
+        //     {
+        //         Vector2 hitLocalMousePosition = hitClockImage.GetComponent<RectTransform>().InverseTransformPoint(Input.mousePosition);
+        //         if (hitClockImage.GetComponent<RectTransform>().rect.Contains(hitLocalMousePosition))
+        //         {
+        //             ChangeClockImage();
+        //         }
+        //     }
+        // }
     }
 
     void OpenPopup()
@@ -97,29 +99,41 @@ public class ClockManager : MonoBehaviour, IPuzzle
         Debug.Log("Popup opened.");
     }
 
-    void ChangeClockImage()
+    public void ChangeClockImage() //hitclock이랑 연결해줌 걍 
     {
-        currentTextureIndex = (currentTextureIndex + 1) % clockTextures.Length;
-        hitClockImage.texture = clockTextures[currentTextureIndex];
+        // currentTextureIndex = (currentTextureIndex + 1) % clockTextures.Length;
+        // hitClockImage.texture = clockTextures[currentTextureIndex];
+        // if (imageChanger != null && clock != null)
+        // {
+        //     imageChanger.SwitchImage(clock, currentTextureIndex);
+        // } 
         if (imageChanger != null && clock != null)
         {
-            imageChanger.SwitchImage(clock, currentTextureIndex);
+            string temp = hitClockImage.texture.name == "clockbackside" ? "clock" : "clockbackside";
+           
+            imageChanger.SwitchImage(ClockInPopUp, temp);
         }
         else
         {
             Debug.LogError("ImageChange component or clock GameObject is not assigned");
         }
 
-        IsSolved = true;
+        // IsSolved = true; << 이게 여기있으면 안될거같은데 
 
         // 시계가 뒷면일 때만 에너지 아이템과 버튼을 활성화
-        bool isClockBackSide = currentTextureIndex != 0; // 0이 앞면이라고 가정
-        if (Energy != null)
+        //bool isClockBackSide = currentTextureIndex != 0; // 0이 앞면이라고 가정
+        bool isClockBackSide = hitClockImage.texture.name == "clockbackside"; 
+        if (Clock_Key != null && !IsSolved)
         {
-            Energy.SetActive(isClockBackSide); // Energy와 backButton을 함께 활성화/비활성화
-            Debug.Log($"Energy set to {(isClockBackSide ? "active" : "inactive")}");
+            Clock_Key.SetActive(isClockBackSide); // Clock_Key와 backButton을 함께 활성화/비활성화
+            Debug.Log($"Clock_Key set to {(isClockBackSide ? "active" : "inactive")}");
         }
-        Debug.Log($"Clock image changed to index {currentTextureIndex}. IsClockBackSide: {isClockBackSide}");
+        ///Debug.Log($"Clock image changed to index {currentTextureIndex}. IsClockBackSide: {isClockBackSide}");
+    }
+    public void KeyClicked()
+    {
+        IsSolved = true;
+        invenManager.ItemAdder("Clock_Key");
     }
 
     public void ClosePopup()
@@ -128,18 +142,19 @@ public class ClockManager : MonoBehaviour, IPuzzle
         isPopupActive = false;
         Camera.main.transform.position = initialCameraPosition;
         popupText.text = "";
-        if (Energy != null)
+        if (Clock_Key != null)
         {
-            Energy.SetActive(false); // 팝업을 닫을 때 에너지 아이템과 버튼을 비활성화
-            Debug.Log("Energy set to inactive");
+            Clock_Key.SetActive(false); // 팝업을 닫을 때 에너지 아이템과 버튼을 비활성화
+            Debug.Log("Clock_Key set to inactive");
         }
-        Debug.Log("Popup closed. Energy and backButton are inactive.");
+        Debug.Log("Popup closed. Clock_Key and backButton are inactive.");
     }
 
     public void StartPuzzle()
     {
         Debug.Log("Clock Puzzle Started");
         clockPopupCanvas.SetActive(true);
+        imageChanger.SwitchImage(ClockInPopUp, "clock");
         if (IsSolved)
         {
             popupText.text = "There is nothing to do here";
@@ -151,10 +166,10 @@ public class ClockManager : MonoBehaviour, IPuzzle
 
         // 퍼즐 시작 시 에너지 아이템과 버튼을 시계 뒷면일 때만 활성화
         bool isClockBackSide = currentTextureIndex != 0;
-        if (Energy != null)
+        if (Clock_Key != null && !IsSolved)
         {
-            Energy.SetActive(isClockBackSide); // Energy와 backButton을 함께 활성화/비활성화
-            Debug.Log($"Energy set to {(isClockBackSide ? "active" : "inactive")}");
+            Clock_Key.SetActive(isClockBackSide); // Clock_Key와 backButton을 함께 활성화/비활성화
+            Debug.Log($"Clock_Key set to {(isClockBackSide ? "active" : "inactive")}");
         }
         Debug.Log($"Puzzle started. IsClockBackSide: {isClockBackSide}");
     }
@@ -168,7 +183,7 @@ public class ClockManager : MonoBehaviour, IPuzzle
         }
     }
 
-    public void HitEnergy(GameObject item)
+    public void HitClock_Key(GameObject item)
     {
         Debug.Log("Item Clicked");
         if (invenManager != null)
@@ -191,21 +206,21 @@ public class ClockManager : MonoBehaviour, IPuzzle
         }
         else
         {
-            // BackButton이 HitEnergy 역할을 수행
+            // BackButton이 HitClock_Key 역할을 수행
             Debug.Log("BackButton pressed");
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
             {
-                if (hit.transform.CompareTag("item"))
+                if (hit.transform.CompareTag("Item"))
                 {
-                    HitEnergy(hit.transform.gameObject);
+                    HitClock_Key(hit.transform.gameObject);
                 }
             }
         }
-        if (Energy != null)
+        if (Clock_Key != null)
         {
-            Energy.SetActive(false); // 작업 후 Energy 비활성화 (backButton 포함)
+            Clock_Key.SetActive(false); // 작업 후 Clock_Key 비활성화 (backButton 포함)
         }
     }
 }

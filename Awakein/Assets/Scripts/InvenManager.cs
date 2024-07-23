@@ -81,7 +81,20 @@ public class InvenManager : MonoBehaviour,  IBeginDragHandler, IDragHandler, IEn
     }
 
     Vector2 initialPosition;
-
+    public void RemoveItem(string iName)
+    {
+        for (int i = 0; i<Slots.Length; i++)
+        {
+            if (Slots[i].transform.Find("Text (TMP)").GetComponent<TextMeshProUGUI>().text == iName)
+            {
+                Slots[i].transform.Find("Text (TMP)").GetComponent<TextMeshProUGUI>().text = "";
+                SlotOccu[i] = 0;
+                SlotNum++;
+                Slots[i].GetComponent<RawImage>().color = new Color(0, 0, 0, 0);
+                break;
+            }
+        }
+    }
     public void OpenPopup(string iName)
     {
         Item Item = null;

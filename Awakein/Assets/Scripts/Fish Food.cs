@@ -14,13 +14,33 @@ public class Fish : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDragHand
 
     private Coroutine animationCoroutine;
     private RectTransform rectTransform;
+    public GameObject InvenManager, ClickBlocker;
+    public Vector2 InitialPos;
 
     void Start()
     {
+        GetItemPlace();
         rectTransform = GetComponent<RectTransform>();
-        
+        this.transform.position = InitialPos;
     }
+    public void InitPuzzle()
+    {
+        GetItemPlace();
+        this.transform.position = InitialPos;
+    }
+    void GetItemPlace()
+    {
+        int Index = -100;
+        foreach (Transform child in InvenManager.transform)
+        {
+            if (child.GetComponent<RawImage>().texture && child.GetComponent<RawImage>().texture.name == "FishFood")
+            {
+                Index = child.transform.GetSiblingIndex();
+            }
+        }
+        InitialPos = new Vector2(85 + Index*150f +70, 90);
 
+    }
     void IBeginDragHandler.OnBeginDrag(PointerEventData eventData)
     {
         DefaultPos = rectTransform.anchoredPosition;
@@ -43,6 +63,7 @@ public class Fish : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDragHand
 
         if (IsOverlapping(fishRectTransform, Fishbowl))
         {
+            ClickBlocker.SetActive(true);
             this.rectTransform.Rotate(0,0,120);
             if (animationCoroutine != null)
             {
@@ -51,7 +72,9 @@ public class Fish : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDragHand
             //Debug.Log(gameObject.)
             animationCoroutine = StartCoroutine(AnimateFish(targetPos));
             //gameObject.SetActive(false);
-
+            InvenManager.GetComponent<InvenManager>().ItemMap["FishFood"].IsUsed = true;
+            InvenManager.GetComponent<InvenManager>().RemoveItem("FishFood");
+            
         }
         else
         {
