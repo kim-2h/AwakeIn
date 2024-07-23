@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Item
   - Puzzle
+  - chairplace
+  - bookcard
   layers:
   - Default
   - TransparentFX

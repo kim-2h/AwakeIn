@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class ImageChange : MonoBehaviour
 {
-   // public GameObject imageObject1; // 원래 이미지
+   //public GameObject imageObject1; // 원래 이미지
    // public GameObject imageObject2; // 바꿀 이미지
 
     public  List<Texture> ImgScene1 = new List<Texture>();
