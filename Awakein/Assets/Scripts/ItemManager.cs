@@ -7,6 +7,7 @@ using UnityEngine;
 public class ItemManager : MonoBehaviour
 {
     public List<GameObject> PopUpList = new List<GameObject>();
+    public GameObject GameFlowManager;
     public bool ClickNotDrag = true;
     public void OpenPopUp(string Name)
     {
@@ -19,7 +20,11 @@ public class ItemManager : MonoBehaviour
                 {
                     PopUp = popup;
                     PopUp.SetActive(true);
-                    return;
+                    if (GameFlowManager.GetComponent<GameFlowManager>().PuzzleMap.ContainsKey(Name))
+                    {
+                        GameFlowManager.GetComponent<GameFlowManager>().PuzzleMap[Name].StartPuzzle();
+                    }
+                    break;
                 }
             }
             if (PopUp == null)
@@ -31,6 +36,7 @@ public class ItemManager : MonoBehaviour
     }
     public void OpenPopUp(int Idx)
     {
+        string Name = PopUpList[Idx].name;
         if (ClickNotDrag)
         {
             GameObject PopUp = null;
@@ -42,6 +48,10 @@ public class ItemManager : MonoBehaviour
             else
             {
                 PopUp.SetActive(true);
+                if (GameFlowManager.GetComponent<GameFlowManager>().PuzzleMap.ContainsKey(Name))
+                {
+                    GameFlowManager.GetComponent<GameFlowManager>().PuzzleMap[Name].StartPuzzle();
+                }
             }
         }
 

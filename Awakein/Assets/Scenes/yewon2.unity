@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.7
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 0.7}
+  m_IndirectSpecularColor: {r: 0.12485506, g: 0.15633123, b: 0.21374723, a: 0.7}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6427,7 +6427,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &631477240
 Transform:
   m_ObjectHideFlags: 0
@@ -6528,7 +6528,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 85030911}
+  InvenManager: {fileID: 0}
   Radio: {fileID: 1328729869}
+  RadioFront: {fileID: 0}
+  RadioBack: {fileID: 0}
+  Battery: {fileID: 0}
+  BatterySlot: {fileID: 0}
+  DriverHandle: {fileID: 0}
 --- !u!1 &631636300
 GameObject:
   m_ObjectHideFlags: 0
@@ -9844,6 +9850,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvas: {fileID: 3903286155035112909}
   FishFood: {fileID: 3197760146487800612}
+  InvenManager: {fileID: 0}
 --- !u!1 &944853805
 GameObject:
   m_ObjectHideFlags: 0
@@ -20706,6 +20713,7 @@ MonoBehaviour:
   PopUpList:
   - {fileID: 85030908}
   - {fileID: 7258709416961236319}
+  GameFlowManager: {fileID: 0}
   ClickNotDrag: 0
 --- !u!4 &2099871581
 Transform:

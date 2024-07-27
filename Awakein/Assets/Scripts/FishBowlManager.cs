@@ -7,7 +7,7 @@ public class FishBowlManager : MonoBehaviour, IPuzzle
     [SerializeField] public bool IsSolved { get; set; }
     public Canvas canvas;
     private Vector3 CameraPosition;
-    public GameObject FishFood;
+    public GameObject FishFood, InvenManager;
     public void StartPuzzle()
     {
         Debug.Log("FishBowl Puzzle Started");
@@ -20,7 +20,12 @@ public class FishBowlManager : MonoBehaviour, IPuzzle
         canvas.gameObject.SetActive(false);
         Camera.main.gameObject.transform.position = CameraPosition;
     }
-    
+    public void KeyClicked()
+    {
+        IsSolved = true;
+        InvenManager.GetComponent<InvenManager>().ItemAdder("DriverStick");
+    }
+
     void Start()
     {
         IsSolved = false;

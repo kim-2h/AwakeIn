@@ -32,7 +32,7 @@ public class DialControl: MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
         InitialRotation = transform.eulerAngles;
         InitialPosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0);
     }
-        public void OnDrag(PointerEventData eventData)
+    public void OnDrag(PointerEventData eventData)
     {
         CurrentMouseP = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
 
@@ -139,9 +139,10 @@ public class DialControl: MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
             {
                 Debug.Log("Correct Password");
                 this.gameObject.GetComponent<RawImage>().raycastTarget = false;
+                RadioManager.gameObject.GetComponent<RadioManager>().DriverHandle.SetActive(!RadioManager.gameObject.GetComponent<IPuzzle>().IsSolved);
                 RadioManager.gameObject.GetComponent<IPuzzle>().IsSolved = true;
                 isSolved = true;
-
+                
             }
             else
             {

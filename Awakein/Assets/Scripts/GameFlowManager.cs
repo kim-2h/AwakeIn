@@ -9,7 +9,7 @@ public class GameFlowManager : MonoBehaviour
 {
     public List<GameObject> PuzzleList;
     public List<Item> ItemList;
-    private Dictionary<string, IPuzzle> PuzzleMap = new Dictionary<string, IPuzzle>();
+    public Dictionary<string, IPuzzle> PuzzleMap = new Dictionary<string, IPuzzle>();
     public Dictionary<string, Item> ItemMap = new Dictionary<string, Item>();
 
     public string ReturnDialogue(string _object)
@@ -44,29 +44,7 @@ public class GameFlowManager : MonoBehaviour
     }
     void Start()
     {
-        string TempName = "";
-        for (int i = 0; i<PuzzleList.Count; i++)
-        {
-            TempName = PuzzleList[i].gameObject.name;
-            TempName = TempName.Replace("Manager", "");
-            PuzzleMap.Add(TempName, PuzzleList[i].GetComponent<IPuzzle>());
-            if (PuzzleMap[TempName] != null)
-            {
-                PuzzleMap[TempName].IsSolved = false;
-                //Debug.Log(TempName + " Added");
-            }
-        }
-        for (int i = 0; i<ItemList.Count; i++)
-        {
-            TempName = ItemList[i].ItemName;
-            ItemMap.Add(TempName, ItemList[i]);
-            if (ItemMap[TempName] != null)
-            {
-                ItemMap[TempName].IsUsed = false;
-                ItemMap[TempName].InInventory = false;
-                //Debug.Log(TempName + " Added");
-            }
-        }
+   
     }
     public void PrintProgress()
     {
@@ -93,7 +71,29 @@ public class GameFlowManager : MonoBehaviour
     }
     void Awake()
     {
-
+        string TempName = "";
+        for (int i = 0; i<PuzzleList.Count; i++)
+        {
+            TempName = PuzzleList[i].gameObject.name;
+            TempName = TempName.Replace("Manager", "");
+            PuzzleMap.Add(TempName, PuzzleList[i].GetComponent<IPuzzle>());
+            if (PuzzleMap[TempName] != null)
+            {
+                PuzzleMap[TempName].IsSolved = false;
+                //Debug.Log(TempName + " Added");
+            }
+        }
+        for (int i = 0; i<ItemList.Count; i++)
+        {
+            TempName = ItemList[i].ItemName;
+            ItemMap.Add(TempName, ItemList[i]);
+            if (ItemMap[TempName] != null)
+            {
+                ItemMap[TempName].IsUsed = false;
+                ItemMap[TempName].InInventory = false;
+                //Debug.Log(TempName + " Added");
+            }
+        }
 
     }
 }

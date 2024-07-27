@@ -50,7 +50,7 @@ public class torneddoll : MonoBehaviour
     
     public void KeyClicked()
     {
-        InvenManager.GetComponent<InvenManager>().ItemAdder("yewon_key");
+        InvenManager.GetComponent<InvenManager>().ItemAdder("RadioBattery");
 
     }
     public IEnumerator Arm_torning(){
