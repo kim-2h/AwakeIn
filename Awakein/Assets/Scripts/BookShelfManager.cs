@@ -7,6 +7,7 @@ public class BookShelfManager : MonoBehaviour, IPuzzle
     [SerializeField] public bool IsSolved { get; set; }
     public Canvas canvas;
     private Vector3 CameraPosition;
+    
 
     public void StartPuzzle()
     {
@@ -17,6 +18,7 @@ public class BookShelfManager : MonoBehaviour, IPuzzle
     {
         Debug.Log("BookShelf Puzzle Exit");
         canvas.gameObject.SetActive(false);
+      
         Camera.main.gameObject.transform.position = CameraPosition;
     }
     void Start()

@@ -1,16 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class BookCoverManager: MonoBehaviour,IPuzzle
+public class ThirdBookShelfManager : MonoBehaviour, IPuzzle
 {
-    //북 터치하면 canvas 열고 열리면 시작하기 
    
-   [SerializeField] public bool IsSolved { get; set; }
+    [SerializeField] public bool IsSolved { get; set; }
     public Canvas canvas;
     private Vector3 CameraPosition;
-    //public GameObject secondBookShelf;
+    public GameObject secondBookShelf;
 
     public void StartPuzzle()
     {
@@ -30,5 +28,5 @@ public class BookCoverManager: MonoBehaviour,IPuzzle
     }
 
    
-    
+
 }

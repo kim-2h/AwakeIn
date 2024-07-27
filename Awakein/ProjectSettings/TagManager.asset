@@ -8,6 +8,8 @@ TagManager:
   - Puzzle
   - chairplace
   - bookcard
+  - 2ndBookShelf
+  - Book
   layers:
   - Default
   - TransparentFX
