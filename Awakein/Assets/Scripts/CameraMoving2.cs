@@ -15,11 +15,12 @@ public class CameraMoving2 : MonoBehaviour
     private Vector3 initialPosition; // 초기 카메라 위치
     private bool isFirstClick = true; // 첫 번째 클릭 여부
     private bool isZooming = false; // 확대 중 여부
-
+   
     void Start()
     {
         initialPosition = cam.transform.position; // 초기 위치 저장
         //InvenManager = GameObject.Find("InvenCanvas").transform.Find("InvenBG").gameObject;
+      
     }
 
     void Update()
@@ -63,7 +64,7 @@ public class CameraMoving2 : MonoBehaviour
                     Debug.Log("Item Clicked: " + hit.transform.name);
                     ItemClicked(hit.transform.name);
                 }    
-                else if (isFirstClick)
+                else if (isFirstClick && hit.transform.name != "PlantPot") // 클릭된 객체가 Puzzle 태그를 가지고 있고, 처음 클릭이면
                 {
                     Debug.Log("Puzzle Clicked: " + hit.transform.name);
                     StartCoroutine(ZoomCoroutine(hit.point)); // 클릭된 객체 위치를 기준으로 확대 시작
@@ -89,6 +90,11 @@ public class CameraMoving2 : MonoBehaviour
                     cam.transform.position = initialPosition;
                     isFirstClick = true;
                 }
+                if (hit.transform.name == "PlantPot")
+                {
+                    hit.transform.gameObject.GetComponent<PlantPotMovement>().PlantPotClicked();
+                }
+
             }
         }
         // else if (Input.GetMouseButtonDown(0) && !isFirstClick) // 만약 오른쪽 클릭이 발생하고 확대 중이 아니면
@@ -100,7 +106,8 @@ public class CameraMoving2 : MonoBehaviour
     }
     public void ItemClicked(string iName)
     {
-        Debug.Log(iName);      
+        Debug.Log(iName); 
+  
         InvenManager.GetComponent<InvenManager>().ItemAdder(iName); 
     }
     IEnumerator ZoomCoroutine(Vector3 targetPosition)
@@ -119,4 +126,6 @@ public class CameraMoving2 : MonoBehaviour
 
         isZooming = false; // 확대 종료 후 플래그 해제
     }
+    
+
 }

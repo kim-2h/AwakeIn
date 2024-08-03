@@ -33,18 +33,56 @@ public class InvenManager : MonoBehaviour,  IBeginDragHandler, IDragHandler, IEn
     public GameObject selectedObject;
     private GameObject TempSlot;
     public int NowMove = -1;
+    private ChairPlaceManager ChairPlaceManager;
     public void SlotClicked()
     {
         string sName = EventSystem.current.currentSelectedGameObject.name;
         Debug.Log(sName);
         NowMove = (sName[9] - '0')*10 + sName[10]-'0'; // Slot[0] ~ Slot[11
         selectedObject = Slots[NowMove].gameObject;
-        OpenPopup(selectedObject.transform.Find("Text (TMP)").GetComponent<TextMeshProUGUI>().text);
+        var Text = selectedObject.transform.Find("Text (TMP)").GetComponent<TextMeshProUGUI>().text;
+        if (Text != null && Text != "")
+        {
+            OpenPopup(Text);
+        }
+        
     }
     public void ItemAdder(string iName)
     {
+        if (iName == "Radio" || iName == "Clock" || 
+          iName == "PhotoFrame" || iName == "OrgelBody") 
+        {
+            if (ChairPlaceManager.ChairNow == ChairPlaceManager.ChairState.Nowhere)
+            {
+                return;
+            }
+            else if (ChairPlaceManager.ChairNow == ChairPlaceManager.ChairState.BookShelf)
+            {
+                if (iName != "Radio" && iName != "OrgelBody")
+                {
+                    return;
+                }
+            }
+            else if (ChairPlaceManager.ChairNow == ChairPlaceManager.ChairState.PhotoFrame)
+            {
+                if (iName != "PhotoFrame")
+                {
+                    return;
+                }
+            }
+            else if (ChairPlaceManager.ChairNow == ChairPlaceManager.ChairState.Clock)
+            {
+                if (iName != "Clock")
+                {
+                    return;
+                }
+            }
+        }  
         Debug.Log(iName + " added");
-        
+        if (iName == "Chair")
+        {
+            ChairPlaceManager.ChairNow = ChairPlaceManager.ChairState.Nowhere;
+        }
         for (int i = 0; i<Slots.Length && SlotNum >0; i++)
         {
             TextMeshProUGUI Text = Slots[i].transform.Find("Text (TMP)").GetComponent<TextMeshProUGUI>(); 
@@ -94,6 +132,7 @@ public class InvenManager : MonoBehaviour,  IBeginDragHandler, IDragHandler, IEn
                 break;
             }
         }
+        ItemMap[iName].InInventory = false;
     }
     public void OpenPopup(string iName)
     {
@@ -144,6 +183,11 @@ public class InvenManager : MonoBehaviour,  IBeginDragHandler, IDragHandler, IEn
             Debug.Log("Not Slot");
         }
 
+        if (selectedObject.transform.Find("Text (TMP)").GetComponent<TextMeshProUGUI>().text == "Chair")
+        {
+            ChairPlaceManager.ChairDragBegin();
+        }
+
     }
     public GameObject temp;
     public void OnDrag(PointerEventData eventData)
@@ -166,6 +210,8 @@ public class InvenManager : MonoBehaviour,  IBeginDragHandler, IDragHandler, IEn
         selectedObject.transform.position = Input.mousePosition;
         temp.transform.SetParent(TempSlot.transform);
         TempSlot.transform.position = Input.mousePosition;
+
+
 
     }
     public void OnEndDrag(PointerEventData eventData)
@@ -191,8 +237,19 @@ public class InvenManager : MonoBehaviour,  IBeginDragHandler, IDragHandler, IEn
         {
             if (hit2.transform.tag == "Puzzle")
             {
-                Debug.Log("Item interacted: " + hit2.transform.name);
-                
+                Debug.Log("Item interacted: " + hit2.transform.name);           
+            }
+            else if (selectedObject.transform.Find("Text (TMP)").GetComponent<TextMeshProUGUI>().text == "Chair")
+            {
+                Debug.Log("Chair Managing start");
+                ChairPlaceManager.ChairDragEnd(hit2);
+            }
+        }
+        else
+        {
+            if (selectedObject.transform.Find("Text (TMP)").GetComponent<TextMeshProUGUI>().text == "Chair")
+            {
+                ChairPlaceManager.ChairDragEnded();
             }
         }
         ItemManager.GetComponent<ItemManager>().ClickNotDrag = true;
@@ -220,6 +277,7 @@ public class InvenManager : MonoBehaviour,  IBeginDragHandler, IDragHandler, IEn
         TempSlot = transform.parent.Find("TempSlot").gameObject;
         TempSlot.GetComponent<RawImage>().color = new Color(0, 0, 0, 0);
         Popup.SetActive(false);
+        ChairPlaceManager = GameObject.Find("Room1").transform.Find("ChairNPlaceholder").GetComponent<ChairPlaceManager>();
     }
     void Update()
     {

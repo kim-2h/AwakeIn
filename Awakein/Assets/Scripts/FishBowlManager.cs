@@ -23,7 +23,7 @@ public class FishBowlManager : MonoBehaviour, IPuzzle
     public void KeyClicked()
     {
         IsSolved = true;
-        InvenManager.GetComponent<InvenManager>().ItemAdder("DriverStick");
+        InvenManager.GetComponent<InvenManager>().ItemAdder("DriverHandle");
     }
 
     void Start()

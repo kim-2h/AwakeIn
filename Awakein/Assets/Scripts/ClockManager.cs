@@ -19,6 +19,7 @@ public class ClockManager : MonoBehaviour, IPuzzle
     public Button backButton;
     public InvenManager invenManager;
     public GameObject Clock_Key; // 에너지 아이템 오브젝트 (Clock_Key에 backButton이 달려있다고 가정)
+    private ChairPlaceManager ChairPlaceManager;
 
     [SerializeField] public bool IsSolved { get; set; }
 
@@ -55,7 +56,7 @@ public class ClockManager : MonoBehaviour, IPuzzle
         {
             Debug.LogError("Clock_Key object is not assigned in ClockManager");
         }
-
+        ChairPlaceManager = GameObject.Find("Room1").transform.Find("ChairNPlaceholder").GetComponent<ChairPlaceManager>();
         Debug.Log("ClockManager started. Initial state: Clock_Key and backButton are inactive.");
     }
 
@@ -152,6 +153,10 @@ public class ClockManager : MonoBehaviour, IPuzzle
 
     public void StartPuzzle()
     {
+        if (ChairPlaceManager.ChairNow != ChairPlaceManager.ChairState.Clock)
+        {
+            return;
+        }
         Debug.Log("Clock Puzzle Started");
         clockPopupCanvas.SetActive(true);
         imageChanger.SwitchImage(ClockInPopUp, "clock");

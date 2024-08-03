@@ -64,24 +64,27 @@ public class RadioManager : MonoBehaviour, IPuzzle
     {
         IsSolved = false;
         Radio.gameObject.GetComponent<RawImage>().raycastTarget = false;
-        BatteryPosition = Battery.transform.position;
+        //BatteryPosition = Battery.transform.position;
         canvas.gameObject.SetActive(false);
         CameraPosition = Camera.main.gameObject.transform.position;
+        //var Rect = canvas.GetComponent<RectTransform>();
+        BatteryPosition = BatteryRect.anchoredPosition;
     }
 
     //라디오 뒷면 함수도 여기다 넣음
 
-
+    private RectTransform BatteryRect => Battery.GetComponent<RectTransform>();
     public void BeginDrag()
     {
         Battery.gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
     }
     public void Drag()
     {
-        Battery.gameObject.transform.position = Input.mousePosition;
+        BatteryRect.position = Input.mousePosition;
     }
     public void Drop() //슬롯에 들어갔나 확인
     {
+        Debug.Log("Battery Drop");
         //Rect BatterySlotRect = BatterySlot.gameObject.GetComponent<RectTransform>().rect;
         //Rect BatteryRect = Battery.gameObject.GetComponent<RectTransform>().rect;
         //Vector3 mousePos = Input.mousePosition;
@@ -97,15 +100,18 @@ public class RadioManager : MonoBehaviour, IPuzzle
         }
         else
         {
-            Battery.gameObject.transform.position = BatteryPosition;
+            Debug.Log("Battery Drop Failed");
+            Battery.transform.position = new Vector3(0, 0, 0);
+            BatteryRect.anchoredPosition = BatteryPosition;
+
             Battery.transform.rotation = Quaternion.Euler(0, 0, -90);
         }
 
     }
 
-    public void DriverHandleClicked()
+    public void DriverStickClicked()
     {
-        InvenManager.GetComponent<InvenManager>().ItemAdder("DriverHandle");
+        InvenManager.GetComponent<InvenManager>().ItemAdder("DriverStick");
         DriverHandle.SetActive(false);
     }
 

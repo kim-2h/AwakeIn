@@ -16,30 +16,41 @@ public class PlantPotMovement : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && !isMoving)
-        {
-            // 레이캐스트를 수행하여 클릭된 객체를 결정
-            RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        // if (Input.GetMouseButtonDown(0) && !isMoving)
+        // {
+        //     // 레이캐스트를 수행하여 클릭된 객체를 결정
+        //     RaycastHit hit;
+        //     Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-            if (Physics.Raycast(ray, out hit))
-            {
-                if (hit.transform == transform) // 클릭된 객체가 자신(PlantPot)인지 확인
-                {
-                    if (isMoved)
-                    {
-                        StartCoroutine(MovePlantPot(originalPosition)); // 원래 위치로 이동
-                    }
-                    else
-                    {
-                        Vector3 targetPosition = originalPosition + new Vector3(-moveDistance, 0f, 0f);
-                        StartCoroutine(MovePlantPot(targetPosition)); // 왼쪽으로 이동
-                    }
-                }
-            }
+        //     if (Physics.Raycast(ray, out hit))
+        //     {
+        //         if (hit.transform == transform) // 클릭된 객체가 자신(PlantPot)인지 확인
+        //         {
+        //             if (isMoved)
+        //             {
+        //                 StartCoroutine(MovePlantPot(originalPosition)); // 원래 위치로 이동
+        //             }
+        //             else
+        //             {
+        //                 Vector3 targetPosition = originalPosition + new Vector3(-moveDistance, 0f, 0f);
+        //                 StartCoroutine(MovePlantPot(targetPosition)); // 왼쪽으로 이동
+        //             }
+        //         }
+        //     }
+        // }
+    }
+    public void PlantPotClicked()
+    {
+        if (isMoved && !isMoving)
+        {
+            StartCoroutine(MovePlantPot(originalPosition)); // 원래 위치로 이동
+        }  
+        else if (!isMoving)
+        {
+            Vector3 targetPosition = originalPosition + new Vector3(-moveDistance, 0f, 0f);
+            StartCoroutine(MovePlantPot(targetPosition)); // 왼쪽으로 이동
         }
     }
-
     IEnumerator MovePlantPot(Vector3 targetPosition)
     {
         isMoving = true; // 이동 중 플래그 설정
