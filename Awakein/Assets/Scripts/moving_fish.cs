@@ -24,17 +24,23 @@ public class moving_fish : MonoBehaviour
 
     void Update()
     {
-        if (targetObject.activeSelf != previousState && !targetObject.activeSelf)
-        {
-            isMoving = true;
-            gameObject.SetActive(true); 
-        }
+        // if (targetObject.activeSelf != previousState && !targetObject.activeSelf)
+        // {
+        //     isMoving = true;
+        //     gameObject.SetActive(true); 
+        // }
 
-        if (isMoving)
-        {
-            StartCoroutine(MoveFish());
-            isMoving = false;
-        }
+        // if (isMoving)
+        // {
+        //     StartCoroutine(MoveFish());
+        //     isMoving = false;
+        // }
+    }
+
+    public void InvokeMove()
+    {
+        gameObject.SetActive(true); 
+        StartCoroutine(MoveFish());
     }
 
     IEnumerator MoveFish()

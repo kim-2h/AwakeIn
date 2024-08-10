@@ -30,6 +30,7 @@ public class FishBowlManager : MonoBehaviour, IPuzzle
     {
         IsSolved = false;
         CameraPosition = Camera.main.gameObject.transform.position; 
+        canvas.gameObject.SetActive(false);
     }
     void Update()
     {

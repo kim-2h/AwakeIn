@@ -13,17 +13,18 @@ public class deadfish : MonoBehaviour
     void Start()
     {
         //previousState = targetObject.activeSelf;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-       if (!hasMoved)
+        if (!hasMoved)
         {
             StartCoroutine(MoveFish());
             hasMoved = true;
         }
     }
+
+    // Update is called once per frame
+    // void Update()
+    // {
+
+    // } 
     IEnumerator MoveFish()
     {
         Vector3 startPosition = transform.position;

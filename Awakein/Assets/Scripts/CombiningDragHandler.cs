@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class CombiningDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     public GameObject[] MatchOtherParts;
+    public CombiningManager CombiningManager => GameObject.Find("InvenCanvas").transform.
+    Find("InvenBG").GetComponent<CombiningManager>();
     GameObject MatchingObject;
     public bool isMatched = false;
     public bool[] bools;
@@ -14,7 +16,7 @@ public class CombiningDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandl
     public void OnBeginDrag(PointerEventData eventData)
     {
         
-      if (isMatched) return;
+        if (isMatched) return;
         foreach (GameObject part in MatchOtherParts)
         {
             
@@ -47,8 +49,8 @@ public class CombiningDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandl
      
         transform.position=MatchingObject.transform.position;
         isMatched=true;
+        CombiningManager.InvokeMatch();
     }
     }
-    
     
 }

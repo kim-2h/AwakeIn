@@ -21,6 +21,8 @@ public class BedManager : MonoBehaviour, IPuzzle
         Debug.Log("Bed Puzzle Started");
         canvas.gameObject.SetActive(true);
         BtDrawer.transform.parent.position = DrawerPlace; 
+        Key.SetActive(ItemMap["Clock_Key"].InInventory && !DrawerUnLocked && !ItemMap["Clock_Key"].IsUsed);
+
         if (IsSolved)
         {
             Text.text = "nothing to do here";
@@ -42,7 +44,7 @@ public class BedManager : MonoBehaviour, IPuzzle
         else if (CoverOpen)
         {
             ImageChange.GetComponent<ImageChange>().SwitchSprite(
-                canvas.gameObject.transform.Find("Cover").gameObject, "cover1");
+            canvas.gameObject.transform.Find("Cover").gameObject, "cover1");
             Text.text = "I want to make it tidy";
             CoverOpen = false;
         }
@@ -136,4 +138,36 @@ public class BedManager : MonoBehaviour, IPuzzle
     //     DrawerPlace = BtDrawer.transform.parent.position;
     //     Debug.Log(BtDrawer.transform.parent.position);
     // }
+
+    //자물쇠 여는건 여기아래에다 적어놓음
+    [Header("Drawer Managing")]
+    public bool DrawerUnLocked = false;
+
+    private Vector2 KeyPos = new Vector2(-600, 30);
+    public GameObject Key, Lock;
+
+    public void KeyOnDrag()
+    {
+        Key.transform.position = Input.mousePosition;
+    }
+    public void KeyOnDrop()
+    {
+        if (DrawerOpen && Vector2.Distance(Key.transform.position, BtDrawer.transform.parent.position) < 100)
+        {
+            DrawerUnLocked = true;
+            Key.SetActive(false);
+            Lock.SetActive(false);
+            ItemMap["Clock_Key"].IsUsed = true;
+            InvenManager.GetComponent<InvenManager>().RemoveItem("Clock_Key");
+        }
+        else
+        {
+            // Reset the key to its original position using anchoredPosition
+            Key.GetComponent<RectTransform>().anchoredPosition = KeyPos;
+        }
+    }
+
+
+
+
 }

@@ -10,35 +10,48 @@ public class Fish : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDragHand
     public RectTransform Fishbowl;  // Change GameObject to RectTransform
     public float animationDuration = 2.0f;  // Duration of the animation
     public float animationDistance = 10.0f; // Distance to move up and down
-    public Vector2 targetPos = new Vector2(115, 267); // Target position within the UI
+    private Vector2 targetPos = new Vector2(115, 267); // Target position within the UI
 
     private Coroutine animationCoroutine;
     private RectTransform rectTransform;
-    public GameObject InvenManager, ClickBlocker;
-    public Vector2 InitialPos;
+    public GameObject InvenManager, ClickBlocker, FishMovingScript;
+    private Vector2 InitialPos, FinalPos = new Vector2(-10000, -10000);
+
 
     void Start()
     {
+        RectTransform Rect = this.GetComponent<RectTransform>();
+        InitialPos = new Vector2(495, 15);
         GetItemPlace();
         rectTransform = GetComponent<RectTransform>();
-        this.transform.position = InitialPos;
+        this.GetComponent<RectTransform>().anchoredPosition = InitialPos;
+        this.gameObject.SetActive(true);
     }
     public void InitPuzzle()
     {
         GetItemPlace();
-        this.transform.position = InitialPos;
     }
     void GetItemPlace()
     {
-        int Index = -100;
-        foreach (Transform child in InvenManager.transform)
+        // int Index = -100;
+        // foreach (Transform child in InvenManager.transform)
+        // {
+        //     if (child.GetComponent<RawImage>().texture && child.GetComponent<RawImage>().texture.name == "FishFood")
+        //     {
+        //         Index = child.transform.GetSiblingIndex();
+        //     }
+        // }
+        // InitialPos = new Vector2(85 + Index*150f +70, 90);
+
+        if (InvenManager.GetComponent<InvenManager>().ItemMap["FishFood"].InInventory)
         {
-            if (child.GetComponent<RawImage>().texture && child.GetComponent<RawImage>().texture.name == "FishFood")
-            {
-                Index = child.transform.GetSiblingIndex();
-            }
+            gameObject.SetActive(true);
+            this.GetComponent<RectTransform>().anchoredPosition = InitialPos;
         }
-        InitialPos = new Vector2(85 + Index*150f +70, 90);
+        else 
+        {
+            this.gameObject.SetActive(false);
+        }
 
     }
     void IBeginDragHandler.OnBeginDrag(PointerEventData eventData)
@@ -114,5 +127,6 @@ public class Fish : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDragHand
 
         rectTransform.anchoredPosition = targetPosition;
         gameObject.SetActive(false);
+        FishMovingScript.GetComponent<moving_fish>().InvokeMove();
     }
 }

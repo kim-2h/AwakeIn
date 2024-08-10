@@ -11,6 +11,7 @@ public class ItemManager : MonoBehaviour
     public bool ClickNotDrag = true;
     public void OpenPopUp(string Name)
     {
+        Debug.Log("OpenPopUp!! " + Name);
         if (ClickNotDrag) //클릭일때만 팝업뜸!! 드래그일땐 뜨면안됨 ㅈ같아짐
         {
             GameObject PopUp = null;

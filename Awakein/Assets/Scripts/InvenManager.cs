@@ -34,6 +34,7 @@ public class InvenManager : MonoBehaviour,  IBeginDragHandler, IDragHandler, IEn
     private GameObject TempSlot;
     public int NowMove = -1;
     private ChairPlaceManager ChairPlaceManager;
+    private CombiningManager CombiningManager;
     public void SlotClicked()
     {
         string sName = EventSystem.current.currentSelectedGameObject.name;
@@ -44,6 +45,7 @@ public class InvenManager : MonoBehaviour,  IBeginDragHandler, IDragHandler, IEn
         if (Text != null && Text != "")
         {
             OpenPopup(Text);
+            CombiningManager.OnButtonClicked();
         }
         
     }
@@ -128,7 +130,8 @@ public class InvenManager : MonoBehaviour,  IBeginDragHandler, IDragHandler, IEn
                 Slots[i].transform.Find("Text (TMP)").GetComponent<TextMeshProUGUI>().text = "";
                 SlotOccu[i] = 0;
                 SlotNum++;
-                Slots[i].GetComponent<RawImage>().color = new Color(0, 0, 0, 0);
+                Slots[i].GetComponent<RawImage>().texture = null;
+                Slots[i].GetComponent<RawImage>().color = new Color(88f / 255f, 88f / 255f, 88f / 255f, 255f / 255f);
                 break;
             }
         }
@@ -156,8 +159,7 @@ public class InvenManager : MonoBehaviour,  IBeginDragHandler, IDragHandler, IEn
             if (Item.IsClickable)
             {
                 ItemManager.GetComponent<ItemManager>().OpenPopUp(iName);
-                //Popup.SetActive(true); //일단 아이템 클릭하면 나오는 팝업은 하나인데. 이제 아이템매니저 
-                //만들어서 아이템 효과 나타나게, 혹은 아이템=퍼즐이라면 퍼즐 인터페이스 달아서 그냥 3d세상에서 퍼즐 클릭한것처럼 얘를위한 팝업이 열리게 해야함
+                //Popup.SetActive(true); 
             }
         }
         
@@ -218,6 +220,7 @@ public class InvenManager : MonoBehaviour,  IBeginDragHandler, IDragHandler, IEn
     {
         finalClick = eventData.position;
         Debug.Log("End Drag " + finalClick);
+        ItemManager.GetComponent<ItemManager>().ClickNotDrag = true;
         //Debug.Log("Offset " + Vector2.Distance(initialClick, finalClick));
         selectedObject.transform.position = initialPosition;
         TempSlot.transform.position = new Vector3(-10000, -10000, 0);
@@ -252,7 +255,7 @@ public class InvenManager : MonoBehaviour,  IBeginDragHandler, IDragHandler, IEn
                 ChairPlaceManager.ChairDragEnded();
             }
         }
-        ItemManager.GetComponent<ItemManager>().ClickNotDrag = true;
+        
         DestroyImmediate(temp);
         Debug.Log("End Drag");
     }
@@ -277,6 +280,7 @@ public class InvenManager : MonoBehaviour,  IBeginDragHandler, IDragHandler, IEn
         TempSlot = transform.parent.Find("TempSlot").gameObject;
         TempSlot.GetComponent<RawImage>().color = new Color(0, 0, 0, 0);
         Popup.SetActive(false);
+        CombiningManager = transform.GetComponent<CombiningManager>();
         ChairPlaceManager = GameObject.Find("Room1").transform.Find("ChairNPlaceholder").GetComponent<ChairPlaceManager>();
     }
     void Update()

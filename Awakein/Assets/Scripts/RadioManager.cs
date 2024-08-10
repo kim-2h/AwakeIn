@@ -22,7 +22,7 @@ public class RadioManager : MonoBehaviour, IPuzzle
         Radio.gameObject.GetComponent<RawImage>().raycastTarget = BatteryIn;
         RadioFront.SetActive(true);
         RadioBack.SetActive(false);
-        DriverHandle.SetActive(IsSolved && !InvenManager.GetComponent<InvenManager>().ItemMap["DriverHandle"].InInventory);
+        DriverHandle.SetActive(IsSolved && !InvenManager.GetComponent<InvenManager>().ItemMap["DriverStick"].InInventory && !InvenManager.GetComponent<InvenManager>().ItemMap["DriverStick"].IsUsed);
     }
     public void ExitPuzzle()
     {

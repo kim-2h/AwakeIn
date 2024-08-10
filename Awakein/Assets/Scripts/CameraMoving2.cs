@@ -19,12 +19,14 @@ public class CameraMoving2 : MonoBehaviour
     void Start()
     {
         initialPosition = cam.transform.position; // 초기 위치 저장
+        Cursor.lockState = CursorLockMode.Confined; // 마우스 커서 고정. ctrl+p로 게임 종료가능
         //InvenManager = GameObject.Find("InvenCanvas").transform.Find("InvenBG").gameObject;
       
     }
 
     void Update()
     {
+        
         if (Input.GetMouseButtonDown(0) && !isZooming && !EventSystem.current.IsPointerOverGameObject()) // 만약 왼쪽 클릭이 발생하고 확대 중이 아니면
         {
 
@@ -36,14 +38,17 @@ public class CameraMoving2 : MonoBehaviour
             
             // 레이캐스트를 수행하여 클릭된 객체를 결정
             RaycastHit hit;
+ 
+
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+    
             Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 10f);
             if (!isFirstClick && !isZooming) // 확대된 상태고 줌인 중이 아니면 클릭 시 초기 위치로 되돌림
             {
                 cam.transform.position = initialPosition;
                 isFirstClick = true;
             }
-            else if (EventSystem.current.IsPointerOverGameObject() == false && Physics.Raycast(ray, out hit))
+            else if (EventSystem.current.IsPointerOverGameObject() == false && (Physics.Raycast(ray, out hit))) // 레이캐스트 성공 시
             {
                 string dialogue = "";
                 dialogue = gameFlowManager.ReturnDialogue(hit.transform.name);
@@ -51,14 +56,6 @@ public class CameraMoving2 : MonoBehaviour
                 {
                     dialogueManager.SimpleDialogue(dialogue);
                 }
-                // else if (hit.transform.name == "Window")
-                // {
-                //     dialogueManager.WindowDialogue();
-                // }
-                // else if (hit.transform.name == "Door")
-                // {
-                //     dialogueManager.DoorDialogue();
-                // }
                 if (hit.transform.tag == "Item") 
                 {
                     Debug.Log("Item Clicked: " + hit.transform.name);

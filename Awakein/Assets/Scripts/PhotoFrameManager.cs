@@ -81,7 +81,7 @@ public class PhotoFrameManager : MonoBehaviour
     {
         var rect = BackPlate.GetComponent<RectTransform>();
         pos0 = (rect.anchoredPosition, rect.eulerAngles);
-        Canvas.SetActive(false);
+        Canvas.SetActive(true);
         FrameFront.SetActive(true);
         FrameBack.SetActive(false);
     }

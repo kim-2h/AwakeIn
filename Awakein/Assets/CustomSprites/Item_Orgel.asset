@@ -15,5 +15,5 @@ MonoBehaviour:
   itemName: Orgel
   itemMaterial: {fileID: 0}
   isClickable: 1
-  inInventory: 0
+  inInventory: 1
   isUsed: 0
