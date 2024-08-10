@@ -10,6 +10,8 @@ TagManager:
   - bookcard
   - 2ndBookShelf
   - Book
+  - Bolt
+  - FoodPlace
   layers:
   - Default
   - TransparentFX

@@ -26,9 +26,5 @@ public class BookShelfManager : MonoBehaviour, IPuzzle
         CameraPosition = Camera.main.gameObject.transform.position;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 }

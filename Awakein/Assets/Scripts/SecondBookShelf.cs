@@ -11,14 +11,12 @@ public class SecondBookShelf : MonoBehaviour
      public GameObject bookShelfManager;
      private bool isSolved = false;
      moving movingbooks;
-     public GameObject Over;
+  
      slot slot;
       void Start(){
         Slots = GameObject.FindGameObjectsWithTag("2ndBookShelf");
         Books = GameObject.FindGameObjectsWithTag("Book");
         //bookShelfManager=GetComponent<BookShelfManager>();
-        
-        
      }
      
      void Update(){
@@ -34,8 +32,10 @@ public class SecondBookShelf : MonoBehaviour
         Slots[3].GetComponent<slot>().Books()==Books[5]&&
         Slots[4].GetComponent<slot>().Books()==Books[1]&&
         Slots[5].GetComponent<slot>().Books()==Books[3]){
-         Over.SetActive(true);
-         bookShelfManager.gameObject.GetComponent<IPuzzle>().IsSolved = true;
+         foreach(GameObject item in Books){
+             item.GetComponent<Image>().raycastTarget = false;
+         }
+          bookShelfManager.gameObject.GetComponent<IPuzzle>().IsSolved = true;
            //Debug.Log("Done");
          
         }
