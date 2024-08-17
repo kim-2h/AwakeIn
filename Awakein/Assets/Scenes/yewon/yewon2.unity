@@ -5278,6 +5278,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 1010342854}
+  invenManager: {fileID: 0}
 --- !u!1 &484691976
 GameObject:
   m_ObjectHideFlags: 0
@@ -6200,6 +6201,7 @@ MonoBehaviour:
   Battery: {fileID: 0}
   BatterySlot: {fileID: 0}
   DriverHandle: {fileID: 0}
+  DLManager: {fileID: 0}
 --- !u!1 &631636300
 GameObject:
   m_ObjectHideFlags: 0
@@ -7495,7 +7497,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 1010342854}
-  secondBookShelf: {fileID: 0}
 --- !u!1 &795668428
 GameObject:
   m_ObjectHideFlags: 0
@@ -9084,7 +9085,6 @@ MonoBehaviour:
   Slots: []
   Books: []
   bookShelfManager: {fileID: 0}
-  Over: {fileID: 1458207222}
 --- !u!114 &923075690
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11182,6 +11182,9 @@ MonoBehaviour:
   BtDrawer: {fileID: 1892893144}
   canvas: {fileID: 1548207564}
   Text: {fileID: 1899240841}
+  DrawerUnLocked: 0
+  Key: {fileID: 0}
+  Lock: {fileID: 0}
 --- !u!1 &1162576989
 GameObject:
   m_ObjectHideFlags: 0
@@ -11255,6 +11258,8 @@ MonoBehaviour:
   - {fileID: 250807835}
   - {fileID: 1395945431}
   targetCharacters: 4100000042000000430000004400000045000000
+  BDManager: {fileID: 0}
+  TBManager: {fileID: 0}
 --- !u!1 &1177571532
 GameObject:
   m_ObjectHideFlags: 0
@@ -11442,6 +11447,7 @@ MonoBehaviour:
   - {fileID: 742041399}
   - {fileID: 1529224228}
   - {fileID: 329045420}
+  texts: []
 --- !u!1 &1177955260
 GameObject:
   m_ObjectHideFlags: 0
@@ -16580,6 +16586,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dText: {fileID: 1882194015}
   Panel: {fileID: 1810695982}
+  NextBT: {fileID: 0}
 --- !u!1 &1730979358
 GameObject:
   m_ObjectHideFlags: 0
@@ -17205,7 +17212,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 844549743}
-  secondBookShelf: {fileID: 0}
 --- !u!1 &1840429628
 GameObject:
   m_ObjectHideFlags: 0
@@ -20273,6 +20279,8 @@ MonoBehaviour:
   - {fileID: 85030908}
   - {fileID: 7258709416961236319}
   GameFlowManager: {fileID: 0}
+  NoteManager: {fileID: 0}
+  InvenManager: {fileID: 0}
   ClickNotDrag: 0
 --- !u!4 &2099871581
 Transform:
@@ -24738,10 +24746,9 @@ MonoBehaviour:
   Fishbowl: {fileID: 7490734622791945787}
   animationDuration: 2
   animationDistance: 10
-  targetPos: {x: 115, y: 267}
   InvenManager: {fileID: 1358391605}
   ClickBlocker: {fileID: 543303088}
-  InitialPos: {x: 0, y: 0}
+  FishMovingScript: {fileID: 0}
 --- !u!114 &3795539872667275430
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29504,7 +29511,6 @@ MonoBehaviour:
   Slots: []
   Books: []
   bookShelfManager: {fileID: 1805500831}
-  Over: {fileID: 0}
 --- !u!4 &7327689425964758287
 Transform:
   m_ObjectHideFlags: 0
@@ -31439,6 +31445,9 @@ MonoBehaviour:
   BtDrawer: {fileID: 0}
   canvas: {fileID: 1548207564}
   Text: {fileID: 1899240841}
+  DrawerUnLocked: 0
+  Key: {fileID: 0}
+  Lock: {fileID: 0}
 --- !u!1 &8163510624081513569
 GameObject:
   m_ObjectHideFlags: 0
@@ -33508,12 +33517,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b766c231d52d8c4da12e201b02205b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LockCManager: {fileID: 0}
   ImageChange: {fileID: 37206839}
   InvenManager: {fileID: 1358391605}
-  HitBoxA: {fileID: 474623811}
-  HitBoxH: {fileID: 1507527742}
+  ClickBlock: {fileID: 0}
+  ToyBoxTop: {fileID: 0}
+  Airplain: {fileID: 0}
+  Doll: {fileID: 0}
   canvas: {fileID: 251959664}
-  Text: {fileID: 0}
 --- !u!23 &9172516149316804936
 MeshRenderer:
   m_ObjectHideFlags: 0
