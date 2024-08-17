@@ -13,15 +13,20 @@ public class BedManager : MonoBehaviour, IPuzzle
     public Canvas canvas;
     public TextMeshProUGUI Text;
     private Vector3 CameraPosition, DrawerPlace;
-    private bool DrawerOpen = false, CoverOpen = false;
+    public bool DrawerOpen = false;
+    public bool CoverOpen = false;
     private Dictionary<string, Item> ItemMap = new Dictionary<string, Item>();
+    public Image[] Alphalists;
 
     public void StartPuzzle()
     {
         Debug.Log("Bed Puzzle Started");
+        Debug.Log("Cover status: " + CoverOpen);
         canvas.gameObject.SetActive(true);
-        BtDrawer.transform.parent.position = DrawerPlace; 
+        BtDrawer.GetComponent<RectTransform>().anchoredPosition = new Vector2(DrawerPlace.x +230, DrawerPlace.y -80); 
         Key.SetActive(ItemMap["Clock_Key"].InInventory && !DrawerUnLocked && !ItemMap["Clock_Key"].IsUsed);
+        CoverOpen = false;
+        Key.GetComponent<RectTransform>().anchoredPosition = KeyPos;
 
         if (IsSolved)
         {
@@ -34,7 +39,7 @@ public class BedManager : MonoBehaviour, IPuzzle
     }
     public void CoverClicked()
     {
-        if (!CoverOpen)
+        if (CoverOpen == false)
         {
             ImageChange.GetComponent<ImageChange>().SwitchSprite(
                 canvas.gameObject.transform.Find("Cover").gameObject, "cover2");
@@ -68,9 +73,12 @@ public class BedManager : MonoBehaviour, IPuzzle
     }
     public void ExitPuzzle()
     {
+        CoverOpen = false;
+        
         if (canvas.gameObject.activeInHierarchy)
         {
             Debug.Log("Bed Puzzle Exit");
+            Debug.Log("Cover status: " + CoverOpen);
             CoverOpen = false;
             DrawerOpen = false;
             canvas.gameObject.SetActive(false);
@@ -94,11 +102,17 @@ public class BedManager : MonoBehaviour, IPuzzle
         IsSolved = false;
         CameraPosition = Camera.main.transform.position;
         DrawerOpen = false;
-        DrawerPlace = new Vector3(962f, 439f, 0f);
+        DrawerPlace = new Vector3(-92f, 2f, 0f);
         CoverOpen = false;
         BtDrawer.interactable = true;
         var CoverImage = canvas.gameObject.transform.Find("Cover").gameObject.GetComponent<Image>();
         CoverImage.alphaHitTestMinimumThreshold = 0.9f;
+
+        foreach (var item in Alphalists)
+        {
+            item.alphaHitTestMinimumThreshold = 0.9f;
+        }
+
         canvas.gameObject.transform.Find("Bed").gameObject.GetComponent<Image>().alphaHitTestMinimumThreshold = 0.9f;
         ItemMap = GameFlowManager.GetComponent<GameFlowManager>().ItemMap;
     }
@@ -111,14 +125,15 @@ public class BedManager : MonoBehaviour, IPuzzle
         var DrawerOpenPos = DrawerOpen? DrawerPlace : new Vector3(DrawerPos.x + 150, DrawerPos.y-20, 0f);
         var time = 0.5f;
         var elapsedTime = 0f;
+        var DrawerRect = Drawer.GetComponent<RectTransform>();
         while (elapsedTime < time)
         {
-            Drawer.transform.position = Vector3.Lerp(DrawerPos, DrawerOpenPos, elapsedTime / time);
+            DrawerRect.anchoredPosition = Vector3.Lerp(DrawerPos, DrawerOpenPos, elapsedTime / time);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
             
-        Drawer.transform.position = DrawerOpenPos;
+        Drawer.GetComponent<RectTransform>().anchoredPosition = DrawerOpenPos;
         BtDrawer.interactable = true;
         //DrawerImage.raycastTarget = true;
     }
@@ -151,9 +166,14 @@ public class BedManager : MonoBehaviour, IPuzzle
         Key.transform.position = Input.mousePosition;
     }
     public void KeyOnDrop()
-    {
-        if (DrawerOpen && Vector2.Distance(Key.transform.position, BtDrawer.transform.parent.position) < 100)
+    {          Debug.Log("Key Rect : " + Key.GetComponent<RectTransform>().anchoredPosition + 
+            "\nDrawer Rect : " + BtDrawer.GetComponent<RectTransform>().anchoredPosition + 
+            "\nKey transformed position : " + Key.transform.position + 
+            "\nDrawer transformed position : " + BtDrawer.transform.position);
+        if (CoverOpen && Vector2.Distance(Key.GetComponent<RectTransform>().anchoredPosition, 
+        BtDrawer.GetComponent<RectTransform>().anchoredPosition) < 100)
         {
+
             DrawerUnLocked = true;
             Key.SetActive(false);
             Lock.SetActive(false);
