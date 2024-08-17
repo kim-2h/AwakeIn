@@ -8,20 +8,12 @@ public class ItemManager : MonoBehaviour
 {
     public List<GameObject> PopUpList = new List<GameObject>();
     public GameObject GameFlowManager;
-    public UINoteManager NoteManager;
-    public InvenManager InvenManager;
     public bool ClickNotDrag = true;
     public void OpenPopUp(string Name)
     {
         Debug.Log("OpenPopUp!! " + Name);
         if (ClickNotDrag) //클릭일때만 팝업뜸!! 드래그일땐 뜨면안됨 ㅈ같아짐
         {
-            if (NoteManager.ContentsMap.ContainsKey(Name))
-            {
-                NoteManager.ClickContent(Name);
-                InvenManager.RemoveItem(Name);
-                return;
-            }
             GameObject PopUp = null;
             foreach (GameObject popup in PopUpList)
             {

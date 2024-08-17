@@ -4,14 +4,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
-using Unity.VisualScripting;
 
 public class CombiningManager : MonoBehaviour
 {/*combiningcanvas에 오르골부품 움직일 애들이랑 그 자리 까지 다 세팅하기*/
     public Canvas canvas;
     public Texture[] images;
     bool IsCombined=false;
-    public bool ClickNotDrag = true;
     Button[] buttons;
     public GameObject[] gameObjects;
     public GameObject[] ResultItem;
@@ -28,16 +26,12 @@ public class CombiningManager : MonoBehaviour
 
     public void OnButtonClicked()
     {
-        if (!ClickNotDrag)
-        {
-            return;
-        }
         Debug.Log("Button clicked for matching");
         Button button = EventSystem.current.currentSelectedGameObject.GetComponent<Button>();
         RawImage rawImage = button.GetComponent<RawImage>();
 
         
-        if (rawImage.texture.name == images[0].name || rawImage.texture.name == images[1].name)//드라이버 부분
+        if (rawImage.texture == images[0] || rawImage.texture == images[1])//드라이버 부분
         {
             Debug.Log("Image Right: Driver");
             canvas.gameObject.SetActive(true);
@@ -90,7 +84,7 @@ public class CombiningManager : MonoBehaviour
             // }
             
         }//비행기 부분 추가해야 함
-        else if (rawImage.texture.name == images[2].name || rawImage.texture.name == images[3].name)
+        else if (rawImage.texture == images[2] || rawImage.texture == images[3])
         {
          Debug.Log("Image Right: Orgel");
             canvas.gameObject.SetActive(true);
