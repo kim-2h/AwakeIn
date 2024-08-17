@@ -1,0 +1,79 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: UI Table_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: 54d106543e668f4449fb05dd9d288d81, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 77832208384
+    m_Localized: Sound
+    m_Metadata:
+      m_Items: []
+  - m_Id: 231507312640
+    m_Localized: Graphic
+    m_Metadata:
+      m_Items: []
+  - m_Id: 404539129856
+    m_Localized: Language
+    m_Metadata:
+      m_Items: []
+  - m_Id: 484771971072
+    m_Localized: Screen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 632356945920
+    m_Localized: Master Volume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181328424960
+    m_Localized: BGM Volume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1251452993536
+    m_Localized: SFX Volume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1574095634432
+    m_Localized: Enable Shadows
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1701933826048
+    m_Localized: Disabling will remove shadows from game objects
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2059741511680
+    m_Localized: Disabling will lower grophic quality but improve performance
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2538563256320
+    m_Localized: Enable Global Volume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2957683277824
+    m_Localized: Full Screen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3110112673792
+    m_Localized: "*Default size is \n 1920x1080"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3277100498944
+    m_Localized: Select Language
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEditor;
-using UnityEditor.VersionControl;
+//using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
@@ -45,7 +45,6 @@ public class InvenManager : MonoBehaviour,  IBeginDragHandler, IDragHandler, IEn
         if (Text != null && Text != "")
         {
             OpenPopup(Text);
-            CombiningManager.OnButtonClicked();
         }
         
     }
@@ -98,9 +97,19 @@ public class InvenManager : MonoBehaviour,  IBeginDragHandler, IDragHandler, IEn
                 foreach (GameObject item in var)
                 {
                     if (item.name == iName)
-                    {  //Assets/CustomSprites/Key1.png 
-                        string path = "Assets/CustomSprites/" + iName + ".png";
-                        Texture newSprite = AssetDatabase.LoadAssetAtPath<Texture>(path);
+                    {  //여기 아래 두줄은 에디터상에서만 이용가능함
+                        // string path = "Assets/CustomSprites/" + iName + ".png";
+                        // Texture newSprite = AssetDatabase.LoadAssetAtPath<Texture>(path);
+                        //ㄴㅇㅇㅇ 빌드할때는 다른 코드 써야함
+                        // string path = "/CustomSprites/" + iName;
+                        // Texture newSprite = Resources.Load(path) as Texture;
+                        #if UNITY_EDITOR
+                            string path = "Assets/CustomSprites/" + iName + ".png";
+                            Texture newSprite = AssetDatabase.LoadAssetAtPath<Texture>(path);
+                        #else
+                            string path = "CustomSprites/" + iName;
+                            Texture newSprite = Resources.Load<Texture>(path);
+                        #endif
                         if (newSprite == null)
                         {
                             Debug.Log("Sprite not found at path: " + path);
@@ -136,6 +145,7 @@ public class InvenManager : MonoBehaviour,  IBeginDragHandler, IDragHandler, IEn
             }
         }
         ItemMap[iName].InInventory = false;
+        ItemMap[iName].IsUsed = true;
     }
     public void OpenPopup(string iName)
     {
@@ -156,6 +166,7 @@ public class InvenManager : MonoBehaviour,  IBeginDragHandler, IDragHandler, IEn
         }
         else
         {
+            CombiningManager.OnButtonClicked();
             if (Item.IsClickable)
             {
                 ItemManager.GetComponent<ItemManager>().OpenPopUp(iName);
@@ -167,18 +178,26 @@ public class InvenManager : MonoBehaviour,  IBeginDragHandler, IDragHandler, IEn
     public void OnBeginDrag(PointerEventData eventData)
     {
         ItemManager.GetComponent<ItemManager>().ClickNotDrag = false;
-        Debug.Log("Begin Drag " + initialClick);
+        CombiningManager.ClickNotDrag = false;
+        //Debug.Log("Begin Drag " + initialClick);
+
+        
+        // if (NowMove == -1 || SlotOccu[NowMove] != 1)
+        // {
+        //     return;
+        // }
         if (EventSystem.current.currentSelectedGameObject.TryGetComponent<Button>(out Button component) && Slots.Contains(component))
         {
             SlotClicked();
             selectedObject = Slots[NowMove].gameObject;
             initialPosition = selectedObject.transform.position;
             temp = Instantiate(selectedObject);
+            //TempSlot.transform.position = Input.mousePosition;
             temp.transform.SetParent(TempSlot.gameObject.transform);
             temp.transform.Find("Text (TMP)").GetComponent<TextMeshProUGUI>().text = "";
             TempSlot.GetComponent<RawImage>().color = new Color(255, 255, 255, 255);
             TempSlot.GetComponent<RawImage>().texture = selectedObject.GetComponent<RawImage>().texture;
-            Debug.Log("Begin Drag : " + selectedObject.name);
+            Debug.Log("Begin Drag : " + temp.transform.Find("Text (TMP)").GetComponent<TextMeshProUGUI>().text);
         }
         else
         {
@@ -195,11 +214,12 @@ public class InvenManager : MonoBehaviour,  IBeginDragHandler, IDragHandler, IEn
     public void OnDrag(PointerEventData eventData)
     {
         ItemManager.GetComponent<ItemManager>().ClickNotDrag = false;
+        CombiningManager.ClickNotDrag = false;
         //Debug.Log("Dragging");
         //finalClick = eventData.position;
         //Popup.SetActive(false); //이부분ㅅㅂ 왜 distance로 하면 안먹히지 일케하면 느린데; 
         //ItemManager.GetComponent<ItemManager>().ClosePopUp(0);
-        if (SlotOccu[NowMove] != 1)
+        if (NowMove == -1 || SlotOccu[NowMove] != 1)
         {
             return;
         }
@@ -210,17 +230,22 @@ public class InvenManager : MonoBehaviour,  IBeginDragHandler, IDragHandler, IEn
  
         } */ //distance로 구현하는부분 
         selectedObject.transform.position = Input.mousePosition;
-        temp.transform.SetParent(TempSlot.transform);
-        TempSlot.transform.position = Input.mousePosition;
+        //temp.transform.SetParent(TempSlot.transform);
+        //TempSlot.transform.position = Input.mousePosition;
 
 
 
     }
     public void OnEndDrag(PointerEventData eventData)
     {
+        if (NowMove == -1 || SlotOccu[NowMove] != 1)
+        {
+            return;
+        }
         finalClick = eventData.position;
         Debug.Log("End Drag " + finalClick);
         ItemManager.GetComponent<ItemManager>().ClickNotDrag = true;
+        CombiningManager.ClickNotDrag = true;
         //Debug.Log("Offset " + Vector2.Distance(initialClick, finalClick));
         selectedObject.transform.position = initialPosition;
         TempSlot.transform.position = new Vector3(-10000, -10000, 0);
@@ -252,10 +277,11 @@ public class InvenManager : MonoBehaviour,  IBeginDragHandler, IDragHandler, IEn
         {
             if (selectedObject.transform.Find("Text (TMP)").GetComponent<TextMeshProUGUI>().text == "Chair")
             {
+                Debug.Log("Chair Managing dropped");
                 ChairPlaceManager.ChairDragEnded();
             }
         }
-        
+        ChairPlaceManager.ChairDragEnded();
         DestroyImmediate(temp);
         Debug.Log("End Drag");
     }
