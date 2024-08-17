@@ -12,6 +12,7 @@ TagManager:
   - Book
   - Bolt
   - FoodPlace
+  - Shadow
   layers:
   - Default
   - TransparentFX

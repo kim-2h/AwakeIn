@@ -1,0 +1,85 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: UI Table Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: UI Table
+  m_TableCollectionNameGuidString: 54d106543e668f4449fb05dd9d288d81
+  m_Entries:
+  - m_Id: 77832208384
+    m_Key: SoundBT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 231507312640
+    m_Key: GraphicBT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 404539129856
+    m_Key: LanguageBT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 484771971072
+    m_Key: ScreenBT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 632356945920
+    m_Key: Master Volume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181328424960
+    m_Key: BGM Volume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1251452993536
+    m_Key: SFX Volume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1574095634432
+    m_Key: Enable Shadows
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1701933826048
+    m_Key: Graphic_desc1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2059741511680
+    m_Key: Graphic_desc2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2538563256320
+    m_Key: Enablel_GB
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2957683277824
+    m_Key: Full Screen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3110112673792
+    m_Key: Full Screen Desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3277100498944
+    m_Key: Select Language
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 64721940246691864
+  references:
+    version: 2
+    RefIds:
+    - rid: 64721940246691864
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables,
+        asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1723482191943

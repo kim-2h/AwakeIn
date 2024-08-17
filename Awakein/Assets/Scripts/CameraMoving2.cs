@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
+
 public class CameraMoving2 : MonoBehaviour
 {   
     public DialogueManager dialogueManager;
@@ -18,6 +19,7 @@ public class CameraMoving2 : MonoBehaviour
    
     void Start()
     {
+
         initialPosition = cam.transform.position; // 초기 위치 저장
         Cursor.lockState = CursorLockMode.Confined; // 마우스 커서 고정. ctrl+p로 게임 종료가능
         //InvenManager = GameObject.Find("InvenCanvas").transform.Find("InvenBG").gameObject;
@@ -51,10 +53,12 @@ public class CameraMoving2 : MonoBehaviour
             else if (EventSystem.current.IsPointerOverGameObject() == false && (Physics.Raycast(ray, out hit))) // 레이캐스트 성공 시
             {
                 string dialogue = "";
+
                 dialogue = gameFlowManager.ReturnDialogue(hit.transform.name);
-                if (dialogue != null)
+                
+                if (dialogue != null && dialogueManager.IsDialoguePlaying == false)
                 {
-                    dialogueManager.SimpleDialogue(dialogue);
+                    StartCoroutine(dialogueManager.PlayDialogue(dialogue));
                 }
                 if (hit.transform.tag == "Item") 
                 {
