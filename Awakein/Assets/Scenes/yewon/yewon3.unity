@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.7
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12485506, g: 0.15633123, b: 0.21374723, a: 0.7}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 0.7}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -8328,7 +8328,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &925231492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10516,6 +10516,9 @@ MonoBehaviour:
   BtDrawer: {fileID: 1892893144}
   canvas: {fileID: 1548207564}
   Text: {fileID: 1899240841}
+  DrawerUnLocked: 0
+  Key: {fileID: 0}
+  Lock: {fileID: 0}
 --- !u!1 &1162576989
 GameObject:
   m_ObjectHideFlags: 0
@@ -10776,6 +10779,7 @@ MonoBehaviour:
   - {fileID: 742041399}
   - {fileID: 1529224228}
   - {fileID: 329045420}
+  texts: []
 --- !u!1 &1177955260
 GameObject:
   m_ObjectHideFlags: 0
@@ -10964,7 +10968,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 0}
-  isCleared: 0
+  Over: {fileID: 0}
+  gameflow: {fileID: 0}
+  Driver: {fileID: 0}
 --- !u!1 &1210808127
 GameObject:
   m_ObjectHideFlags: 0
@@ -12565,7 +12571,8 @@ MonoBehaviour:
   gameObjects:
   - {fileID: 1616732786}
   - {fileID: 1032846151}
-  ResultItem: {fileID: 373827738}
+  ResultItem:
+  - {fileID: 0}
 --- !u!1 &1358567806
 GameObject:
   m_ObjectHideFlags: 0
@@ -23292,10 +23299,9 @@ MonoBehaviour:
   Fishbowl: {fileID: 7490734622791945787}
   animationDuration: 2
   animationDistance: 10
-  targetPos: {x: 115, y: 267}
   InvenManager: {fileID: 1358391605}
   ClickBlocker: {fileID: 543303088}
-  InitialPos: {x: 0, y: 0}
+  FishMovingScript: {fileID: 0}
 --- !u!114 &3795539872667275430
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30105,6 +30111,9 @@ MonoBehaviour:
   BtDrawer: {fileID: 0}
   canvas: {fileID: 1548207564}
   Text: {fileID: 1899240841}
+  DrawerUnLocked: 0
+  Key: {fileID: 0}
+  Lock: {fileID: 0}
 --- !u!1 &8163510624081513569
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,16 +6,18 @@ using UnityEngine.EventSystems;
 public class VentDragHandler : MonoBehaviour,IBeginDragHandler, IDragHandler, IEndDragHandler
 {
    public bool isCleared = false;
-   public int BoltsDone=0;
+   private int BoltsDone=0;
    private float timer=2f;
    public bool CoroutineStarted=false;
    public float fadeSpeed = 0.5f;
    VentManager ventManager;
+   public InvenManager invenManager;
    public GameObject Vent;
    public GameObject[] Bolts;
    Vector3 beginposition;
    void Start(){
     ventManager=GetComponent<VentManager>();
+    //invenManager=GetComponent<InvenManager>();
     Bolts=GameObject.FindGameObjectsWithTag("Bolt");
      beginposition=transform.position;
    }
@@ -38,13 +40,15 @@ public class VentDragHandler : MonoBehaviour,IBeginDragHandler, IDragHandler, IE
         transform.position.y <= Bolts[i].transform.position.y+30&&
         transform.position.y >= Bolts[i].transform.position.y-30){
            StartCoroutine(BoltRotating(Bolts[i]));
-          
         }
          if (BoltsDone == 4){
-            transform.position=beginposition;
              StartCoroutine(MovingVent(Vent));
+             transform.position = beginposition;
+             invenManager.ItemMap["Driver"].IsUsed = true;
+             invenManager.RemoveItem("Driver");
             isCleared=true;
          } 
+         
     }}
    
     IEnumerator BoltRotating(GameObject tf){

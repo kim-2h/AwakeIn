@@ -8,7 +8,8 @@ public class ThirdBookShelfManager : MonoBehaviour, IPuzzle
     [SerializeField] public bool IsSolved { get; set; }
     public Canvas canvas;
     private Vector3 CameraPosition;
-    public GameObject secondBookShelf;
+    
+    //public GameObject secondBookShelf;
 
     public void StartPuzzle()
     {

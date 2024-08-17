@@ -10,6 +10,7 @@ public class HanoiManager : MonoBehaviour
     [SerializeField] public bool IsSolved { get; set; }
     [SerializeField] public List<GameObject> Disks = new List<GameObject>();
     public List<GameObject> Rods = new List<GameObject>();
+    public Image[] texts;
     private Vector3[] RoadPosition = {new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(0, 0, 0)};
     public void InitDisk() //get rocation of first rod and place each disk on it
     {
@@ -59,12 +60,14 @@ public class HanoiManager : MonoBehaviour
     void Start()
     {
         InitDisk();
+        for (int i=0;i<4;i++){
+                Color newColor = texts[i].color;  
+               newColor.a = 0f; 
+                texts[i].color = newColor; 
+            }
         IsSolved = false;
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 }

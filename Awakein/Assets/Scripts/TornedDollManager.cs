@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class torneddoll : MonoBehaviour
+public class TornedDollManager : MonoBehaviour
 {
      ImageChange imageChange;
      public List<GameObject> Appearing=new List<GameObject>(); 
@@ -11,11 +11,10 @@ public class torneddoll : MonoBehaviour
      GameObject arm;
      public GameObject InvenManager;
     // Start is called before the first frame update
-    bool ONce=false;
+    bool ONce=true;
     int n=0;
     void Start()
     {
-        
         imageChange=GetComponent<ImageChange>();
         canvas=gameObject.transform.parent.GetComponent<Canvas>();
     }
@@ -23,26 +22,19 @@ public class torneddoll : MonoBehaviour
     // Update is called once per frame
     
     public void Switch(){
+        if (!ONce) return;
         if (ONce){
             imageChange.SwitchSprite(gameObject, "doll");
-         arm=Instantiate(Appearing[0],canvas.transform);
-        Appearing[1].SetActive(true);
-       arm.transform.position=new Vector3(transform.position.x+90,transform.position.y+15,transform.position.z);
+          arm=Instantiate(Appearing[0],canvas.transform);
+         Appearing[1].SetActive(true);
+          arm.transform.position=new Vector3(transform.position.x+90,transform.position.y+15,transform.position.z);
+           StartCoroutine(Arm_torning());
+           ONce=false;
         }
         }
 
-    public void Torning(){
-        if (ONce){
-        StartCoroutine(Arm_torning());
-         ONce=false;}
-        
-    }
-        
-    public void ONCE(){
-        n++;
-        if (n==1) ONce=true;
-       
-    }
+    
+    
     public void ClosePopUp()
     {
         canvas.gameObject.SetActive(false);
@@ -51,7 +43,6 @@ public class torneddoll : MonoBehaviour
     public void KeyClicked()
     {
         InvenManager.GetComponent<InvenManager>().ItemAdder("RadioBattery");
-
     }
     public IEnumerator Arm_torning(){
         

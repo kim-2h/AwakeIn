@@ -4,6 +4,7 @@ using System.Numerics;
 using UnityEngine;
 using Vector3 = UnityEngine.Vector3;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class DiskDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
@@ -12,6 +13,7 @@ public class DiskDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     public GameObject RodTemp;
     private GameObject StartRod;
     private bool isValid = true;
+    private float fadeSpeed=1.5f;
     private Vector3[] RoadPosition = {new Vector3(-400, 0, 0), new Vector3(0, 0, 0), new Vector3(800, 0, 0)};
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -70,6 +72,9 @@ public class DiskDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         if (Manager.gameObject.GetComponent<HanoiManager>().Rods[2].transform.childCount == 4)
         {
             Debug.Log("~~~Game End!!!~~~");
+            for (int i=0;i<4;i++){
+                 StartCoroutine(FadeIn(Manager.gameObject.GetComponent<HanoiManager>().texts[i]));
+            }
             RealManager.gameObject.GetComponent<IPuzzle>().IsSolved = true;
             RealManager.gameObject.GetComponent<HanoiRealManager>().StartPuzzle();
         }
@@ -115,8 +120,15 @@ public class DiskDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        
+    IEnumerator FadeIn(Image text){
+        Debug.Log("StartCour");
+      Color newColor = text.color;           
+        newColor.a = 0f;
+       while(newColor.a<1f){
+          newColor.a+=Time.deltaTime*fadeSpeed;
+         text.color = newColor;
+         yield return null;
+       }
+     text.gameObject.SetActive(true);
     }
 }

@@ -11,11 +11,15 @@ public class BookCoverManager: MonoBehaviour,IPuzzle
     public Canvas canvas;
     private Vector3 CameraPosition;
     //public GameObject secondBookShelf;
-
+    public InvenManager invenManager;
     public void StartPuzzle()
     {
-        Debug.Log("BookShelf Puzzle Started");
-        canvas.gameObject.SetActive(true);
+        if (invenManager.ItemMap["Carpet_Note"].IsUsed){
+            Debug.Log("BookShelf Puzzle Started");
+            canvas.gameObject.SetActive(true);
+        }
+        else return;
+       
     }
     public void ExitPuzzle()
     {

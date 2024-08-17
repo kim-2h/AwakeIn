@@ -15,5 +15,5 @@ MonoBehaviour:
   itemName: Carpet_Note
   itemMaterial: {fileID: 2100000, guid: a4d0ecd9c63a9444f8f0b10fd945bb79, type: 2}
   isClickable: 1
-  inInventory: 1
+  inInventory: 0
   isUsed: 0
