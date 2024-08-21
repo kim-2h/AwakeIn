@@ -1,0 +1,36 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
+
+public class moving : MonoBehaviour,IBeginDragHandler,IDragHandler,IEndDragHandler
+{   /*1.책을 마우스로 집음*/
+public static GameObject beingDraggedIcon;
+Vector3 startPosition;
+[SerializeField]Transform onDragParent;
+[HideInInspector] public Transform startParent;
+
+
+  
+public void OnBeginDrag(PointerEventData eventData){
+    beingDraggedIcon=gameObject;
+    startPosition=transform.position;
+    startParent=transform.parent;
+    GetComponent<CanvasGroup>().blocksRaycasts=false;
+    transform.SetParent(onDragParent);
+    Debug.Log("Dragging",transform.parent);
+}
+public void OnDrag(PointerEventData eventData){
+    transform.position=Input.mousePosition;
+}
+public void OnEndDrag(PointerEventData eventData){
+    beingDraggedIcon=null;
+    GetComponent<CanvasGroup>().blocksRaycasts=true;
+    if(transform.parent==onDragParent){
+        transform.SetParent(startParent);
+        Debug.Log("start:",startParent);
+        transform.position=startPosition;
+    }
+}
+}
