@@ -1202,7 +1202,7 @@ MonoBehaviour:
           value: 0
         - localeIdentifier:
             m_Code: ko
-          value: 0
+          value: 0.949995
     - rid: 64721955235823659
       type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties,
         asm: Unity.Localization}
@@ -1214,7 +1214,7 @@ MonoBehaviour:
           value: 0
         - localeIdentifier:
             m_Code: ko
-          value: 0
+          value: 0.949995
     - rid: 64721955235823660
       type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties,
         asm: Unity.Localization}
@@ -1226,7 +1226,7 @@ MonoBehaviour:
           value: 0
         - localeIdentifier:
             m_Code: ko
-          value: 0
+          value: 1
 --- !u!1 &19564782
 GameObject:
   m_ObjectHideFlags: 0
@@ -23911,7 +23911,7 @@ MonoBehaviour:
           value: 0
         - localeIdentifier:
             m_Code: ko
-          value: 0
+          value: 0.29993
     - rid: 64721955235823652
       type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties,
         asm: Unity.Localization}
@@ -23923,7 +23923,7 @@ MonoBehaviour:
           value: 0
         - localeIdentifier:
             m_Code: ko
-          value: 0
+          value: 0.29993
     - rid: 64721955235823653
       type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties,
         asm: Unity.Localization}
@@ -23935,7 +23935,7 @@ MonoBehaviour:
           value: 0
         - localeIdentifier:
             m_Code: ko
-          value: 0
+          value: 1
 --- !u!1 &1130678705
 GameObject:
   m_ObjectHideFlags: 0
@@ -27212,7 +27212,7 @@ MonoBehaviour:
           value: 0
         - localeIdentifier:
             m_Code: ko
-          value: 0
+          value: 0.29993
     - rid: 64721955235823645
       type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties,
         asm: Unity.Localization}
@@ -27224,7 +27224,7 @@ MonoBehaviour:
           value: 0
         - localeIdentifier:
             m_Code: ko
-          value: 0
+          value: 0.29993
     - rid: 64721955235823646
       type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties,
         asm: Unity.Localization}
@@ -27236,7 +27236,7 @@ MonoBehaviour:
           value: 0
         - localeIdentifier:
             m_Code: ko
-          value: 0
+          value: 1
 --- !u!1 &1283385914
 GameObject:
   m_ObjectHideFlags: 0
@@ -33525,7 +33525,7 @@ MonoBehaviour:
           value: 0
         - localeIdentifier:
             m_Code: ko
-          value: 0
+          value: 0.29993
     - rid: 64721955235823649
       type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties,
         asm: Unity.Localization}
@@ -33537,7 +33537,7 @@ MonoBehaviour:
           value: 0
         - localeIdentifier:
             m_Code: ko
-          value: 0
+          value: 1
 --- !u!1 &1616328834
 GameObject:
   m_ObjectHideFlags: 0
@@ -38271,7 +38271,7 @@ MonoBehaviour:
           value: 0
         - localeIdentifier:
             m_Code: ko
-          value: 0
+          value: 0.29993
     - rid: 64721955235823642
       type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties,
         asm: Unity.Localization}
@@ -38283,7 +38283,7 @@ MonoBehaviour:
           value: 0
         - localeIdentifier:
             m_Code: ko
-          value: 0
+          value: 1
 --- !u!1 &1838630098
 GameObject:
   m_ObjectHideFlags: 0
@@ -43378,7 +43378,7 @@ MonoBehaviour:
           value: 0
         - localeIdentifier:
             m_Code: ko
-          value: 0
+          value: 0.949995
     - rid: 64721955235823656
       type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties,
         asm: Unity.Localization}
@@ -43390,7 +43390,7 @@ MonoBehaviour:
           value: 0
         - localeIdentifier:
             m_Code: ko
-          value: 0
+          value: 1
 --- !u!1 &2012264103
 GameObject:
   m_ObjectHideFlags: 0
@@ -49649,7 +49649,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3360581665487928755
 RectTransform:
   m_ObjectHideFlags: 0
