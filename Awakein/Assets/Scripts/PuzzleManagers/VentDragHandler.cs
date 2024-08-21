@@ -30,26 +30,45 @@ public class VentDragHandler : MonoBehaviour,IBeginDragHandler, IDragHandler, IE
       if (isCleared) return;
        transform.position=eventData.position;
     }
-    public void OnEndDrag(PointerEventData eventData){
+    public void OnEndDrag(PointerEventData eventData)
+    {
 
         if (isCleared) return;
+        var Pos = GetComponent<RectTransform>().anchoredPosition;
         
-        for (int i=0;i<4;i++){
-        if (transform.position.x <= Bolts[i].transform.position.x+30&&
-        transform.position.x >= Bolts[i].transform.position.x-30&&
-        transform.position.y <= Bolts[i].transform.position.y+30&&
-        transform.position.y >= Bolts[i].transform.position.y-30){
-           StartCoroutine(BoltRotating(Bolts[i]));
-        }
-         if (BoltsDone == 4){
+
+        // for (int i=0;i<4;i++){
+        // if (transform.position.x <= Bolts[i].transform.position.x+50&&
+        // transform.position.x >= Bolts[i].transform.position.x-50&&
+        // transform.position.y <= Bolts[i].transform.position.y+50&&
+        // transform.position.y >= Bolts[i].transform.position.y-50)
+        // {
+        //    StartCoroutine(BoltRotating(Bolts[i]));
+        // }
+        
+        for (int i = 0; i<4; i++)
+        {
+          var Dist = Vector2.Distance(Pos, Bolts[i].GetComponent<RectTransform>().anchoredPosition);
+          Debug.Log("Distant : " + Dist + " pos : " + Pos + " Bolt pos : " + Bolts[i].GetComponent<RectTransform>().anchoredPosition);
+            if (Dist < 50f)
+            {
+                StartCoroutine(BoltRotating(Bolts[i]));
+            }
+
+          if (BoltsDone == 4){
              StartCoroutine(MovingVent(Vent));
              transform.position = beginposition;
              invenManager.ItemMap["Driver"].IsUsed = true;
              invenManager.RemoveItem("Driver");
             isCleared=true;
          } 
+         else
+         {
+             transform.position = beginposition;
+         }
          
-    }}
+      }
+    }
    
     IEnumerator BoltRotating(GameObject tf){
      

@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class CombiningDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     public GameObject[] MatchOtherParts;
+    public GameObject PlaceHolder;
+    private Vector3 initialPosition;
     public CombiningManager CombiningManager => GameObject.Find("InvenCanvas").transform.
     Find("InvenBG").GetComponent<CombiningManager>();
     GameObject MatchingObject;
@@ -15,7 +17,7 @@ public class CombiningDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandl
     // Called when the drag operation starts
     public void OnBeginDrag(PointerEventData eventData)
     {
-        
+        initialPosition = PlaceHolder.transform.position;
         if (isMatched) return;
         foreach (GameObject part in MatchOtherParts)
         {
@@ -41,16 +43,20 @@ public class CombiningDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandl
     public void OnEndDrag(PointerEventData eventData)
     {
         if (isMatched) return;
-       if (transform.position.x<=MatchingObject.transform.position.x+15&&
-       transform.position.x>=MatchingObject.transform.position.x-15&&
-       transform.position.y<=MatchingObject.transform.position.y+15&&
-       transform.position.y>=MatchingObject.transform.position.y-15)
-    {
+       if (transform.position.x<=MatchingObject.transform.position.x+25&&
+       transform.position.x>=MatchingObject.transform.position.x-25&&
+       transform.position.y<=MatchingObject.transform.position.y+25&&
+       transform.position.y>=MatchingObject.transform.position.y-25)
+        {
      
-        transform.position=MatchingObject.transform.position;
-        isMatched=true;
-        CombiningManager.InvokeMatch();
-    }
+            transform.position=MatchingObject.transform.position;
+            isMatched=true;
+            CombiningManager.InvokeMatch();
+        }
+        else
+        {
+            transform.position=initialPosition;
+        }
     }
     
 }

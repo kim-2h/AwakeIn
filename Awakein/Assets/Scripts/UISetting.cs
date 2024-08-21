@@ -5,19 +5,29 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Audio;
 using UnityEngine.Localization.Settings;
+using UnityEngine.EventSystems;
 //using UnityEditor.Localization.Editor;
 public class UISetting : MonoBehaviour
 {
     public Canvas SettingCanvas;
     public Camera cam;
     [SerializeField] private Button Selected;
+    private int SelectedIndex = 0;
     public Button SoundBT, GraphicBT, LanguageBT, ScreenBT;
+
+    public GameObject[][] ButtonContents = new GameObject[4][];
+    public GameObject[] SoundsChild;
+    public GameObject[] GraphicsChild;
+    public GameObject[] LanguagesChild;
+    public GameObject[] ScreensChild;
+    
+
 
     void Awake()
     {
         SetRes();
         OnPreCull();
-
+        
         this.gameObject.SetActive(true);
 
         if (LocalizationSettings.SelectedLocale != LocalizationSettings.AvailableLocales.Locales[0])
@@ -27,10 +37,35 @@ public class UISetting : MonoBehaviour
         }
 
 
-        SoundBT.onClick.AddListener(() => SelectedButton(SoundBT));
-        GraphicBT.onClick.AddListener(() => SelectedButton(GraphicBT));
-        LanguageBT.onClick.AddListener(() => SelectedButton(LanguageBT));
-        ScreenBT.onClick.AddListener(() => SelectedButton(ScreenBT));
+        SoundBT.onClick.AddListener(() => SelectedButton(SoundBT, 0));
+        GraphicBT.onClick.AddListener(() => SelectedButton(GraphicBT, 1));
+        LanguageBT.onClick.AddListener(() => SelectedButton(LanguageBT, 2));
+        ScreenBT.onClick.AddListener(() => SelectedButton(ScreenBT, 3));
+
+        Button[] Buttons; 
+        Buttons = new Button[4] { SoundBT, GraphicBT, LanguageBT, ScreenBT};
+
+    for (int i = 0; i < Buttons.Length; i++)
+    {
+        int index = i; // 새로운 지역 변수에 i 값을 할당
+        EventTrigger trigger = Buttons[index].gameObject.AddComponent<EventTrigger>();
+
+        EventTrigger.Entry entryEnter = new EventTrigger.Entry();
+        entryEnter.eventID = EventTriggerType.PointerEnter;
+        entryEnter.callback.AddListener((data) => MouseEnter(Buttons[index].gameObject, index));
+        trigger.triggers.Add(entryEnter);
+
+        EventTrigger.Entry entryExit = new EventTrigger.Entry();
+        entryExit.eventID = EventTriggerType.PointerExit;
+        entryExit.callback.AddListener((data) => MouseExit(Buttons[index].gameObject, index));
+        trigger.triggers.Add(entryExit);
+    }
+    
+
+        ButtonContents[0] = SoundsChild;
+        ButtonContents[1] = GraphicsChild;
+        ButtonContents[2] = LanguagesChild;
+        ButtonContents[3] = ScreensChild;
 
         FullScreen(true);
     }
@@ -43,29 +78,36 @@ public class UISetting : MonoBehaviour
         ShadowToggle.isOn = true;
         VolumeToggle.isOn = true;
 
-        SoundBT.transform.GetChild(1).gameObject.SetActive(true);
-        SoundBT.transform.GetChild(2).gameObject.SetActive(true);
+        Selected = SoundBT;
+        SelectedIndex = 0;
+
+        //ButtonContents[0][1].gameObject.SetActive(true);
+        ButtonContents[0][2].gameObject.SetActive(true);
+        ButtonContents[0][0].gameObject.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f); 
 
     }
     public void InitSetting()
     {
+        ButtonContents[0][2].gameObject.SetActive(true);
         SettingCanvas.enabled = true;
         Selected = SoundBT;
-        Selected.transform.GetChild(1).gameObject.SetActive(true);
-        Selected.transform.GetChild(2).gameObject.SetActive(true);
+        SelectedIndex = 0;
+        //ButtonContents[0][1].gameObject.SetActive(true);
+        ButtonContents[0][0].gameObject.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f); 
+        
 
         Master.value = volume[0];
         BGM.value = volume[1];
         SFX.value = volume[2];
 
-        GraphicBT.transform.GetChild(1).gameObject.SetActive(false);
-        GraphicBT.transform.GetChild(2).gameObject.SetActive(false);
+        ButtonContents[1][1].gameObject.SetActive(false);
+        ButtonContents[1][2].gameObject.SetActive(false);
 
-        LanguageBT.transform.GetChild(1).gameObject.SetActive(false);
-        LanguageBT.transform.GetChild(2).gameObject.SetActive(false);
+        ButtonContents[2][1].gameObject.SetActive(false);
+        ButtonContents[2][2].gameObject.SetActive(false);
     
-        ScreenBT.transform.GetChild(1).gameObject.SetActive(false);
-        ScreenBT.transform.GetChild(2).gameObject.SetActive(false);
+        ButtonContents[3][1].gameObject.SetActive(false);
+        ButtonContents[3][2].gameObject.SetActive(false);
 
         ScreenToggle.isOn = isFullScreen;
         ShadowToggle.isOn = isShadow;
@@ -96,18 +138,35 @@ public class UISetting : MonoBehaviour
 
     }
     void OnPreCull() => GL.Clear(true, true, Color.black);
-    private void SelectedButton(Button BT)
+
+    public void MouseEnter(GameObject BT, int idx)
     {
-        Debug.Log(BT.name);
+        Debug.Log("Button name : " + BT.name + " index : " + idx);
+        ButtonContents[idx][1].gameObject.SetActive(true);
+        ButtonContents[idx][0].gameObject.transform.localScale = new Vector3(0.55f, 0.55f, 0.55f);  
+    }
+
+    public void MouseExit(GameObject BT, int idx)
+    {
+        ButtonContents[idx][1].gameObject.SetActive(false);
+        ButtonContents[idx][0].gameObject.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);   
+    }
+
+    private void SelectedButton(Button BT, int idx)
+    {
+        Debug.Log("Button name : " + BT.name + " index : " + idx);
         if (BT != Selected) 
         {
             ClickSound();
 
-            Selected.transform.GetChild(1).gameObject.SetActive(false);
-            Selected.transform.GetChild(2).gameObject.SetActive(false);
-            BT.transform.GetChild(1).gameObject.SetActive(true);
-            BT.transform.GetChild(2).gameObject.SetActive(true);
+            ButtonContents[SelectedIndex][1].gameObject.SetActive(false);
+            ButtonContents[SelectedIndex][2].gameObject.SetActive(false);
+            ButtonContents[SelectedIndex][0].gameObject.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);   
+            //BT.transform.GetChild(1).gameObject.SetActive(true);
+            ButtonContents[idx][2].gameObject.SetActive(true);
+            ButtonContents[idx][0].gameObject.transform.localScale = new Vector3(0.55f, 0.55f, 0.55f);
             Selected = BT;
+            SelectedIndex = idx;
         }
         if (BT == SoundBT)
         {

@@ -20,13 +20,13 @@ public class ToyBoxManager : MonoBehaviour, IPuzzle
         if (IsSolved)
         {
             ClickBlock.SetActive(true);
-            ToyBoxTop.SetActive(false);
+            //ToyBoxTop.SetActive(false);
         }
         else
         {
             LockCManager.InitLock();
-            ToyBoxTop.SetActive(true);
-            ClickBlock.SetActive(false);
+            //ToyBoxTop.SetActive(true);
+            //ClickBlock.SetActive(false);
         }   
     }
     // public void HitBoxAClick()
@@ -75,7 +75,9 @@ public class ToyBoxManager : MonoBehaviour, IPuzzle
         Airplain.onClick.AddListener(AirplainClick);
         Doll.gameObject.SetActive(true);
         Doll.onClick.AddListener(DollClick);
-        ToyBoxTop.SetActive(false);
+        ImageChange.GetComponent<ImageChange>().SwitchImage(canvas.gameObject.transform.Find("ToyBoxImg").gameObject, 1);
+
+        //ToyBoxTop.SetActive(false);
     }
     public void ExitPuzzle()
     {
@@ -96,7 +98,7 @@ public class ToyBoxManager : MonoBehaviour, IPuzzle
         Doll.gameObject.SetActive(false);
         CameraPosition = Camera.main.gameObject.transform.position;
         //Text = canvas.gameObject.transform.Find("Text (TMP)").GetComponent<TextMeshProUGUI>();
-        ImageChange.GetComponent<ImageChange>().SwitchImage(canvas.gameObject.transform.Find("PopWindow").gameObject, 0);
+        ImageChange.GetComponent<ImageChange>().SwitchImage(canvas.gameObject.transform.Find("ToyBoxImg").gameObject, 0);
     }
 
 }

@@ -37,6 +37,7 @@ public class DiskDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         if (isValid)
         {
             transform.position = eventData.position;
+            transform.GetChild(0).gameObject.SetActive(true);
             this.transform.SetParent(RodTemp.transform);
             //transform.position = new Vector3(eventData.position.x, eventData.position.y, Distttt);
         }
@@ -72,12 +73,15 @@ public class DiskDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         if (Manager.gameObject.GetComponent<HanoiManager>().Rods[2].transform.childCount == 4)
         {
             Debug.Log("~~~Game End!!!~~~");
-            for (int i=0;i<4;i++){
-                 StartCoroutine(FadeIn(Manager.gameObject.GetComponent<HanoiManager>().texts[i]));
-            }
+            // for (int i=0;i<4;i++)
+            // {
+            //      StartCoroutine(FadeIn(Manager.gameObject.GetComponent<HanoiManager>().texts[i]));
+            // }
             RealManager.gameObject.GetComponent<IPuzzle>().IsSolved = true;
+            Manager.gameObject.GetComponent<HanoiManager>().StartAnime();
             RealManager.gameObject.GetComponent<HanoiRealManager>().StartPuzzle();
         }
+        transform.GetChild(0).gameObject.SetActive(false);
     }
     private int SetFinalPosition(Vector3 position)
     {

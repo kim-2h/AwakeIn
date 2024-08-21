@@ -36,26 +36,38 @@ public class CombiningManager : MonoBehaviour
         Button button = EventSystem.current.currentSelectedGameObject.GetComponent<Button>();
         RawImage rawImage = button.GetComponent<RawImage>();
 
+        canvas.transform.GetChild(0).gameObject.SetActive(true);
+        canvas.transform.GetChild(1).gameObject.SetActive(true);
+        canvas.transform.GetChild(2).gameObject.SetActive(true);
+
+        foreach (GameObject obj in ResultItem)
+        {
+            obj.SetActive(false);
+        }
         
         if (rawImage.texture.name == images[0].name || rawImage.texture.name == images[1].name)//드라이버 부분
         {
             Debug.Log("Image Right: Driver");
             canvas.gameObject.SetActive(true);
-            canvas.transform.GetChild(2).gameObject.SetActive(true);
-            //Debug.Log("Setactive2" + canvas.transform.GetChild(2).gameObject.activeSelf);
             canvas.transform.GetChild(3).gameObject.SetActive(true);
+            //Debug.Log("Setactive2" + canvas.transform.GetChild(2).gameObject.activeSelf);
+            canvas.transform.GetChild(4).gameObject.SetActive(true);
             //Debug.Log("Setactive3" + canvas.transform.GetChild(3).gameObject.activeSelf);
             foreach (GameObject obj in gameObjects)
             {
                 obj.SetActive(false);
             }
+            InvokeMatch();
+            ResultItem[1].SetActive(false);
             if (invenManager.ItemMap["DriverHandle"].InInventory && !invenManager.ItemMap["DriverHandle"].IsUsed)
             {
                 gameObjects[0].SetActive(true);
+                gameObjects[0].GetComponent<CombiningDragHandler>().PlaceHolder.SetActive(true);
             }
             if (invenManager.ItemMap["DriverStick"].InInventory && !invenManager.ItemMap["DriverStick"].IsUsed)
             {
                 gameObjects[1].SetActive(true);
+                gameObjects[1].GetComponent<CombiningDragHandler>().PlaceHolder.SetActive(true);
             }
             // foreach (GameObject obj in gameObjects)
             // {
@@ -94,19 +106,23 @@ public class CombiningManager : MonoBehaviour
         {
          Debug.Log("Image Right: Orgel");
             canvas.gameObject.SetActive(true);
-            canvas.transform.GetChild(6).gameObject.SetActive(true);
-            canvas.transform.GetChild(7).gameObject.SetActive(true);
+            canvas.transform.GetChild(9).gameObject.SetActive(true);
+            canvas.transform.GetChild(10).gameObject.SetActive(true);
             foreach (GameObject obj in gameObjects)
             {
                 obj.SetActive(false);
             }
+            InvokeMatch();
+            ResultItem[0].SetActive(false);
             if (invenManager.ItemMap["Orgel"].InInventory && !invenManager.ItemMap["Orgel"].IsUsed)
             {
                 gameObjects[2].SetActive(true);
+                gameObjects[2].GetComponent<CombiningDragHandler>().PlaceHolder.SetActive(true);
             }
             if (invenManager.ItemMap["OrgelBody"].InInventory && !invenManager.ItemMap["OrgelBody"].IsUsed)
             {
                 gameObjects[3].SetActive(true);
+                gameObjects[3].GetComponent<CombiningDragHandler>().PlaceHolder.SetActive(true);
             }
             // if (rawImage.texture == images[2]){//
             //     canvas.transform.GetChild(6).gameObject.SetActive(true); 
@@ -131,25 +147,27 @@ public class CombiningManager : MonoBehaviour
         }
        
     }
-    public void Exit(){
+    public void Exit()
+    {
         canvas.gameObject.SetActive(false);
-        canvas.transform.GetChild(2).gameObject.SetActive(false);
-        canvas.transform.GetChild(3).gameObject.SetActive(false); 
-        canvas.transform.GetChild(6).gameObject.SetActive(false);
-        canvas.transform.GetChild(7).gameObject.SetActive(false); 
+        canvas.transform.GetChild(3).gameObject.SetActive(false);
+        canvas.transform.GetChild(4).gameObject.SetActive(false); 
+        canvas.transform.GetChild(9).gameObject.SetActive(false);
+        canvas.transform.GetChild(10).gameObject.SetActive(false); 
     }
 
     public void InvokeMatch()
     {
         if (gameObjects[0].GetComponent<CombiningDragHandler>().isMatched && 
             gameObjects[1].GetComponent<CombiningDragHandler>().isMatched && !invenManager.ItemMap["Driver"].InInventory
-            && !invenManager.ItemMap["Driver"].IsUsed)
+            && !invenManager.ItemMap["Driver"].IsUsed && canvas.transform.GetChild(3).gameObject.activeSelf)
         {
             ResultItem[0].SetActive(true);
         }
         else if (gameObjects[2].GetComponent<CombiningDragHandler>().isMatched && 
             gameObjects[3].GetComponent<CombiningDragHandler>().isMatched &&
-            !invenManager.ItemMap["OrgelWhole"].InInventory && !invenManager.ItemMap["OrgelWhole"].IsUsed)
+            !invenManager.ItemMap["OrgelWhole"].InInventory && !invenManager.ItemMap["OrgelWhole"].IsUsed 
+            && canvas.transform.GetChild(9).gameObject.activeSelf)
         {
             ResultItem[1].SetActive(true);
         }

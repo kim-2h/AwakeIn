@@ -14,7 +14,10 @@ Vector3 startPosition;
   
 public void OnBeginDrag(PointerEventData eventData){
     beingDraggedIcon=gameObject;
-    startPosition=transform.position;
+    //startPosition=transform.position;
+    startPosition = GetComponent<RectTransform>().anchoredPosition;
+    //GetComponent<RectTransform>().pivot = new Vector2(0.5f, 0.5f);
+    Debug.Log("start pos " + startPosition);
     startParent=transform.parent;
 
     GetComponent<CanvasGroup>().blocksRaycasts=false;
@@ -28,8 +31,11 @@ public void OnEndDrag(PointerEventData eventData){
     GetComponent<CanvasGroup>().blocksRaycasts=true;
     if(transform.parent==onDragParent){
         transform.SetParent(startParent);
-        transform.position=startPosition;
+        //transform.position=startPosition;
+        //GetComponent<RectTransform>().pivot = new Vector2(0.5f, 0.5f);
+        GetComponent<RectTransform>().anchoredPosition = startPosition;
     }
+    GetComponent<RectTransform>().anchoredPosition = startPosition;
 }
 
 }

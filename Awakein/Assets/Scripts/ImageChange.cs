@@ -13,7 +13,17 @@ public class ImageChange : MonoBehaviour
     public  List<Sprite> SprScene1 = new List<Sprite>();
     public  List<Texture> ImgScene2 = new List<Texture>();
     public  List<Texture> ImgScene3 = new List<Texture>();
+ 
+    public Image[] Alphalist;
 
+
+    void Start()
+    {
+        foreach (var img in Alphalist)
+        {
+            img.alphaHitTestMinimumThreshold = 0.9f;
+        }
+    }
     public void SwitchImage(GameObject TargetObj, string ImgName)
     {
         for (int i = 0; i < ImgScene1.Count; i++)

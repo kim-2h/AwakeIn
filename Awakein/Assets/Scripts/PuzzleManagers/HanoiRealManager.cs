@@ -22,6 +22,7 @@ public class HanoiRealManager : MonoBehaviour, IPuzzle
         }
         else
         {
+            
             Manager.InitDisk();
         }
     }
@@ -35,7 +36,7 @@ public class HanoiRealManager : MonoBehaviour, IPuzzle
         }
 
     }
-        void Start()
+    void Start()
     {
         IsSolved = false;
         CameraPosition = Camera.main.gameObject.transform.position;

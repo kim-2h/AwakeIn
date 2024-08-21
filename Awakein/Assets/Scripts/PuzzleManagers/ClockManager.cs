@@ -39,15 +39,15 @@ public class ClockManager : MonoBehaviour, IPuzzle
             Debug.LogError("ImageChange component not assigned in ClockManager");
         }
         initialCameraPosition = Camera.main.transform.position;
-        if (backButton != null)
-        {
-            backButton.onClick.AddListener(OnBackButtonPressed);
-            backButton.gameObject.SetActive(false); // backButton 초기 비활성화
-        }
-        else
-        {
-            Debug.LogError("BackButton is not assigned in ClockManager");
-        }
+        // if (backButton != null)
+        // {
+        //     backButton.onClick.AddListener(OnBackButtonPressed);
+        //     backButton.gameObject.SetActive(false); // backButton 초기 비활성화
+        // }
+        // else
+        // {
+        //     Debug.LogError("BackButton is not assigned in ClockManager");
+        // }
         if (Clock_Key != null)
         {
             Clock_Key.SetActive(false); // Clock_Key 초기 비활성화
@@ -57,7 +57,7 @@ public class ClockManager : MonoBehaviour, IPuzzle
             Debug.LogError("Clock_Key object is not assigned in ClockManager");
         }
         ChairPlaceManager = GameObject.Find("Room1").transform.Find("ChairNPlaceholder").GetComponent<ChairPlaceManager>();
-        Debug.Log("ClockManager started. Initial state: Clock_Key and backButton are inactive.");
+        //Debug.Log("ClockManager started. Initial state: Clock_Key and backButton are inactive.");
     }
 
     void Update()
@@ -96,6 +96,7 @@ public class ClockManager : MonoBehaviour, IPuzzle
     void OpenPopup()
     {
         clockPopupCanvas.SetActive(true);
+        Clock_Key.SetActive(true);
         isPopupActive = true;
         Debug.Log("Popup opened.");
     }
@@ -126,7 +127,8 @@ public class ClockManager : MonoBehaviour, IPuzzle
         bool isClockBackSide = hitClockImage.texture.name == "clockbackside"; 
         if (Clock_Key != null && !IsSolved)
         {
-            Clock_Key.SetActive(isClockBackSide); // Clock_Key와 backButton을 함께 활성화/비활성화
+            Clock_Key.SetActive(true); // Clock_Key와 backButton을 함께 활성화/비활성화
+            Clock_Key.GetComponent<Button>().interactable = isClockBackSide;
             Debug.Log($"Clock_Key set to {(isClockBackSide ? "active" : "inactive")}");
         }
         ///Debug.Log($"Clock image changed to index {currentTextureIndex}. IsClockBackSide: {isClockBackSide}");
@@ -170,10 +172,12 @@ public class ClockManager : MonoBehaviour, IPuzzle
         }
 
         // 퍼즐 시작 시 에너지 아이템과 버튼을 시계 뒷면일 때만 활성화
-        bool isClockBackSide = currentTextureIndex != 0;
+        bool isClockBackSide = hitClockImage.texture.name == "clockbackside";
         if (Clock_Key != null && !IsSolved)
         {
-            Clock_Key.SetActive(isClockBackSide); // Clock_Key와 backButton을 함께 활성화/비활성화
+            Clock_Key.SetActive(true); 
+            Clock_Key.GetComponent<Button>().interactable = isClockBackSide;
+            // Clock_Key와 backButton을 함께 활성화/비활성화
             Debug.Log($"Clock_Key set to {(isClockBackSide ? "active" : "inactive")}");
         }
         Debug.Log($"Puzzle started. IsClockBackSide: {isClockBackSide}");

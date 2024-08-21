@@ -23,6 +23,7 @@ public class RadioManager : MonoBehaviour, IPuzzle
         Radio.gameObject.GetComponent<RawImage>().raycastTarget = BatteryIn;
         RadioFront.SetActive(true);
         RadioBack.SetActive(false);
+        Battery.gameObject.SetActive(InvenManager.GetComponent<InvenManager>().ItemMap["RadioBattery"].InInventory && !InvenManager.GetComponent<InvenManager>().ItemMap["RadioBattery"].IsUsed);
         DriverHandle.SetActive(IsSolved && !InvenManager.GetComponent<InvenManager>().ItemMap["DriverStick"].InInventory && !InvenManager.GetComponent<InvenManager>().ItemMap["DriverStick"].IsUsed);
     }
     public void ExitPuzzle()
@@ -44,24 +45,31 @@ public class RadioManager : MonoBehaviour, IPuzzle
 
     public void RadioClicked()
     {
-        if (InvenManager.GetComponent<InvenManager>().ItemMap["RadioBattery"].InInventory)
-        {
-            Battery.gameObject.SetActive(true);
-        }
-        else
-        {
-            Battery.gameObject.SetActive(false);
-        }
+        // if (InvenManager.GetComponent<InvenManager>().ItemMap["RadioBattery"].InInventory)
+        // {
+        //     Battery.gameObject.SetActive(true);
+        // }
+        // else
+        // {
+        //     Battery.gameObject.SetActive(false);
+        // }
         if (RadioFront.activeSelf)
         {
             RadioFront.SetActive(false);
             RadioBack.SetActive(true);
+            if (BatteryIn)
+            {
+                Battery.gameObject.SetActive(true);
+            }
         }
         else if (RadioBack.activeSelf)
         {
             RadioFront.SetActive(true);
             RadioBack.SetActive(false);
-
+            if (BatteryIn)
+            {
+                Battery.gameObject.SetActive(false);
+            }
         }
         else
         {
@@ -98,15 +106,27 @@ public class RadioManager : MonoBehaviour, IPuzzle
         //Rect BatterySlotRect = BatterySlot.gameObject.GetComponent<RectTransform>().rect;
         //Rect BatteryRect = Battery.gameObject.GetComponent<RectTransform>().rect;
         //Vector3 mousePos = Input.mousePosition;
+        if (RadioFront.activeSelf)
+        {
+            Battery.transform.position = new Vector3(0, 0, 0);
+            Battery.transform.rotation = Quaternion.Euler(0, 0, 90);
+            BatteryRect.anchoredPosition = BatteryPosition; 
+            return;
+        }
+        Debug.Log("Battery pos: " + Battery.transform.position + " Slot pos: " + BatterySlot.transform.position
+                + " Mouse pos:" + Input.mousePosition  + " Distance: " + Vector3.Distance(BatterySlot.transform.position, Input.mousePosition));
 
         if (Vector3.Distance(BatterySlot.transform.position, Input.mousePosition) < 80)
         {
+            Debug.Log("Battery Drop Success");
             BatteryIn = true;
             Battery.gameObject.transform.position = BatterySlot.transform.position;
             Radio.gameObject.GetComponent<RawImage>().raycastTarget = true;
             InvenManager.GetComponent<InvenManager>().ItemMap["RadioBattery"].IsUsed = true;
             InvenManager.GetComponent<InvenManager>().RemoveItem("RadioBattery");
             Battery.gameObject.GetComponent<RawImage>().raycastTarget = false;
+            Battery.transform.GetChild(0).GetComponent<RawImage>().raycastTarget = false;
+            Battery.gameObject.GetComponent<RawImage>().color = new Color(255, 255, 255, 0);
         }
         else
         {
@@ -114,7 +134,7 @@ public class RadioManager : MonoBehaviour, IPuzzle
             Battery.transform.position = new Vector3(0, 0, 0);
             BatteryRect.anchoredPosition = BatteryPosition;
 
-            Battery.transform.rotation = Quaternion.Euler(0, 0, -90);
+            Battery.transform.rotation = Quaternion.Euler(0, 0, 90);
         }
 
     }

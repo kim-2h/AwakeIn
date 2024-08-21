@@ -140,7 +140,7 @@ public class InvenManager : MonoBehaviour,  IBeginDragHandler, IDragHandler, IEn
                 SlotOccu[i] = 0;
                 SlotNum++;
                 Slots[i].GetComponent<RawImage>().texture = null;
-                Slots[i].GetComponent<RawImage>().color = new Color(88f / 255f, 88f / 255f, 88f / 255f, 255f / 255f);
+                Slots[i].GetComponent<RawImage>().color = new Color(255f / 255f, 255f / 255f, 255f / 255f, 0f / 255f);
                 break;
             }
         }

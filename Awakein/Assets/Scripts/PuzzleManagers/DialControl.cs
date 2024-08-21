@@ -23,7 +23,7 @@ public class DialControl: MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
     public int NumBefore = -1;
     public Button button;
     public Slider slider;
-    public int[] Password = { 12, 9, 12, 3, 12, 9, 6, 0};
+    public int[] Password = { 12, 3, 6, 9, 12, 9, 0};
     public GameObject RadioManager;
    
     private bool isSolved = false;
