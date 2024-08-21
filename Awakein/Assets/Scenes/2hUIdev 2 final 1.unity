@@ -24371,8 +24371,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 8038928369766021235}
-          m_TargetAssemblyTypeName: torneddoll, Assembly-CSharp
+        - m_Target: {fileID: 7344955032984849321}
+          m_TargetAssemblyTypeName: TornedDollManagercopy, Assembly-CSharp
           m_MethodName: ClosePopUp
           m_Mode: 1
           m_Arguments:
@@ -24839,7 +24839,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1177571532}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -24848,7 +24848,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 57.000023, y: 0}
   m_SizeDelta: {x: 100, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1177571536
@@ -24895,8 +24895,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1973681921622205245}
-        m_TargetAssemblyTypeName: ClockManager, Assembly-CSharp
+      - m_Target: {fileID: 8478212549347528920}
+        m_TargetAssemblyTypeName: ClockManagercopy, Assembly-CSharp
         m_MethodName: KeyClicked
         m_Mode: 1
         m_Arguments:
@@ -45613,7 +45613,7 @@ RectTransform:
   m_GameObject: {fileID: 2382937823140952385}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.1049625, y: 1.1891607, z: 1.1049625}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7309847574047737074}
@@ -46458,8 +46458,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8038928369766021235}
-        m_TargetAssemblyTypeName: TornedDollManager, Assembly-CSharp
+      - m_Target: {fileID: 7344955032984849321}
+        m_TargetAssemblyTypeName: TornedDollManagercopy, Assembly-CSharp
         m_MethodName: Switch
         m_Mode: 1
         m_Arguments:
@@ -47630,29 +47630,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &1973681921622205245
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2112809687749533293}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60183c74501084ab8b491f3eda818234, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  clock: {fileID: 2112809687749533293}
-  clockPopupCanvas: {fileID: 3345724573110421132}
-  imageChanger: {fileID: 37206840}
-  ClockInPopUp: {fileID: 2382937823140952385}
-  clockTextures:
-  - {fileID: 2800000, guid: 0178586c5e81d4e43999e13543fde1e9, type: 3}
-  - {fileID: 2800000, guid: 11b565e4a35ea43cc9a2a97644bc0a02, type: 3}
-  popupText: {fileID: 5346516673144788088}
-  backButton: {fileID: 1177571536}
-  invenManager: {fileID: 1358391610}
-  Clock_Key: {fileID: 1177571532}
 --- !u!114 &1987145554663353919
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47879,7 +47856,7 @@ GameObject:
   - component: {fileID: 6505732736935342130}
   - component: {fileID: 3027970758264259657}
   - component: {fileID: 8478212549347528919}
-  - component: {fileID: 1973681921622205245}
+  - component: {fileID: 8478212549347528920}
   m_Layer: 0
   m_Name: Clock
   m_TagString: Puzzle
@@ -50458,8 +50435,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8038928369766021235}
-        m_TargetAssemblyTypeName: torneddoll, Assembly-CSharp
+      - m_Target: {fileID: 7344955032984849321}
+        m_TargetAssemblyTypeName: TornedDollManagercopy, Assembly-CSharp
         m_MethodName: KeyClicked
         m_Mode: 1
         m_Arguments:
@@ -52025,9 +52002,9 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1973681921622205245}
-          m_TargetAssemblyTypeName: ClockManager, Assembly-CSharp
-          m_MethodName: ClosePopup
+        - m_Target: {fileID: 8478212549347528920}
+          m_TargetAssemblyTypeName: ClockManagercopy, Assembly-CSharp
+          m_MethodName: ExitPuzzle
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -54143,8 +54120,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1973681921622205245}
-        m_TargetAssemblyTypeName: ClockManager, Assembly-CSharp
+      - m_Target: {fileID: 8478212549347528920}
+        m_TargetAssemblyTypeName: ClockManagercopy, Assembly-CSharp
         m_MethodName: ChangeClockImage
         m_Mode: 1
         m_Arguments:
@@ -54684,7 +54661,7 @@ GameObject:
   - component: {fileID: 3577173628348358859}
   - component: {fileID: 948188544810748225}
   - component: {fileID: 881667085723672572}
-  - component: {fileID: 8038928369766021235}
+  - component: {fileID: 7344955032984849321}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -54692,6 +54669,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &7344955032984849321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7344955032984849320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd5efef48d171ee4382089e52b1adc91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Appearing:
+  - {fileID: 4293681434968243942, guid: 88fa06e52584371489ab95ffa1a9a905, type: 3}
+  - {fileID: 8683233865329223506}
+  invenManager: {fileID: 1358391610}
 --- !u!1 &7359527916919282916
 GameObject:
   m_ObjectHideFlags: 0
@@ -56132,7 +56125,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 0178586c5e81d4e43999e13543fde1e9, type: 3}
+  m_Texture: {fileID: 2800000, guid: ad64f055a7dfbcc4d8db153f26fc9a7e, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -56428,22 +56421,6 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.3
   m_Center: {x: 0, y: 0.13, z: 0}
---- !u!114 &8038928369766021235
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7344955032984849320}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e6284596bf0b6541b317a82a7e6a95b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Appearing:
-  - {fileID: 4293681434968243942, guid: 88fa06e52584371489ab95ffa1a9a905, type: 3}
-  - {fileID: 8683233865329223506}
-  InvenManager: {fileID: 1358391605}
 --- !u!114 &8061381427759072496
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -56984,6 +56961,31 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &8478212549347528920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2112809687749533293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af8c57dd9030a1244aefed4753a71180, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clock: {fileID: 2112809687749533293}
+  clockPopupCanvas: {fileID: 3345724573110421132}
+  imageChanger: {fileID: 37206840}
+  hitClockImage: {fileID: 0}
+  CLockGlass: {fileID: 0}
+  initialCameraPosition: {x: 0, y: 0, z: 0}
+  isPopupActive: 0
+  ClockClicked: 0
+  invenManager: {fileID: 1358391610}
+  Clock_Key: {fileID: 1177571532}
+  ChairPlaceManager: {fileID: 0}
+  <IsSolved>k__BackingField: 0
+  currentTextureIndex: 0
 --- !u!224 &8499756896532379547
 RectTransform:
   m_ObjectHideFlags: 0
