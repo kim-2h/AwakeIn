@@ -16,10 +16,10 @@ public class CameraMoving2 : MonoBehaviour
     private Vector3 initialPosition; // 초기 카메라 위치
     private bool isFirstClick = true; // 첫 번째 클릭 여부
     private bool isZooming = false; // 확대 중 여부
-   
+   Rect ClickArea;
     void Start()
     {
-
+        ClickArea = new Rect(5, 5, 1920-10, 1080-10);
         initialPosition = cam.transform.position; // 초기 위치 저장
         Cursor.lockState = CursorLockMode.Confined; // 마우스 커서 고정. ctrl+p로 게임 종료가능
         //InvenManager = GameObject.Find("InvenCanvas").transform.Find("InvenBG").gameObject;
@@ -28,7 +28,21 @@ public class CameraMoving2 : MonoBehaviour
 
     void Update()
     {
-        
+
+        // Vector3 vPosition = cam.ScreenToViewportPoint(Input.mousePosition);
+        // if ( Input.GetMouseButtonDown(0) && (vPosition.x < cam.rect.xMin+5 || vPosition.x > cam.rect.xMax-5 ||
+        //     vPosition.y < cam.rect.yMin+5 || vPosition.y > cam.rect.yMax-5))
+        // {
+        //         return;
+        // }
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (!ClickArea.Contains(Input.mousePosition))
+            {
+                return;
+            }
+        }
+
         if (Input.GetMouseButtonDown(0) && !isZooming && !EventSystem.current.IsPointerOverGameObject()) // 만약 왼쪽 클릭이 발생하고 확대 중이 아니면
         {
 
@@ -56,9 +70,9 @@ public class CameraMoving2 : MonoBehaviour
 
                 dialogue = gameFlowManager.ReturnDialogue(hit.transform.name);
                 
-                if (dialogue != null && dialogueManager.IsDialoguePlaying == false)
+                if (dialogue != null && dialogue != "" && dialogueManager.IsDialoguePlaying == false)
                 {
-                    StartCoroutine(dialogueManager.PlayDialogue(dialogue));
+                    dialogueManager.CallRoutine(dialogue);
                 }
                 if (hit.transform.tag == "Item") 
                 {

@@ -82,6 +82,7 @@ public class InvenManager : MonoBehaviour,  IBeginDragHandler, IDragHandler, IEn
         Debug.Log(iName + " added");
         if (iName == "Chair")
         {
+            GameFlow.GetComponent<GameFlowManager>().ChairBreaking();
             ChairPlaceManager.ChairNow = ChairPlaceManager.ChairState.Nowhere;
         }
         for (int i = 0; i<Slots.Length && SlotNum >0; i++)
@@ -105,10 +106,10 @@ public class InvenManager : MonoBehaviour,  IBeginDragHandler, IDragHandler, IEn
                         // Texture newSprite = Resources.Load(path) as Texture;
                         #if UNITY_EDITOR
                             string path = "Assets/CustomSprites/" + iName + ".png";
-                            Texture newSprite = AssetDatabase.LoadAssetAtPath<Texture>(path);
+                            Sprite newSprite = AssetDatabase.LoadAssetAtPath<Sprite>(path);
                         #else
                             string path = "CustomSprites/" + iName;
-                            Texture newSprite = Resources.Load<Texture>(path);
+                            Sprite newSprite = Resources.Load<Sprite>(path);
                         #endif
                         if (newSprite == null)
                         {
@@ -116,8 +117,12 @@ public class InvenManager : MonoBehaviour,  IBeginDragHandler, IDragHandler, IEn
                         }
                         else
                         {
-                            Slots[i].GetComponent<RawImage>().texture = newSprite;
-                            Slots[i].GetComponent<RawImage>().color = new Color(255, 255, 255, 255);
+                            // Slots[i].GetComponent<RawImage>().texture = newSprite;
+                            // Slots[i].GetComponent<RawImage>().color = new Color(255, 255, 255, 255);
+                            Slots[i].GetComponent<Image>().sprite = newSprite;
+                            Slots[i].GetComponent<Image>().color = new Color(255, 255, 255, 255);
+                            Slots[i].GetComponent<Image>().preserveAspect = true;
+                            
                             ItemMap[iName].InInventory = true;
                             item.SetActive(false);
                         }
@@ -139,8 +144,8 @@ public class InvenManager : MonoBehaviour,  IBeginDragHandler, IDragHandler, IEn
                 Slots[i].transform.Find("Text (TMP)").GetComponent<TextMeshProUGUI>().text = "";
                 SlotOccu[i] = 0;
                 SlotNum++;
-                Slots[i].GetComponent<RawImage>().texture = null;
-                Slots[i].GetComponent<RawImage>().color = new Color(255f / 255f, 255f / 255f, 255f / 255f, 0f / 255f);
+                Slots[i].GetComponent<Image>().sprite = null;
+                Slots[i].GetComponent<Image>().color = new Color(255f / 255f, 255f / 255f, 255f / 255f, 0f / 255f);
                 break;
             }
         }
@@ -195,8 +200,9 @@ public class InvenManager : MonoBehaviour,  IBeginDragHandler, IDragHandler, IEn
             //TempSlot.transform.position = Input.mousePosition;
             temp.transform.SetParent(TempSlot.gameObject.transform);
             temp.transform.Find("Text (TMP)").GetComponent<TextMeshProUGUI>().text = "";
-            TempSlot.GetComponent<RawImage>().color = new Color(255, 255, 255, 255);
-            TempSlot.GetComponent<RawImage>().texture = selectedObject.GetComponent<RawImage>().texture;
+            TempSlot.GetComponent<Image>().color = new Color(255, 255, 255, 255);
+            TempSlot.GetComponent<Image>().sprite = selectedObject.GetComponent<Image>().sprite;
+            TempSlot.GetComponent<Image>().preserveAspect = true;
             Debug.Log("Begin Drag : " + temp.transform.Find("Text (TMP)").GetComponent<TextMeshProUGUI>().text);
         }
         else
@@ -213,8 +219,13 @@ public class InvenManager : MonoBehaviour,  IBeginDragHandler, IDragHandler, IEn
     public GameObject temp;
     public void OnDrag(PointerEventData eventData)
     {
+        if (Input.mousePosition.y <5 || Input.mousePosition.y > 1075)
+        {
+            return;
+        }
         ItemManager.GetComponent<ItemManager>().ClickNotDrag = false;
         CombiningManager.ClickNotDrag = false;
+        
         //Debug.Log("Dragging");
         //finalClick = eventData.position;
         //Popup.SetActive(false); //이부분ㅅㅂ 왜 distance로 하면 안먹히지 일케하면 느린데; 
@@ -249,7 +260,7 @@ public class InvenManager : MonoBehaviour,  IBeginDragHandler, IDragHandler, IEn
         //Debug.Log("Offset " + Vector2.Distance(initialClick, finalClick));
         selectedObject.transform.position = initialPosition;
         TempSlot.transform.position = new Vector3(-10000, -10000, 0);
-        TempSlot.GetComponent<RawImage>().color = new Color(0, 0, 0, 0);
+        TempSlot.GetComponent<Image>().color = new Color(0, 0, 0, 0);
 
         /* if (Vector2.Distance(initialClick, finalClick) < 1) //distance로 해서 클릭 드래그 구분하는거
          {
@@ -304,7 +315,7 @@ public class InvenManager : MonoBehaviour,  IBeginDragHandler, IDragHandler, IEn
             //Slots[i].GetComponent<RawImage>().color = new Color(0, 0, 0, 0);
         }
         TempSlot = transform.parent.Find("TempSlot").gameObject;
-        TempSlot.GetComponent<RawImage>().color = new Color(0, 0, 0, 0);
+        TempSlot.GetComponent<Image>().color = new Color(0, 0, 0, 0);
         Popup.SetActive(false);
         CombiningManager = transform.GetComponent<CombiningManager>();
         ChairPlaceManager = GameObject.Find("Room1").transform.Find("ChairNPlaceholder").GetComponent<ChairPlaceManager>();

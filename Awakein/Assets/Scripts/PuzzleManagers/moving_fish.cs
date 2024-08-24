@@ -49,12 +49,15 @@ public class moving_fish : MonoBehaviour
         Vector3 endPosition = new Vector3(transform.position.x + 100, transform.position.y, transform.position.z);
         float elapsedTime = 0f;
 
+        transform.rotation = Quaternion.Euler(0, 180f, 0);
         while (elapsedTime < timer)
         {
             transform.position = Vector3.Lerp(startPosition, endPosition, elapsedTime / timer);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
+
+        transform.rotation = Quaternion.Euler(0, 0f, 0);
         
         while( elapsedTime<6f&&elapsedTime>timer){
              transform.position = Vector3.Lerp(endPosition, startPosition, elapsedTime / (timer+3f));

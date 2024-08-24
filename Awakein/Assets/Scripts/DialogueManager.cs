@@ -15,6 +15,7 @@ public class DialogueManager : MonoBehaviour
     public Button NextBT;
     private Vector3 UIPosition;
     public bool IsDialoguePlaying { get; set; }
+    public Queue<string> QDialogue = new Queue<string>();
 
     private void Awake()
     {
@@ -51,6 +52,10 @@ public class DialogueManager : MonoBehaviour
         {
             StopDialogue = true;
         }
+        else if (QDialogue.Count > 0)
+        {
+            StartCoroutine(PlayDialogue(QDialogue.Peek()));
+        }
         else
         {
             Panel.SetActive(false);
@@ -60,7 +65,11 @@ public class DialogueManager : MonoBehaviour
 
     public IEnumerator PlayDialogue(string dialogue)
     {
-        Debug.Log("PlayDialogue");
+        if (QDialogue.Count == 0) QDialogue.Enqueue(dialogue);
+        else if (QDialogue.Peek() != dialogue) QDialogue.Enqueue(dialogue);
+        Debug.Log("now on peak: " + QDialogue.Peek());
+        
+        dialogue = QDialogue.Peek();
         TargetText = dText;
         TargetText.text = dialogue;
         IsDialoguePlaying = true;
@@ -86,6 +95,12 @@ public class DialogueManager : MonoBehaviour
             }
             
         }
+        QDialogue.Dequeue();
+        if (QDialogue.Count > 0)
+        {
+            PlayDialogue(QDialogue.Peek());
+        }
+
         StopDialogue = false;
         IsDialoguePlaying = false;
     }
@@ -94,45 +109,4 @@ public class DialogueManager : MonoBehaviour
     {
         StartCoroutine(PlayDialogue(dialogue));
     }
-    // public IEnumerator PlayDialogue(string dialogue, GameObject target)
-    // {
-    //     target.gameObject.SetActive(true);
-    //     target.TryGetComponent<Canvas>(out Canvas canvas);
-    //     if (canvas != null)
-    //     {
-    //         canvas.enabled = false;
-    //     }
-
-    //     Debug.Log("PlayDialogue");
-    //     TargetText = dText;
-    //     TargetText.text = dialogue;
-    //     IsDialoguePlaying = true;
-    //     Panel.SetActive(true);
-    //     dText.text = "";
-    //     for (int i = 0; i < dialogue.Length; i++)
-    //     {
-    //         dText.text += dialogue[i];
-    //         if (StopDialogue)
-    //         {
-    //             target.gameObject.SetActive(false);
-    //             dText.text = dialogue;
-    //             StopDialogue = false;
-    //             IsDialoguePlaying = false;
-    //             break;
-    //         }
-
-    //         if (dialogue[i] == '.' || dialogue[i] == '?' || dialogue[i] == '!' || dialogue[i] == ' ')
-    //         {
-    //             yield return new WaitForSeconds(0.1f);
-    //         }
-    //         else
-    //         {
-    //             yield return new WaitForSeconds(0.05f);
-    //         }
-            
-    //     }
-    //     target.gameObject.SetActive(false);
-    //     StopDialogue = false;
-    //     IsDialoguePlaying = false;
-    // }
 }

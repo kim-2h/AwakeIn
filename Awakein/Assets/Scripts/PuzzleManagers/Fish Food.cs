@@ -21,10 +21,10 @@ public class Fish : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDragHand
     void Start()
     {
         RectTransform Rect = this.GetComponent<RectTransform>();
-        InitialPos = new Vector2(495, 15);
+        InitialPos = new Vector2(549, -167);//this.gameObject.GetComponent<RectTransform>().anchoredPosition;
         GetItemPlace();
         rectTransform = GetComponent<RectTransform>();
-        this.GetComponent<RectTransform>().anchoredPosition = InitialPos;
+        //this.GetComponent<RectTransform>().anchoredPosition = InitialPos;
         this.gameObject.SetActive(true);
     }
     public void InitPuzzle()
@@ -46,7 +46,7 @@ public class Fish : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDragHand
         if (InvenManager.GetComponent<InvenManager>().ItemMap["FishFood"].InInventory)
         {
             gameObject.SetActive(true);
-            this.GetComponent<RectTransform>().anchoredPosition = InitialPos;
+            this.GetComponent<RectTransform>().anchoredPosition = new Vector2(549, -167);
         }
         else 
         {
@@ -56,7 +56,7 @@ public class Fish : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDragHand
     }
     void IBeginDragHandler.OnBeginDrag(PointerEventData eventData)
     {
-        DefaultPos = rectTransform.anchoredPosition;
+        DefaultPos = InitialPos;
     }
 
     void IDragHandler.OnDrag(PointerEventData eventData)

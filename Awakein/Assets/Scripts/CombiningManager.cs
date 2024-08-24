@@ -34,7 +34,7 @@ public class CombiningManager : MonoBehaviour
         }
         Debug.Log("Button clicked for matching");
         Button button = EventSystem.current.currentSelectedGameObject.GetComponent<Button>();
-        RawImage rawImage = button.GetComponent<RawImage>();
+        Image Image = button.GetComponent<Image>();
 
         canvas.transform.GetChild(0).gameObject.SetActive(true);
         canvas.transform.GetChild(1).gameObject.SetActive(true);
@@ -45,7 +45,7 @@ public class CombiningManager : MonoBehaviour
             obj.SetActive(false);
         }
         
-        if (rawImage.texture.name == images[0].name || rawImage.texture.name == images[1].name)//드라이버 부분
+        if (Image.sprite.name == images[0].name || Image.sprite.name == images[1].name)//드라이버 부분
         {
             Debug.Log("Image Right: Driver");
             canvas.gameObject.SetActive(true);
@@ -102,7 +102,7 @@ public class CombiningManager : MonoBehaviour
             // }
             
         }//비행기 부분 추가해야 함
-        else if (rawImage.texture.name == images[2].name || rawImage.texture.name == images[3].name)
+        else if (Image.sprite.name == images[2].name || Image.sprite.name == images[3].name)
         {
          Debug.Log("Image Right: Orgel");
             canvas.gameObject.SetActive(true);

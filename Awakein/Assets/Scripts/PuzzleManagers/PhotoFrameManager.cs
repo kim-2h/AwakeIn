@@ -4,7 +4,7 @@ using math = System.Math;
 
 public class PhotoFrameManager : MonoBehaviour
 {
-    public GameObject Canvas, FrameFront, FrameBack, BackPlate;
+    public GameObject Canvas, FrameFront, FrameBack, BackPlate, FrontPhoto;
     public InvenManager InvenManager;
     (Vector3, Vector3) pos0 = (new Vector3(0, 0, 0), new Vector3(0, 0, 0));
     
@@ -71,6 +71,7 @@ public class PhotoFrameManager : MonoBehaviour
     public void PhotoClicked()
     {
         InvenManager.ItemAdder("FamilyPhoto");
+        FrontPhoto.SetActive(false);
     }
     public void NoteClicked()
     {

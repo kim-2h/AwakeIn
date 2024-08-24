@@ -19,7 +19,10 @@ public class VentManager : MonoBehaviour,IPuzzle
         Debug.Log("Vent Puzzle Started");
         canvas.gameObject.SetActive(true);
         
-        if (gameflow.ItemList[20].InInventory){
+        //(gameflow.ItemList[20].InInventory) <<죄송한데 이러시면 안되는게 리스트는 위치바뀔수도 있고요 
+        //제가 쓰레기아이템 삭제해서 오류났는데 뭔가햇네 제가 딕셔너리로 바꿔둠
+        if  (gameflow.ItemMap["Driver"].InInventory) 
+        {
           Driver.SetActive(true);
         }
         else Driver.SetActive(false);

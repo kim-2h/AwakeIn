@@ -15,6 +15,7 @@ public class RadioManager : MonoBehaviour, IPuzzle
     public DialogueManager DLManager;
     private Vector3 CameraPosition, BatteryPosition;
     private bool BatteryIn = false;
+    public Image Img2;
 
     public void StartPuzzle()
     {
@@ -24,7 +25,7 @@ public class RadioManager : MonoBehaviour, IPuzzle
         RadioFront.SetActive(true);
         RadioBack.SetActive(false);
         Battery.gameObject.SetActive(InvenManager.GetComponent<InvenManager>().ItemMap["RadioBattery"].InInventory && !InvenManager.GetComponent<InvenManager>().ItemMap["RadioBattery"].IsUsed);
-        DriverHandle.SetActive(IsSolved && !InvenManager.GetComponent<InvenManager>().ItemMap["DriverStick"].InInventory && !InvenManager.GetComponent<InvenManager>().ItemMap["DriverStick"].IsUsed);
+        //DriverHandle.SetActive(IsSolved && !InvenManager.GetComponent<InvenManager>().ItemMap["DriverStick"].InInventory && !InvenManager.GetComponent<InvenManager>().ItemMap["DriverStick"].IsUsed);
     }
     public void ExitPuzzle()
     {
@@ -86,6 +87,7 @@ public class RadioManager : MonoBehaviour, IPuzzle
         canvas.gameObject.SetActive(false);
         CameraPosition = Camera.main.gameObject.transform.position;
         //var Rect = canvas.GetComponent<RectTransform>();
+        DriverHandle.SetActive(true);
         BatteryPosition = BatteryRect.anchoredPosition;
     }
 
@@ -98,6 +100,10 @@ public class RadioManager : MonoBehaviour, IPuzzle
     }
     public void Drag()
     {
+        if (Input.mousePosition.y <5 || Input.mousePosition.y > 1075)
+        {
+            return;
+        }
         BatteryRect.position = Input.mousePosition;
     }
     public void Drop() //슬롯에 들어갔나 확인
@@ -142,6 +148,7 @@ public class RadioManager : MonoBehaviour, IPuzzle
     public void DriverStickClicked()
     {
         InvenManager.GetComponent<InvenManager>().ItemAdder("DriverStick");
+        RadioBack.transform.GetChild(0).gameObject.GetComponent<RawImage>().texture = Img2.mainTexture;
         DriverHandle.SetActive(false);
     }
 

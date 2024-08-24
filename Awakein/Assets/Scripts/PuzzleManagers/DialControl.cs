@@ -139,7 +139,12 @@ public class DialControl: MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
             {
                 Debug.Log("Correct Password");
                 this.gameObject.GetComponent<RawImage>().raycastTarget = false;
-                RadioManager.gameObject.GetComponent<RadioManager>().DriverHandle.SetActive(!RadioManager.gameObject.GetComponent<IPuzzle>().IsSolved);
+                //RadioManager.gameObject.GetComponent<RadioManager>().DriverHandle.SetActive(!RadioManager.gameObject.GetComponent<IPuzzle>().IsSolved);
+                var DriverRect = RadioManager.gameObject.GetComponent<RadioManager>().DriverHandle.gameObject.GetComponent<RectTransform>();
+                DriverRect.anchoredPosition = new Vector2(-200, 0);
+                DriverRect.rotation = UnityEngine.Quaternion.Euler(0, 0, 70);
+                RadioManager.GetComponent<RadioManager>().RadioBack.transform.GetChild(0).gameObject.GetComponent<RawImage>().texture 
+                = RadioManager.GetComponent<RadioManager>().Img2.mainTexture;
                 RadioManager.gameObject.GetComponent<IPuzzle>().IsSolved = true;
                 isSolved = true;
                 

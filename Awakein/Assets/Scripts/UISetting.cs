@@ -25,6 +25,7 @@ public class UISetting : MonoBehaviour
 
     void Awake()
     {
+        Screen.SetResolution(1920, 1080, true);
         SetRes();
         OnPreCull();
         
@@ -233,7 +234,9 @@ public class UISetting : MonoBehaviour
 
     public void FullScreen(bool T) //빌드한 다음에 잘 돌아가는지 확인해야함
     {
+        
         T = ScreenToggle.isOn;
+        isFullScreen = T;
         Screen.fullScreen = T;
         Debug.Log("fullscreen : " + T);
         if (!T)

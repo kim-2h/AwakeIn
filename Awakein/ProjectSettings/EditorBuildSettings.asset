@@ -8,9 +8,15 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/2hUIdev 2.unity
     guid: 29e7031ba2de6b44697a82d5e6703cbc
+  - enabled: 0
+    path: Assets/Scenes/2hBuildTest.unity
+    guid: 096bbcaef2ce54b4d943f3f3e45f1b07
+  - enabled: 1
+    path: Assets/Scenes/2hUIdev 2 final.unity
+    guid: a625652bfe56a0f418fa115dcd254c4c
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 819cc70f21b33f9478013d60676178cd,
       type: 2}
