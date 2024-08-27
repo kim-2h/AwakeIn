@@ -24,6 +24,7 @@ public class RadioManager : MonoBehaviour, IPuzzle
         Radio.gameObject.GetComponent<RawImage>().raycastTarget = BatteryIn;
         RadioFront.SetActive(true);
         RadioBack.SetActive(false);
+        DriverHandle.GetComponent<Button>().interactable = IsSolved; 
         Battery.gameObject.SetActive(InvenManager.GetComponent<InvenManager>().ItemMap["RadioBattery"].InInventory && !InvenManager.GetComponent<InvenManager>().ItemMap["RadioBattery"].IsUsed);
         //DriverHandle.SetActive(IsSolved && !InvenManager.GetComponent<InvenManager>().ItemMap["DriverStick"].InInventory && !InvenManager.GetComponent<InvenManager>().ItemMap["DriverStick"].IsUsed);
     }

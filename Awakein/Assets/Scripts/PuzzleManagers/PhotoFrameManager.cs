@@ -6,6 +6,7 @@ public class PhotoFrameManager : MonoBehaviour
 {
     public GameObject Canvas, FrameFront, FrameBack, BackPlate, FrontPhoto;
     public InvenManager InvenManager;
+    public GameFlowManager GameFlowManager;
     (Vector3, Vector3) pos0 = (new Vector3(0, 0, 0), new Vector3(0, 0, 0));
     
     public void FrameClicked()
@@ -20,6 +21,7 @@ public class PhotoFrameManager : MonoBehaviour
             FrameFront.SetActive(true);
             FrameBack.SetActive(false);
         }
+
     }
 
     public void BackPlateClicked()

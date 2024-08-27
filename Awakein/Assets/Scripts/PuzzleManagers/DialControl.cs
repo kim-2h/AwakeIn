@@ -143,11 +143,12 @@ public class DialControl: MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
                 var DriverRect = RadioManager.gameObject.GetComponent<RadioManager>().DriverHandle.gameObject.GetComponent<RectTransform>();
                 DriverRect.anchoredPosition = new Vector2(-200, 0);
                 DriverRect.rotation = UnityEngine.Quaternion.Euler(0, 0, 70);
-                RadioManager.GetComponent<RadioManager>().RadioBack.transform.GetChild(0).gameObject.GetComponent<RawImage>().texture 
-                = RadioManager.GetComponent<RadioManager>().Img2.mainTexture;
+                var RM = RadioManager.GetComponent<RadioManager>();
+                RM.RadioBack.transform.GetChild(0).gameObject.GetComponent<RawImage>().texture 
+                = RM.Img2.mainTexture;
                 RadioManager.gameObject.GetComponent<IPuzzle>().IsSolved = true;
                 isSolved = true;
-                
+                RM.DriverHandle.GetComponent<Button>().interactable = true;
             }
             else
             {

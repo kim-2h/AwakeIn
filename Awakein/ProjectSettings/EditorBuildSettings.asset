@@ -14,9 +14,12 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/2hBuildTest.unity
     guid: 096bbcaef2ce54b4d943f3f3e45f1b07
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/2hUIdev 2 final.unity
     guid: a625652bfe56a0f418fa115dcd254c4c
+  - enabled: 1
+    path: Assets/Scenes/2hBuildTest2.unity
+    guid: 2e91ff6f50e937b448e7815cc9e525dc
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 819cc70f21b33f9478013d60676178cd,
       type: 2}

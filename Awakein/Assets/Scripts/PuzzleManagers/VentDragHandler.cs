@@ -10,13 +10,14 @@ public class VentDragHandler : MonoBehaviour,IBeginDragHandler, IDragHandler, IE
    private float timer=2f;
    public bool CoroutineStarted=false;
    public float fadeSpeed = 0.5f;
-   VentManager ventManager;
+   public VentManager ventManager;
    public InvenManager invenManager;
    public GameObject Vent;
    public GameObject[] Bolts;
    Vector3 beginposition;
-   void Start(){
-    ventManager=GetComponent<VentManager>();
+   void Start()
+   {
+    
     //invenManager=GetComponent<InvenManager>();
     Bolts=GameObject.FindGameObjectsWithTag("Bolt");
      beginposition=transform.position;
@@ -50,7 +51,7 @@ public class VentDragHandler : MonoBehaviour,IBeginDragHandler, IDragHandler, IE
         {
           var Dist = Vector2.Distance(Pos, Bolts[i].GetComponent<RectTransform>().anchoredPosition);
           Debug.Log("Distant : " + Dist + " pos : " + Pos + " Bolt pos : " + Bolts[i].GetComponent<RectTransform>().anchoredPosition);
-            if (Dist < 50f)
+            if (Dist < 100f)
             {
                 StartCoroutine(BoltRotating(Bolts[i]));
             }
@@ -61,6 +62,7 @@ public class VentDragHandler : MonoBehaviour,IBeginDragHandler, IDragHandler, IE
              invenManager.ItemMap["Driver"].IsUsed = true;
              invenManager.RemoveItem("Driver");
             isCleared=true;
+            ventManager.IsSolved = true;
          } 
          else
          {
@@ -79,7 +81,7 @@ public class VentDragHandler : MonoBehaviour,IBeginDragHandler, IDragHandler, IE
         float elapsedTime = 0f;
        while (elapsedTime < timer)
         {
-            tf.transform.Rotate(new Vector3(0f, 0f,10f) * Time.deltaTime);
+            tf.transform.Rotate(new Vector3(0f, 0f,30f) * Time.deltaTime);
             elapsedTime += Time.deltaTime;
             yield return null;
         }

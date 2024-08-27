@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,11 +18,14 @@ public class TornedDollManager : MonoBehaviour
     {
         imageChange=GetComponent<ImageChange>();
         canvas=gameObject.transform.parent.GetComponent<Canvas>();
+        var String = invenManager.GameFlow.GetComponent<GameFlowManager>().ReturnDialogue("Doll");
+        invenManager.GameFlow.GetComponent<GameFlowManager>().DialogueManager.CallRoutine(String);
     }
 
     // Update is called once per frame
     
-    public void Switch(){
+    public void Switch()
+    {
         if (!ONce) return;
         if (ONce)
         {
@@ -34,7 +38,7 @@ public class TornedDollManager : MonoBehaviour
             StartCoroutine(Arm_torning());
             ONce=false;
         }
-        }
+    }
 
     
     

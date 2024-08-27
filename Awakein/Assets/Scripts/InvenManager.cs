@@ -55,12 +55,14 @@ public class InvenManager : MonoBehaviour,  IBeginDragHandler, IDragHandler, IEn
         {
             if (ChairPlaceManager.ChairNow == ChairPlaceManager.ChairState.Nowhere)
             {
+                GameFlow.GetComponent<GameFlowManager>().CannotReach();
                 return;
             }
             else if (ChairPlaceManager.ChairNow == ChairPlaceManager.ChairState.BookShelf)
             {
                 if (iName != "Radio" && iName != "OrgelBody")
                 {
+                    GameFlow.GetComponent<GameFlowManager>().CannotReach();
                     return;
                 }
             }
@@ -68,6 +70,7 @@ public class InvenManager : MonoBehaviour,  IBeginDragHandler, IDragHandler, IEn
             {
                 if (iName != "PhotoFrame")
                 {
+                    GameFlow.GetComponent<GameFlowManager>().CannotReach();
                     return;
                 }
             }
@@ -75,16 +78,13 @@ public class InvenManager : MonoBehaviour,  IBeginDragHandler, IDragHandler, IEn
             {
                 if (iName != "Clock")
                 {
+                    GameFlow.GetComponent<GameFlowManager>().CannotReach();
                     return;
                 }
             }
         }  
         Debug.Log(iName + " added");
-        if (iName == "Chair")
-        {
-            GameFlow.GetComponent<GameFlowManager>().ChairBreaking();
-            ChairPlaceManager.ChairNow = ChairPlaceManager.ChairState.Nowhere;
-        }
+
         for (int i = 0; i<Slots.Length && SlotNum >0; i++)
         {
             TextMeshProUGUI Text = Slots[i].transform.Find("Text (TMP)").GetComponent<TextMeshProUGUI>(); 
@@ -131,6 +131,11 @@ public class InvenManager : MonoBehaviour,  IBeginDragHandler, IDragHandler, IEn
                 }
                 break;
             }
+        }
+        if (iName == "Chair")
+        {
+            GameFlow.GetComponent<GameFlowManager>().ChairBreaking();
+            ChairPlaceManager.ChairNow = ChairPlaceManager.ChairState.Nowhere;
         }
     }
 

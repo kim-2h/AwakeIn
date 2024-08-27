@@ -1930,6 +1930,7 @@ MonoBehaviour:
   - {fileID: 608744976}
   - {fileID: 1503845572}
   - {fileID: 487740844}
+  - {fileID: 1979972159}
 --- !u!4 &37206841
 Transform:
   m_ObjectHideFlags: 0
@@ -5508,6 +5509,7 @@ MonoBehaviour:
   BackPlate: {fileID: 1617438887}
   FrontPhoto: {fileID: 1155712916}
   InvenManager: {fileID: 1358391610}
+  GameFlowManager: {fileID: 2038419611}
 --- !u!1 &200898970
 GameObject:
   m_ObjectHideFlags: 0
@@ -10292,7 +10294,6 @@ GameObject:
   - component: {fileID: 417053656}
   - component: {fileID: 417053659}
   - component: {fileID: 417053658}
-  - component: {fileID: 417053657}
   m_Layer: 0
   m_Name: ClockShadow
   m_TagString: Shadow
@@ -10309,34 +10310,12 @@ Transform:
   m_GameObject: {fileID: 417053655}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.0000000016298143, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.01, y: -0.02, z: 0.172}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6251693242926677774}
   m_LocalEulerAnglesHint: {x: -8.132, y: 6.368, z: -9.474}
---- !u!64 &417053657
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 417053655}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &417053658
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -23516,26 +23495,53 @@ MonoBehaviour:
   m_GameObject: {fileID: 1002197808}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 4
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 631477245}
-          m_TargetAssemblyTypeName: RadioManager, Assembly-CSharp
-          m_MethodName: DriverStickClicked
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1002197811}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 631477245}
+        m_TargetAssemblyTypeName: RadioManager, Assembly-CSharp
+        m_MethodName: DriverStickClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1005677045
 GameObject:
   m_ObjectHideFlags: 0
@@ -25199,7 +25205,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isCleared: 0
   CoroutineStarted: 0
-  fadeSpeed: 1.5
+  fadeSpeed: 0.5
+  ventManager: {fileID: 8922460718116049505}
   invenManager: {fileID: 1358391610}
   Vent: {fileID: 369916171}
   Bolts: []
@@ -32322,7 +32329,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1385382342
 RectTransform:
   m_ObjectHideFlags: 0
@@ -32340,8 +32347,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 860, y: 470}
-  m_SizeDelta: {x: 160, y: 100}
+  m_AnchoredPosition: {x: 918, y: -465}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1385382343
 MonoBehaviour:
@@ -48062,6 +48069,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DialogueManager: {fileID: 1730908396}
+  InvenManager: {fileID: 1358391610}
   PuzzleList:
   - {fileID: 1251274173}
   - {fileID: 631477239}

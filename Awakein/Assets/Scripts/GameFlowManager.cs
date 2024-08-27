@@ -8,6 +8,7 @@ using UnityEngine;
 public class GameFlowManager : MonoBehaviour
 {
     public DialogueManager DialogueManager;
+    public InvenManager InvenManager;
     public List<GameObject> PuzzleList;
     public List<Item> ItemList;
     public Dictionary<string, IPuzzle> PuzzleMap = new Dictionary<string, IPuzzle>();
@@ -22,7 +23,7 @@ public class GameFlowManager : MonoBehaviour
             case "Window":
                 if (true)
                 {
-                    Ret = "It's sunny but why am I here??????????????????????????????????????????????";
+                    Ret = "It's sunny but why am I here?";
                     DialogueMap["WindowSunny"] = true; //대사가 나왔으면 true
                 }
                 break;
@@ -39,14 +40,14 @@ public class GameFlowManager : MonoBehaviour
                 }
                 break; 
             case "PhotoFrame":
-                if (!DialogueMap["RichFamilyPhoto"] && PuzzleMap["BookShelfDrawer"].IsSolved)
+                if (ItemMap["PhotoFrame"].InInventory && !DialogueMap["RichFamilyPhoto"] && PuzzleMap["BookShelfDrawer"].IsSolved)
                 {
                     Ret = "It's a photo of a rich family.\nThey look happy.";
                     DialogueMap["RichFamilyPhoto"] = true;
                 }
                 break;
             case "FishBowl":
-                if (!DialogueMap["FishHungry"] && !ItemMap["FishFood"].InInventory)
+                if (!DialogueMap["FishHungry"] && !ItemMap["FishFood"].InInventory && !PuzzleMap["FishBowl"].IsSolved)
                 {
                     Ret = "The fish looks hungry. It's swimming around.";
                     DialogueMap["FishHungry"] = true;
@@ -54,10 +55,41 @@ public class GameFlowManager : MonoBehaviour
                 else if (!DialogueMap["FishDumb"] && ItemMap["FishFood"].InInventory)
                 {
                     //DialogueManager.PlayDialogue("It says \"Do not feed them too much.\" on the label.");
-                    Ret = ("...Hell nah.");
+                    Ret = "...Hell nah.";
                     DialogueManager.QDialogue.Enqueue("It says \"Do not feed them too much.\" on the label.");
                     DialogueManager.QDialogue.Enqueue("But do fish even know how much they should eat? With their tiny brains?\n");
                     //DialogueMap["FishDumb"] = true;
+                }
+                break;
+            case "BookShelf":
+                if (!DialogueMap["BookMany"] && !PuzzleMap["BookShelf"].IsSolved)
+                {
+                    Ret = "There are many difficult books here!";
+                    DialogueMap["BookMany"] = true;
+                }
+                break;
+            case "Doll":
+                if (!DialogueMap["DollShiny"] && !ItemMap["RadioBattery"].InInventory)
+                {
+                    Ret = "There is someting in the doll...";
+                    DialogueMap["DollShiny"] = true;
+                }
+                break;
+            case "Vent":
+                if (!PuzzleMap["Vent"].IsSolved)
+                {
+                    
+                }
+                else if (PuzzleMap["Vent"].IsSolved && (!ItemMap["OrgelWhole"].InInventory || !ItemMap["FamilyPhoto"].InInventory
+                || !(ItemMap["Carpet_Note"].InInventory || ItemMap["Carpet_Note"].IsUsed) ||
+                !(ItemMap["Photo_Note"].InInventory || ItemMap["Photo_Note"].IsUsed) || !ItemMap["Gear"].InInventory
+                || !ItemMap["GasMask"].InInventory))
+                {
+                    Ret = "I think I need to look around more...";
+                }
+                else
+                {
+                    Ret = "I can finally get out of here!";
                 }
                 break;
             default:
@@ -71,14 +103,29 @@ public class GameFlowManager : MonoBehaviour
 
     public void ChairBreaking()
     {
-        if (ItemMap["Chair"].InInventory && (PuzzleMap["PhotoFrame"].IsSolved || ItemMap["PhotoFrame"].InInventory)&& 
-        (PuzzleMap["Radio"].IsSolved || ItemMap["Radio"].InInventory) && (PuzzleMap["Clock"].IsSolved
-        || ItemMap["Clock_Key"].InInventory))
+        if (ItemMap["Chair"].InInventory && (ItemMap["PhotoFrame"].InInventory || ItemMap["FamilyPhoto"].InInventory
+        || ItemMap["Photo_Note"].InInventory)&& 
+        (PuzzleMap["Radio"].IsSolved || ItemMap["Radio"].InInventory) && (PuzzleMap["Clock"].IsSolved || ItemMap["Clock_Key"].InInventory)
+         && (ItemMap["OrgelBody"].InInventory || ItemMap["Orgel"].InInventory))
         {
             DialogueManager.CallRoutine("The chair is broken...");
             DialogueMap["ChairBroken"] = true;
+            InvenManager.RemoveItem("Chair");
         }
         else return;
+    }
+    public void CannotReach()
+    {
+        if (!InvenManager.ItemMap["Chair"].InInventory)
+        {
+            DialogueManager.CallRoutine("I cannot reach it...");
+            DialogueMap["CannotReach"] = true;
+        }
+        else
+        {
+            DialogueManager.CallRoutine("I think I can reach it with the chair.");
+            DialogueMap["GottaUseChair"] = true;
+        }
     }
 
     void Start()
@@ -146,6 +193,7 @@ public class GameFlowManager : MonoBehaviour
         DialogueMap.Add("BookMany", false);
         DialogueMap.Add("DollShiny", false);
         DialogueMap.Add("WindowSunny", false);
+        DialogueMap.Add("VentNotDone", false);
 
 
     }

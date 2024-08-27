@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-public class VentManager : MonoBehaviour,IPuzzle
+public class VentManager : MonoBehaviour, IPuzzle
 {
   [SerializeField] public bool IsSolved { get; set; }
     public Canvas canvas;

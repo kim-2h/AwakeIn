@@ -157,6 +157,7 @@ public class ClockManager : MonoBehaviour, IPuzzle
     {
         if (ChairPlaceManager.ChairNow != ChairPlaceManager.ChairState.Clock)
         {
+            invenManager.GameFlow.GetComponent<GameFlowManager>().CannotReach();
             return;
         }
         Debug.Log("Clock Puzzle Started");

@@ -29,6 +29,12 @@ public class ItemManager : MonoBehaviour
                 {
                     PopUp = popup;
                     PopUp.SetActive(true);
+                    if (Name == "PhotoFrame")
+                    {
+                        var String = GameFlowManager.GetComponent<GameFlowManager>().ReturnDialogue("PhotoFrame");
+                        if (String != "") GameFlowManager.GetComponent<GameFlowManager>().DialogueManager.CallRoutine(String);
+                    }
+
                     if (GameFlowManager.GetComponent<GameFlowManager>().PuzzleMap.ContainsKey(Name))
                     {
                         GameFlowManager.GetComponent<GameFlowManager>().PuzzleMap[Name].StartPuzzle();
