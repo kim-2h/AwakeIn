@@ -72,6 +72,7 @@ public class DialogueManager : MonoBehaviour
         dialogue = QDialogue.Peek();
         TargetText = dText;
         TargetText.text = dialogue;
+        yield return new WaitForSeconds(0.1f);
         IsDialoguePlaying = true;
         Panel.SetActive(true);
         dText.text = "";
@@ -103,6 +104,10 @@ public class DialogueManager : MonoBehaviour
 
         StopDialogue = false;
         IsDialoguePlaying = false;
+    }
+    IEnumerator WaitAWhile(float time)
+    {
+        yield return new WaitForSeconds(time);
     }
 
     public void CallRoutine(string dialogue)

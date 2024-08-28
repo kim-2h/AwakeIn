@@ -81,11 +81,13 @@ public class CameraMoving2 : MonoBehaviour
                 }    
                 else if (isFirstClick && hit.transform.name != "PlantPot") // 클릭된 객체가 Puzzle 태그를 가지고 있고, 처음 클릭이면
                 {
-                    Debug.Log("Puzzle Clicked: " + hit.transform.name);
+                    HitSTH(hit);
+                /*    Debug.Log("Puzzle Clicked: " + hit.transform.name);
                     StartCoroutine(ZoomCoroutine(hit.point)); // 클릭된 객체 위치를 기준으로 확대 시작
                     IPuzzle puzzle = hit.transform.gameObject.GetComponent<IPuzzle>();
                     if (puzzle != null)
                     {
+                        StartCoroutine(WaitAWhile(1f));
                         puzzle.StartPuzzle();
                     }
                     
@@ -97,7 +99,7 @@ public class CameraMoving2 : MonoBehaviour
                     {
                         Debug.Log("No puzzle script found");
                     }
-                    isFirstClick = false;
+                    isFirstClick = false;  */
                 }
                 else
                 {
@@ -119,17 +121,56 @@ public class CameraMoving2 : MonoBehaviour
         //     isFirstClick = true;
         // }
     }
+
+    private void HitSTH(RaycastHit hit)
+    {
+        
+                   Debug.Log("Puzzle Clicked: " + hit.transform.name);
+                    StartCoroutine(ZoomCoroutine(hit.point)); // 클릭된 객체 위치를 기준으로 확대 시작
+                    
+                    IPuzzle puzzle = hit.transform.gameObject.GetComponent<IPuzzle>();
+                    if (puzzle != null)
+                    {
+                        StartCoroutine(StartPuzzleAfterZoom(puzzle));
+                    }
+                    
+                    else if (hit.transform.tag == "Puzzle" && hit.transform.gameObject.transform.parent.GetComponent<IPuzzle>() != null)
+                    {
+                        puzzle = hit.transform.gameObject.transform.parent.GetComponent<IPuzzle>();
+                        StartCoroutine(StartPuzzleAfterZoom(puzzle));
+                    }
+                    else
+                    {
+                        Debug.Log("No puzzle script found");
+                    }
+                    isFirstClick = false;
+    }
+
+    private IEnumerator StartPuzzleAfterZoom(IPuzzle puzzle)
+    {
+        yield return new WaitForSeconds(0.1f); // 1초 대기
+        puzzle.StartPuzzle(); // 퍼즐 시작
+    }
+
     public void ItemClicked(string iName)
     {
         Debug.Log(iName); 
   
         InvenManager.GetComponent<InvenManager>().ItemAdder(iName); 
     }
+    public float ZoomDistance = 100f;
+
+    IEnumerator WaitAWhile(float time)
+    {
+        yield return new WaitForSeconds(time);
+    }
+
     IEnumerator ZoomCoroutine(Vector3 targetPosition)
     {
         isZooming = true; // 확대 중 플래그 설정
         float elapsedTime = 0f;
         Vector3 startPosition = cam.transform.position;
+
 
         while (elapsedTime < 1.5f) // 2초 동안 확대
         {
@@ -139,8 +180,44 @@ public class CameraMoving2 : MonoBehaviour
             yield return null; // 다음 프레임까지 대기
         }
 
+        //시간 말고 거리 비율로 확대
+        // float Dist = Vector3.Distance(startPosition, targetPosition);
+        // Dist -= ZoomDistance;
+        // float Total = 0;
+        // while (Total >= Dist)
+        // {
+        //     Total++;
+        //     cam.transform.position = Vector3.Lerp(startPosition, targetPosition, Total/Dist); // 초기 위치에서 목표 위치까지 Lerp
+
+        //     yield return null;
+        // }
+        
+
         isZooming = false; // 확대 종료 후 플래그 해제
     }
-    
+
+    // IEnumerator ZoomCoroutine(Vector3 targetPosition)
+    // {
+    //     isZooming = true; // 확대 중 플래그 설정
+    //     Vector3 startPosition = cam.transform.position;
+
+    //     // 목표 위치에서 ZoomDistance 만큼 떨어진 위치 계산
+    //     Vector3 zoomTargetPosition = targetPosition;
+    //     float Dist = Vector3.Distance(startPosition, targetPosition);
+    //     float Total = 0;
+    //     while (Total <= Dist - ZoomDistance) // 정확성을 위해 약간의 오차 허용
+    //     {
+    //         // Lerp를 사용하여 카메라를 목표 위치로 서서히 이동
+    //         Total = Total + 0.1f
+    //         cam.transform.position = Vector3.Lerp(cam.transform.position, zoomTargetPosition, Total / Dist- ZoomDistance);
+
+    //         yield return null; // 다음 프레임까지 대기
+    //     }
+
+    //     // 정확한 위치 보정
+    //     //      cam.transform.position = zoomTargetPosition;
+
+    //     isZooming = false; // 확대 종료 후 플래그 해제
+    // }
 
 }

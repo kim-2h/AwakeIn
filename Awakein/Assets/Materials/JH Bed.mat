@@ -42,7 +42,7 @@ Material:
     - _AlphaClip: 1
     - _DstBlend: 10
     - _DstBlendAlpha: 10
-    - _Smoothness: 0.54
+    - _Smoothness: 0.283
     - _Surface: 1
     - _ZWrite: 0
     m_Colors:
