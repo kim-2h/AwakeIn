@@ -27,6 +27,10 @@ public class HanoiManager : MonoBehaviour
         Debug.Log("init hanoi");
         for (int i = 0; i < 4; i++)
         {
+            Disks[i].transform.SetParent(canvas.transform);
+        }
+        for (int i = 0; i < 4; i++)
+        {
             //Debug.Log(rodPos.y + i * 100 + "\n");
             //Disks[i].transform.position = new Vector3(rodPos.x, rodPos.y + i*85 + 180 - 10*i*i, rodPos.z);
             // Disks[i].transform.position = new Vector3(rodPos.x, rodPos.y + i*80 + 

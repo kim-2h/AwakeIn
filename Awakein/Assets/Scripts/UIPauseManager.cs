@@ -8,7 +8,7 @@ public class UIPauseManager : MonoBehaviour
     public Canvas PauseCanvas, SettingCanvas;
     void Start()
     {
-        DontDestroyOnLoad(this.gameObject);
+        //DontDestroyOnLoad(this.gameObject);
         this.gameObject.SetActive(true);
         PauseCanvas.enabled = false;
     }
@@ -35,6 +35,11 @@ public class UIPauseManager : MonoBehaviour
 
     public void SettingClicked()
     {
+
+        GameObject[] CCAnvas = GameObject.FindGameObjectsWithTag("Setting");
+        SettingCanvas = CCAnvas[0].GetComponent<Canvas>(); 
+        Debug.Log("Setting object num: " + CCAnvas.Length);
+
         SettingCanvas.GetComponent<UISetting>().InitSetting();
         PauseCanvas.enabled = false;
         SettingCanvas.enabled = true;

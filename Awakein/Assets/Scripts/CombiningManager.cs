@@ -69,37 +69,6 @@ public class CombiningManager : MonoBehaviour
                 gameObjects[1].SetActive(true);
                 gameObjects[1].GetComponent<CombiningDragHandler>().PlaceHolder.SetActive(true);
             }
-            // foreach (GameObject obj in gameObjects)
-            // {
-            //     if (obj.name == images[0].name  || obj.name == images[1].name )
-            //     {
-            //         obj.SetActive(true);
-            //     }
-            //     else
-            //     {
-            //         obj.SetActive(false);
-            //     }
-            // }
-       
-            // if (rawImage.texture == images[0]){//handle부분
-            //     canvas.transform.GetChild(4).gameObject.SetActive(true); //하이어라키 순서를 바꾸면 ㅈ댑니다.
-            //     canvas.transform.GetChild(5).gameObject.SetActive(false);
-            //    foreach (Button but in buttons){
-            //       if (but.GetComponent<RawImage>().texture==images[1]){
-            //             canvas.transform.GetChild(5).gameObject.SetActive(true);
-
-            //       }
-            //    }
-            // }
-            // if (rawImage.texture == images[1]){//stick 부분
-            //     canvas.transform.GetChild(5).gameObject.SetActive(true);
-            //     canvas.transform.GetChild(4).gameObject.SetActive(false);
-            //    foreach (Button but in buttons){
-            //       if (but.GetComponent<RawImage>().texture==images[0]){
-            //         canvas.transform.GetChild(4).gameObject.SetActive(true);
-            //       }
-            //    }
-            // }
             
         }//비행기 부분 추가해야 함
         else if (Image.sprite.name == images[2].name || Image.sprite.name == images[3].name)
@@ -124,26 +93,7 @@ public class CombiningManager : MonoBehaviour
                 gameObjects[3].SetActive(true);
                 gameObjects[3].GetComponent<CombiningDragHandler>().PlaceHolder.SetActive(true);
             }
-            // if (rawImage.texture == images[2]){//
-            //     canvas.transform.GetChild(6).gameObject.SetActive(true); 
-            //     canvas.transform.GetChild(7).gameObject.SetActive(false);
-            //    foreach (Button but in buttons){
-            //       if (but.GetComponent<RawImage>().texture==images[3])
-            //       {
-            //         canvas.transform.GetChild(7).gameObject.SetActive(true);
-            //       }
-            //    }
-            // }
-            // if (rawImage.texture == images[3]){
-            //     canvas.transform.GetChild(6).gameObject.SetActive(true);
-            //     canvas.transform.GetChild(7).gameObject.SetActive(false);
-            //    foreach (Button but in buttons){
-            //       if (but.GetComponent<RawImage>().texture==images[2])
-            //       {
-            //          canvas.transform.GetChild(6).gameObject.SetActive(true);
-            //       }
-            //    }
-            // }
+
         }
        
     }

@@ -11,6 +11,7 @@ public class LockManagerCharacter : MonoBehaviour
     public int[] targetCharacters;
     public BookShelfDrawerManager BDManager;
     public ToyBoxManager TBManager;
+    public ElectricBoxManager EBManager;
     void Start()
     {
         currentCharacters = new int[numberDisplays.Length];
@@ -66,11 +67,18 @@ public class LockManagerCharacter : MonoBehaviour
             Debug.Log("맞았습니다!");
             if (currentCharacters[0] == 84)
             {
+                if (BDManager != null) 
                 BDManager.LockSolved();
             }
             else if (currentCharacters[0] == 78)
             {
+                if (TBManager != null) 
                 TBManager.LockSolved();
+            }
+            else if (currentCharacters[0] == 82)
+            {
+                if (EBManager != null) 
+                EBManager.LockSolved();
             }
         }
         else

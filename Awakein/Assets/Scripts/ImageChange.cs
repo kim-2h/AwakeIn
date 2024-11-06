@@ -44,6 +44,21 @@ public class ImageChange : MonoBehaviour
     {
         TargetObj.GetComponent<RawImage>().texture = ImgScene1[Idx];
     }
+    public void SwitchImage(GameObject TargetObj, int Idx, int Scene)
+    {
+        switch (Scene)
+        {
+            case 1:
+                TargetObj.GetComponent<RawImage>().texture = ImgScene1[Idx];
+                break;
+            case 2:
+                TargetObj.GetComponent<RawImage>().texture = ImgScene2[Idx];
+                break;
+            case 3:
+                TargetObj.GetComponent<RawImage>().texture = ImgScene3[Idx];
+                break;
+        }
+    }
     public void SwitchSprite(GameObject TargetObj, string ImgName)
     {
         for (int i = 0; i < SprScene1.Count; i++)

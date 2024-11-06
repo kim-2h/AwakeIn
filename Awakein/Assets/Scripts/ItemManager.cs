@@ -18,6 +18,7 @@ public class ItemManager : MonoBehaviour
         {
             if (NoteManager.ContentsMap.ContainsKey(Name))
             {
+                Debug.Log("Clicked note in inven: " + Name);
                 NoteManager.ClickContent(Name);
                 InvenManager.RemoveItem(Name);
                 return;

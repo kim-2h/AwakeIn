@@ -13,6 +13,7 @@ using Unity.Mathematics;
 using System.Numerics;
 using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
+using UnityEngine.SceneManagement;
 public class InvenManager : MonoBehaviour,  IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     /*
@@ -297,7 +298,7 @@ public class InvenManager : MonoBehaviour,  IBeginDragHandler, IDragHandler, IEn
                 ChairPlaceManager.ChairDragEnded();
             }
         }
-        ChairPlaceManager.ChairDragEnded();
+        if (ChairPlaceManager != null) ChairPlaceManager.ChairDragEnded();
         DestroyImmediate(temp);
         Debug.Log("End Drag");
     }
@@ -323,7 +324,8 @@ public class InvenManager : MonoBehaviour,  IBeginDragHandler, IDragHandler, IEn
         TempSlot.GetComponent<Image>().color = new Color(0, 0, 0, 0);
         Popup.SetActive(false);
         CombiningManager = transform.GetComponent<CombiningManager>();
-        ChairPlaceManager = GameObject.Find("Room1").transform.Find("ChairNPlaceholder").GetComponent<ChairPlaceManager>();
+        string scene = SceneManager.GetActiveScene().name;
+        if (scene == "2hBuildTest2" || scene == "SecondRoom") ChairPlaceManager = GameObject.Find("Room1").transform.Find("ChairNPlaceholder").GetComponent<ChairPlaceManager>();
     }
     void Update()
     {

@@ -21,7 +21,7 @@ public class UINoteManager : MonoBehaviour
         NoteCanvas.gameObject.SetActive(true);
         NoteCanvas.enabled = true;
         Cursor.lockState = CursorLockMode.Confined;
-        Time.timeScale = 1;
+        Time.timeScale = 0;
     }
     
     public void CloseBooks()
@@ -32,6 +32,8 @@ public class UINoteManager : MonoBehaviour
         Books[0].SetActive(false);
         Books[1].SetActive(false);
         Books[2].SetActive(false);
+
+        Time.timeScale = 1;
     }
 
     public void CloseNote()
@@ -39,6 +41,8 @@ public class UINoteManager : MonoBehaviour
         Books[0].SetActive(false);
         Books[1].SetActive(false);
         Books[2].SetActive(false);
+
+        Time.timeScale = 1;
     }
 
     public void BookClicked()
@@ -51,8 +55,16 @@ public class UINoteManager : MonoBehaviour
     }
     public void DirectBook()
     {
-        Books[SceneNum -1].SetActive(true);
-        UpdateBook(SceneNum - 1);
+        Time.timeScale = 0;
+        Books[0].SetActive(true);
+        UpdateBook(0);
+    }
+
+    public void DirectBook2()
+    {
+        Time.timeScale = 0;
+        Books[1].SetActive(true);
+        UpdateBook(1);
     }
     private GameObject NowContent = null;
     private void UpdateBook(int Idx)
@@ -70,6 +82,7 @@ public class UINoteManager : MonoBehaviour
 
     public void ClickContent(string Name)
     {
+        Debug.Log("Clicked note content: " + Name);
         if (ContentsMap.ContainsKey(Name))
         {
             ContentsMap[Name].SetActive(true);
@@ -93,7 +106,9 @@ public class UINoteManager : MonoBehaviour
     void Start()
     {
         this.gameObject.SetActive(true);
-        DontDestroyOnLoad(this.gameObject);
+        GameObject[] NNotes = GameObject.FindGameObjectsWithTag("NoteCanvas");
+        if (NNotes.Length >1) Destroy(this.gameObject);
+        else DontDestroyOnLoad(this.gameObject);
 
         Books[0].SetActive(false);
         Books[1].SetActive(false);

@@ -12,7 +12,12 @@ TagManager:
   - Book
   - Bolt
   - FoodPlace
+  - GlobalVolume
+  - Setting
+  - PointLight
   - Shadow
+  - Audio
+  - NoteCanvas
   layers:
   - Default
   - TransparentFX

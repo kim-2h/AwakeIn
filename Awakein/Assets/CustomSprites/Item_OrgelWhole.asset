@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: OrgelWhole
   itemMaterial: {fileID: 0}
-  isClickable: 1
+  isClickable: 0
   inInventory: 0
   isUsed: 0

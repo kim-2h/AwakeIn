@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor;
+using UnityEditor.Localization.Plugins.XLIFF.V12;
 using UnityEngine;
 
 
@@ -9,11 +10,19 @@ public class GameFlowManager : MonoBehaviour
 {
     public DialogueManager DialogueManager;
     public InvenManager InvenManager;
+    public SoundManager SoundManager;
     public List<GameObject> PuzzleList;
     public List<Item> ItemList;
     public Dictionary<string, IPuzzle> PuzzleMap = new Dictionary<string, IPuzzle>();
     public Dictionary<string, Item> ItemMap = new Dictionary<string, Item>();
     public Dictionary<string, bool> DialogueMap = new Dictionary<string, bool>();
+
+    public enum EScenes
+    {
+        Title, Room1, Room2, Room3, Ending
+    }
+    public EScenes Scenes = EScenes.Title;
+
 
     public string ReturnDialogue(string _object)
     {
@@ -128,9 +137,29 @@ public class GameFlowManager : MonoBehaviour
         }
     }
 
+    public void StartDoorRoutine(GameObject Door)
+    {
+        StartCoroutine(DoorOpen(Door));
+        SoundManager.PlaySFX(0);
+    }
+    IEnumerator DoorOpen(GameObject Door)
+    {
+        float time = 0;
+        Quaternion startRotation = Door.transform.rotation;
+        Quaternion endRotation = Quaternion.Euler(Door.transform.rotation.eulerAngles.x, 
+        Door.transform.rotation.eulerAngles.y - 30.0f, 
+        Door.transform.rotation.eulerAngles.z);
+        
+        while (time < 5.0f)
+        {
+            time += Time.deltaTime;
+            Door.transform.rotation = Quaternion.Lerp(startRotation, endRotation, time / 5.0f);
+            yield return null;
+        }
+    }
     void Start()
     {
-   
+        SoundManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<SoundManager>();
     }
     public void PrintProgress()
     {
@@ -197,4 +226,5 @@ public class GameFlowManager : MonoBehaviour
 
 
     }
+
 }

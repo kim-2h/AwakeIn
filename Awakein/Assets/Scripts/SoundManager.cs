@@ -6,16 +6,20 @@ using UnityEngine;
 public class SoundManager : MonoBehaviour
 {
     public AudioSource[] BGMs;
-    private enum EScenes
-    {
-        Lobby, Room1, Room2, Room3, Ending
+    public AudioSource[] SFXs;
 
+    public enum EScenes
+    {
+        Title, Room1, Room2, Room3, Ending
     }
-    EScenes Scenes = EScenes.Lobby;
+    public EScenes Scenes = EScenes.Title;
 
     void Start()
     {
-        DontDestroyOnLoad(this.gameObject);
+        GameObject[] AAudios = GameObject.FindGameObjectsWithTag("Audio");
+        if (AAudios.Length >=2) Destroy(this.gameObject);
+        else DontDestroyOnLoad(this.gameObject);
+ 
         BGMs[0].Play();
     }
 
@@ -23,7 +27,7 @@ public class SoundManager : MonoBehaviour
     {
         switch (Scenes)
         {
-            case EScenes.Lobby:
+            case EScenes.Title:
                 BGMs[0].Play();
                 break;
             case EScenes.Room1:
@@ -39,6 +43,11 @@ public class SoundManager : MonoBehaviour
                 BGMs[4].Play();
                 break;
         }
+    }
+
+    public void PlaySFX(int idx)
+    {
+        SFXs[idx].Play();
     }
 
 }
