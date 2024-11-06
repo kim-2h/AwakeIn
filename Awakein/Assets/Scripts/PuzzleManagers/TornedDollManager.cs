@@ -61,12 +61,15 @@ public class TornedDollManager : MonoBehaviour
         Vector3 endposition=new Vector3(startposition.x+30,startposition.y-20,startposition.z);
         float elapsedTime=0f;
         float time=1.5f;
+         SoundManager.Instance.PlaySFX(4);
+
         while(elapsedTime < time){
             arm.transform.position=Vector3.Lerp(startposition,endposition,elapsedTime/time);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
         arm.transform.position=endposition;
+        
         Debug.Log("DOne");
     }
 }

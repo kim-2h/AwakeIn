@@ -69,6 +69,7 @@ public class ToyBoxManager : MonoBehaviour, IPuzzle
     }
     public void LockSolved()
     {
+        
         IsSolved = true;
         ClickBlock.SetActive(true);
         Airplain.gameObject.SetActive(true);

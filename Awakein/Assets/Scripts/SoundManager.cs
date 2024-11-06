@@ -5,9 +5,12 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
-    public AudioSource[] BGMs;
+    public static SoundManager Instance;
+        public AudioSource[] BGMs;
     public AudioSource[] SFXs;
-
+    void Awake(){
+    SoundManager.Instance = this; 
+     }
     public enum EScenes
     {
         Title, Room1, Room2, Room3, Ending
@@ -47,6 +50,7 @@ public class SoundManager : MonoBehaviour
 
     public void PlaySFX(int idx)
     {
+        Debug.Log(SFXs[idx].name);
         SFXs[idx].Play();
     }
 

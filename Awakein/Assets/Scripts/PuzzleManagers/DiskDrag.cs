@@ -51,6 +51,7 @@ public class DiskDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         if (!isValid) //맨 위가 아니면 못움직임
         {
             Debug.Log("Invalid!can't move!");
+            
             this.transform.position = initialPosition;
             this.transform.SetParent(StartRod.transform);
             return;
@@ -61,6 +62,7 @@ public class DiskDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         if (finalPosition != 0 && Manager.gameObject.GetComponent<HanoiManager>().DiskRuller(this.gameObject, finalPosition))
         {
             Manager.gameObject.GetComponent<HanoiManager>().DiskPlacer(this.gameObject, finalPosition);
+            SoundManager.Instance.PlaySFX(5);
             Debug.Log("Valid!move to " + finalPosition);
         }
         else

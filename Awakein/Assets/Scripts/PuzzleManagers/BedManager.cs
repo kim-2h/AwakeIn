@@ -175,6 +175,7 @@ public class BedManager : MonoBehaviour, IPuzzle
             Key.SetActive(false);
             Lock.SetActive(false);
             DrawerUnLocked = true;
+            SoundManager.Instance.PlaySFX(2);
             ItemMap["Clock_Key"].IsUsed = true;
             InvenManager.GetComponent<InvenManager>().RemoveItem("Clock_Key");
         }

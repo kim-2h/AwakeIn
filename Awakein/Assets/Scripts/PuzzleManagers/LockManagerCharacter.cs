@@ -65,6 +65,8 @@ public class LockManagerCharacter : MonoBehaviour
         if (isComplete)
         {
             Debug.Log("맞았습니다!");
+            SoundManager.Instance.PlaySFX(1);
+
             if (currentCharacters[0] == 84)
             {
                 if (BDManager != null) 

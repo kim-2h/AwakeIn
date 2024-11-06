@@ -56,6 +56,7 @@ public class PlantPotMovement : MonoBehaviour
         isMoving = true; // 이동 중 플래그 설정
         Vector3 startPosition = transform.position; // 초기 위치
         float elapsedTime = 0f;
+        SoundManager.Instance.PlaySFX(2);
 
         while (elapsedTime < moveDuration)
         {
