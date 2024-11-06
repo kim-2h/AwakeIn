@@ -61570,7 +61570,7 @@ MonoBehaviour:
   priority: 0
   blendDistance: 5
   weight: 0.7
-  sharedProfile: {fileID: 11400000, guid: 7c42970d60a21ff4c9aa8977d4d75f01, type: 2}
+  sharedProfile: {fileID: 11400000, guid: 35d15ec2597f1ea4e95a7bf46651be81, type: 2}
 --- !u!222 &6810024816646516960
 CanvasRenderer:
   m_ObjectHideFlags: 0
