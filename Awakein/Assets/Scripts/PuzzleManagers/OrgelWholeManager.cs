@@ -4,7 +4,7 @@ using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MusicSheetManager : MonoBehaviour, IPuzzle
+public class OrgelWholeManager : MonoBehaviour, IPuzzle
 {
     public bool IsSolved { get; set; }
     public Canvas canvas;
@@ -15,7 +15,6 @@ public class MusicSheetManager : MonoBehaviour, IPuzzle
     // Start is called before the first frame update
     public void StartPuzzle()
     {
-        canvas.gameObject.SetActive(true);
         canvas.enabled = true;
 
         Debug.Log("handle in? : " + invenManager.ItemMap["OrgelHandle"].InInventory);
@@ -25,19 +24,17 @@ public class MusicSheetManager : MonoBehaviour, IPuzzle
         {
             invenManager.ItemMap["OrgelHandle"].IsUsed = true;
             Orgel.SetActive(true);
-
-            if (!IsSolved)
-            {
-                StartCoroutine(SolvingAnim());
-                Debug.Log("Orgel Puzzle anime Started!!!");
-            }
         }
         else
         {
             Orgel.SetActive(false);
         }
 
-
+        if (!IsSolved)
+        {
+            StartCoroutine(SolvingAnim());
+            Debug.Log("Orgel Puzzle anime Started!!!");
+        }
 
     }
 
@@ -45,20 +42,19 @@ public class MusicSheetManager : MonoBehaviour, IPuzzle
     public void ExitPuzzle()
     {
         Orgel.SetActive(false);
-        canvas.gameObject.SetActive(false);
+        canvas.enabled = false;
     }
 
     void Start()
     {
-        answer.fillAmount = 0.34f;
-        canvas.gameObject.SetActive(false);
         IsSolved = false;
+        answer.fillAmount = 0.34f;
     }
 
     IEnumerator SolvingAnim()
     {
         float elapsedTime = 0f;
-        float duration = 3f;
+        float duration = 2f;
 
         while (elapsedTime < duration)
         {

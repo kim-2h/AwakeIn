@@ -82,6 +82,7 @@ public class PhotoFrameManager : MonoBehaviour
 
     void Start()
     {
+        Debug.Log("PhotoFrameManager Start");
         var rect = BackPlate.GetComponent<RectTransform>();
         pos0 = (rect.anchoredPosition, rect.eulerAngles);
         Canvas.SetActive(true);

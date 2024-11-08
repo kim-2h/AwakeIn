@@ -23,6 +23,9 @@ public class ChemicalsManager : MonoBehaviour, IPuzzle
     //순서대로 비커 큰, 작은, 중간
 
     private Vector3 CameraPosition;
+public Color32 Green = new Color32(92, 143, 66, 150);
+public Color32 Blue = new Color32(60, 70, 200, 200);
+public Color32 Yellow = new Color32(230, 220, 80, 200);
 
     public void StartPuzzle()
     {
@@ -112,7 +115,7 @@ public class ChemicalsManager : MonoBehaviour, IPuzzle
         BeakerL.transform.GetChild(1).gameObject.SetActive(true);
         BeakerM.transform.GetChild(1).gameObject.SetActive(true);
         BeakerS.transform.GetChild(1).gameObject.SetActive(true);
-        Cylinder.transform.GetChild(1).gameObject.SetActive(true);
+        //Cylinder.transform.GetChild(1).gameObject.SetActive(true);
 
         GasMasKPOV.SetActive(true);
         GasMask.SetActive(false);
@@ -134,7 +137,7 @@ public class ChemicalsManager : MonoBehaviour, IPuzzle
 
         for (int i = 1; i < 4; i++)
         {
-            Sliders[i].transform.GetChild(1).transform.GetChild(0).GetComponent<Image>().color = Color.magenta;
+            Sliders[i].transform.GetChild(1).transform.GetChild(0).GetComponent<Image>().color = this.Yellow;
         }
         Amount[1] = 80f;
     }
@@ -151,7 +154,7 @@ public class ChemicalsManager : MonoBehaviour, IPuzzle
 
         for (int i = 1; i < 4; i++)
         {
-            Sliders[i].transform.GetChild(1).transform.GetChild(0).GetComponent<Image>().color = Color.cyan;
+            Sliders[i].transform.GetChild(1).transform.GetChild(0).GetComponent<Image>().color = this.Blue;
         }
         Amount[1] = 70f;
     }

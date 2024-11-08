@@ -54,8 +54,8 @@ public class BirdCageManager : MonoBehaviour, IPuzzle
         RutineOn = false;
         canvas.gameObject.SetActive(false);
         CameraPosition = Camera.main.transform.position;
-        BirdPosition = new Vector3(52f, -8f, 0f);
-        DispenserPos = new Vector3(-280f, 0f, 0f);
+        BirdPosition = new Vector3(100f, -8f, 0f);
+        DispenserPos = new Vector3(-215f, -20f, 0f);
         PoisonRect = Poison.GetComponent<RectTransform>();
 
     }

@@ -11,6 +11,8 @@ public class BeakerDrag : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDr
     public GameObject TempParent, Origin;
     public int Idx;
 
+    private Color Yellow, Blue, Green;
+
 public void OnBeginDrag(PointerEventData eventData)
 {
     ChemicalsManager.DraggedBeaker = this.gameObject;
@@ -63,7 +65,7 @@ public void OnBeginDrag(PointerEventData eventData)
 
         if (Vector3.Distance(ChemicalsManager.CylinderPos, Beaker.anchoredPosition) < 100f)
         {
-            if (ChemicalsManager.Amount[1] == 60 && IMG2.color == Color.magenta)
+            if (ChemicalsManager.Amount[1] == 60 && IMG2.color == Yellow)
             {
                 Debug.Log("Beaker over : Cylinder");
                 //ChemicalsManager.Calc(Idx, 0);
@@ -74,20 +76,20 @@ public void OnBeginDrag(PointerEventData eventData)
                 ChemicalsManager.InitSolution();
                 if (Jobdone)
                 {
-                    IMG.color = Color.green;
+                    IMG.color = Green;
                     Cslider.value = 110;
                     ChemicalsManager.Amount[0] = 110;
                     ChemicalsManager.PuzzleSolved();
                 }
                 else
                 {
-                    IMG.color = Color.magenta;
+                    IMG.color = Yellow;
                     Cslider.value = 60; 
                     ChemicalsManager.Amount[0] = 60;
                 }
 
             }
-            else if (ChemicalsManager.Amount[1] == 50 && IMG2.color == Color.cyan)
+            else if (ChemicalsManager.Amount[1] == 50 && IMG2.color == Blue)
             {
                 Debug.Log("Beaker over : Cylinder");
                 //ChemicalsManager.Calc(Idx, 0);
@@ -98,14 +100,14 @@ public void OnBeginDrag(PointerEventData eventData)
                 ChemicalsManager.InitSolution();
                 if (Jobdone)
                 {
-                    IMG.color = Color.green;
+                    IMG.color = Green;
                     Cslider.value = 110;
                     ChemicalsManager.Amount[0] = 110;
                     ChemicalsManager.PuzzleSolved();
                 }
                 else
                 {
-                    IMG.color = Color.cyan;
+                    IMG.color = Blue;
                     Cslider.value = 50;
                     ChemicalsManager.Amount[0] = 50;
                 }
@@ -137,6 +139,9 @@ public void OnBeginDrag(PointerEventData eventData)
 
     void Start()
     {
+        Yellow = ChemicalsManager.Yellow;
+        Blue = ChemicalsManager.Blue;
+        Green = ChemicalsManager.Green;
         
     }
 

@@ -86,7 +86,7 @@ public void StartPuzzle()
     public void OnEnd()
     {
         
-        if (Vector2.Distance(Cabinet_Key.transform.position,Lock.position)<30)
+        if (Vector2.Distance(Cabinet_Key.transform.position,Lock.position)<50)
        {
             Debug.Log("Thatsit");
             IsLocked=false;

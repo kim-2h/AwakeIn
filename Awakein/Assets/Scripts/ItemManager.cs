@@ -29,17 +29,28 @@ public class ItemManager : MonoBehaviour
                 if (popup.name == Name+"PopUpCanvas")
                 {
                     PopUp = popup;
+                    //  if (PopUp.gameObject.activeInHierarchy) PopUp.GetComponent<Canvas>().enabled = true;
+                    Debug.Log("StartPuzzle in itemmanager with puzzlemap1 : "    + Name);
                     PopUp.SetActive(true);
+                    Debug.Log("StartPuzzle in itemmanager with puzzlemap2 : "    + Name);
                     if (Name == "PhotoFrame")
                     {
                         var String = GameFlowManager.GetComponent<GameFlowManager>().ReturnDialogue("PhotoFrame");
                         if (String != "") GameFlowManager.GetComponent<GameFlowManager>().DialogueManager.CallRoutine(String);
                     }
+                    if (Name == "MusicSheet")
+                    {
+                        Debug.Log("StartPuzzle in itemmanager with puzzlemap3 : "    + Name);
+                        GameObject.Find("MusicSheetPopUpCanvas").GetComponent<MusicSheetManager>().StartPuzzle();
+                        break;
+                    }
 
                     if (GameFlowManager.GetComponent<GameFlowManager>().PuzzleMap.ContainsKey(Name))
                     {
+                        Debug.Log("StartPuzzle in itemmanager with puzzlemap4 : "    + Name);
                         GameFlowManager.GetComponent<GameFlowManager>().PuzzleMap[Name].StartPuzzle();
                     }
+                    Debug.Log("StartPuzzle in itemmanager with puzzlemap5 : "    + Name);
                     break;
                 }
             }

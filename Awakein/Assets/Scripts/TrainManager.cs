@@ -146,12 +146,12 @@ public class TrainManager : MonoBehaviour, IPuzzle
                 yield return null;
             }
 
-            
+
             Train.GetComponent<RectTransform>().position = end;
             currentSegment++;
         }
         StartCoroutine(Bleeding());
-        Cabinet_Key.gameObject.SetActive(true);
+        
        // Train.GetComponent<RectTransform>().position=targetposition;
        IsTimerRunning=false;
        
@@ -162,7 +162,8 @@ public class TrainManager : MonoBehaviour, IPuzzle
     //timeElapsed = 0f;
     else if  (Timer.value==Maxvalue&&!PersonIsClicked) {
           dialogueManager.Panel.SetActive(true);
-          StartCoroutine(dialogueManager.PlayDialogue("BlahBlah"));
+          StartCoroutine(dialogueManager.PlayDialogue("You can get a promotion and even solve crimes, so what" + 
+          "is there to worry about?"));
          yield return new WaitForSeconds(3);
           while (currentSegment < Directions.Length - 1)
         {
@@ -189,7 +190,7 @@ public class TrainManager : MonoBehaviour, IPuzzle
         }
         
         StartCoroutine(Bleeding());
-        Cabinet_Key.gameObject.SetActive(true);
+        
         //rain.GetComponent<RectTransform>().position=targetposition;
          yield return null;
         //IsTimerRunning=false;
@@ -201,6 +202,9 @@ public void StopButton(){
   }
 }
 public IEnumerator Bleeding(){
+      Family[0].gameObject.SetActive(false);
+      Family[1].gameObject.SetActive(false);
+      Family[2].gameObject.SetActive(false);
   HasChosed=true;
   float fadeSpeed = 0.3f;
   //Image image = Blood.GetComponent<Image>(); 
@@ -209,8 +213,12 @@ public IEnumerator Bleeding(){
        while(newColor.a<1){
           newColor.a+=Time.deltaTime*fadeSpeed;
           Blood.color=newColor;
+
+          if (newColor.a >0.6f) Cabinet_Key.gameObject.SetActive(true);
+
          yield return null;
        }
+       Cabinet_Key.gameObject.SetActive(true);
        Debug.Log("Family died");
 }
 }
