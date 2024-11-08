@@ -50,7 +50,7 @@ public class MusicSheetManager : MonoBehaviour, IPuzzle
 
     void Start()
     {
-        answer.fillAmount = 0.34f;
+        answer.fillAmount = 0.15f;
         canvas.gameObject.SetActive(false);
         IsSolved = false;
     }
@@ -58,7 +58,7 @@ public class MusicSheetManager : MonoBehaviour, IPuzzle
     IEnumerator SolvingAnim()
     {
         float elapsedTime = 0f;
-        float duration = 3f;
+        float duration = 4f;
 
         while (elapsedTime < duration)
         {
@@ -66,7 +66,7 @@ public class MusicSheetManager : MonoBehaviour, IPuzzle
             float t = elapsedTime / duration;
 
             // Lerp를 사용하여 fillAmount 보간
-            answer.fillAmount = Mathf.Lerp(0.34f, 1, t);
+            answer.fillAmount = Mathf.Lerp(0.15f, 1, t);
 
             // 경과 시간 업데이트
             elapsedTime += Time.deltaTime;
@@ -78,6 +78,8 @@ public class MusicSheetManager : MonoBehaviour, IPuzzle
         // 최종 fillAmount 설정 (보정)
         answer.fillAmount = 1f;
         IsSolved = true;
+        invenManager.RemoveItem("OrgelWhole");
+        invenManager.RemoveItem("OrgelHandle");
     }
 }
 

@@ -218,7 +218,9 @@ public IEnumerator Bleeding(){
 
          yield return null;
        }
-       Cabinet_Key.gameObject.SetActive(true);
+       if (!invenManager.ItemMap["Cabinet_Key"].InInventory && !invenManager.ItemMap["Cabinet_Key"].IsUsed 
+          && !Cabinet_Key.gameObject.activeSelf) 
+            Cabinet_Key.gameObject.SetActive(true);
        Debug.Log("Family died");
 }
 }
