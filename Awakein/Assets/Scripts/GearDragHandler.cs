@@ -38,7 +38,7 @@ public class GearDragHandler : MonoBehaviour,IBeginDragHandler ,IDragHandler, IE
             IsPlaced=true;
             invenManager.ItemMap["Gear"].IsUsed=true;
             invenManager.RemoveItem("Gear");
-            
+            SoundManager.Instance.PlaySFX(4);
             this.GetComponent<Image>().raycastTarget=false;
             rectTransform.localScale = new Vector3(1f, 1.2f, 1.5f);
 

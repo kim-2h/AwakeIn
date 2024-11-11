@@ -65,8 +65,8 @@ public class LockManagerCharacter : MonoBehaviour
         if (isComplete)
         {
             Debug.Log("맞았습니다!");
+           
             SoundManager.Instance.PlaySFX(1);
-
             if (currentCharacters[0] == 84)
             {
                 if (BDManager != null) 
@@ -75,11 +75,13 @@ public class LockManagerCharacter : MonoBehaviour
             else if (currentCharacters[0] == 78)
             {
                 if (TBManager != null) 
+                
                 TBManager.LockSolved();
             }
             else if (currentCharacters[0] == 82)
             {
-                if (EBManager != null) 
+                if (EBManager != null)
+               
                 EBManager.LockSolved();
             }
         }

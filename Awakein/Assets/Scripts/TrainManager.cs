@@ -82,7 +82,7 @@ public class TrainManager : MonoBehaviour, IPuzzle
         Debug.Log("TrainPuzzle Exit"); Debug.Log(invenManager.ItemMap["Gear"].IsUsed);
       Debug.Log(Cabinet_Key.gameObject.activeSelf);
         
-        
+         SoundManager.Instance.StopSFX(11);
         canvas2.gameObject.SetActive(false);
        canvas1.gameObject.SetActive(false);
           
@@ -120,27 +120,31 @@ public class TrainManager : MonoBehaviour, IPuzzle
     IEnumerator Choosing(){
       int currentSegment = 0;
         float segmentDuration = totalduration / (Directions.Length-1);
-        
+        SoundManager.Instance.PlaySFX(11);
 
         if  (PersonIsClicked) {
           Timer.value = Maxvalue;
           dialogueManager.Panel.SetActive(true);
-          StartCoroutine(dialogueManager.PlayDialogue("BlahBlah"));
+          StartCoroutine(dialogueManager.PlayDialogue("You can get a promotion and even solve crimes, so what is there to worry about?"));
          yield return new WaitForSeconds(3);
          while (currentSegment < Directions.Length - 1)
         {
             Vector3 start = Directions[currentSegment].position;
             Vector3 end = Directions[currentSegment + 1].position;
             float timeElapsed = 0f;
-
+            
             while (timeElapsed < segmentDuration)
             {
                 float t = timeElapsed / segmentDuration;
                Train.GetComponent<RectTransform>().position = Vector3.Lerp(start, end, t); 
                foreach (Button s in Family){
+                 if (s==Family[1]) SoundManager.Instance.PlaySFX(12);
                 if (Vector3.Distance(s.GetComponent<RectTransform>().position, 
-                Train.GetComponent<RectTransform>().position)<20)
+                Train.GetComponent<RectTransform>().position)<20){
+               // SoundManager.Instance.PlaySFX(12);
                 s.gameObject.SetActive(false);
+                }
+                
                }
                 timeElapsed += Time.deltaTime;
                 yield return null;
@@ -158,7 +162,6 @@ public class TrainManager : MonoBehaviour, IPuzzle
          yield return null;
        //
     }
-       
     //timeElapsed = 0f;
     else if  (Timer.value==Maxvalue&&!PersonIsClicked) {
           dialogueManager.Panel.SetActive(true);
@@ -177,9 +180,13 @@ public class TrainManager : MonoBehaviour, IPuzzle
                Train.GetComponent<RectTransform>().position = Vector3.Lerp(start, end, t); 
                 timeElapsed += Time.deltaTime;
                 foreach (Button s in Family){
+                 if (s==Family[1]) SoundManager.Instance.PlaySFX(12);
+                 
                 if (Vector3.Distance(s.GetComponent<RectTransform>().position, 
-                Train.GetComponent<RectTransform>().position)<20)
+                Train.GetComponent<RectTransform>().position)<20){
+                  
                 s.gameObject.SetActive(false);
+                }
                }
                 yield return null;
             }

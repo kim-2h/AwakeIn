@@ -46,14 +46,17 @@ public class ChairPlaceManager : MonoBehaviour
             {
                 case 1:
                     ChairNow = ChairState.BookShelf;
+                    SoundManager.Instance.PlaySFX(5);
                     Debug.Log("chair now BookShelf");
                     break;
                 case 2:
                     ChairNow = ChairState.PhotoFrame;
+                    SoundManager.Instance.PlaySFX(5);
                     Debug.Log("chair now PhotoFrame");
                     break;
                 case 3:
                     ChairNow = ChairState.Clock;
+                    SoundManager.Instance.PlaySFX(5);
                     Debug.Log("chair now Clock");
                     break;
             }

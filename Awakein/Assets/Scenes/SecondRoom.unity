@@ -3056,7 +3056,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &136651305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5601,7 +5601,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 679712771
-  m_SortingLayer: 0
+  m_SortingLayer: 1
   m_SortingOrder: 100
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -5783,7 +5783,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 679712771
-  m_SortingLayer: 0
+  m_SortingLayer: 1
   m_SortingOrder: 100
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -8257,7 +8257,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 679712771
-  m_SortingLayer: 0
+  m_SortingLayer: 1
   m_SortingOrder: 100
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -11018,6 +11018,7 @@ MonoBehaviour:
   GraphicBT: {fileID: 1061656530}
   LanguageBT: {fileID: 1747097659}
   ScreenBT: {fileID: 92862547}
+  LanguageDD: {fileID: 0}
   SoundsChild:
   - {fileID: 251077699}
   - {fileID: 451757554}
@@ -11034,6 +11035,7 @@ MonoBehaviour:
   - {fileID: 443391185}
   - {fileID: 1381761387}
   - {fileID: 1642251694}
+  InvenManager: {fileID: 0}
   PointLight: {fileID: 9083410439981178034}
   GVolume: {fileID: 2627471717996540043}
   Master: {fileID: 56397575}
@@ -12138,7 +12140,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 679712771
-  m_SortingLayer: 0
+  m_SortingLayer: 1
   m_SortingOrder: 100
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -13240,7 +13242,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 679712771
-  m_SortingLayer: 0
+  m_SortingLayer: 1
   m_SortingOrder: 100
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -13673,7 +13675,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 679712771
-  m_SortingLayer: 0
+  m_SortingLayer: 1
   m_SortingOrder: 100
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -15191,6 +15193,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BGMs:
   - {fileID: 7645980}
+  SFXs: []
+  Scenes: 0
 --- !u!1 &1054524784
 GameObject:
   m_ObjectHideFlags: 0
@@ -16461,8 +16465,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   invenManager: {fileID: 1358391610}
   canvas: {fileID: 136651307}
-  imageChange: {fileID: 0}
-  BookCover: {fileID: 717930326}
+  Canvas2: {fileID: 0}
+  BookFront: {fileID: 0}
+  BookBack: {fileID: 0}
 --- !u!222 &1134799364
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -18864,7 +18869,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 679712771
-  m_SortingLayer: 0
+  m_SortingLayer: 1
   m_SortingOrder: 100
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -20862,7 +20867,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 679712771
-  m_SortingLayer: 0
+  m_SortingLayer: 1
   m_SortingOrder: 100
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -22081,6 +22086,8 @@ MonoBehaviour:
   GearPlace: {fileID: 385834549}
   invenManager: {fileID: 1358391610}
   IsPlaced: 0
+  rectTransform: {fileID: 0}
+  trainManager: {fileID: 0}
 --- !u!1 &1603392285
 GameObject:
   m_ObjectHideFlags: 0
@@ -25012,6 +25019,11 @@ MonoBehaviour:
   dialogueManager: {fileID: 1730908396}
   IsDropped: 0
   material: {fileID: 2100000, guid: f774353433cafc7479858c55a2b58ed8, type: 2}
+  sprite: {fileID: 0}
+  other1: {fileID: 0}
+  other2: {fileID: 0}
+  other3: {fileID: 0}
+  invenManager: {fileID: 0}
 --- !u!222 &1806236849
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -28155,7 +28167,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 679712771
-  m_SortingLayer: 0
+  m_SortingLayer: 1
   m_SortingOrder: 100
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -28609,6 +28621,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DialogueManager: {fileID: 1730908396}
   InvenManager: {fileID: 1358391610}
+  SoundManager: {fileID: 0}
   PuzzleList:
   - {fileID: 467914127}
   ItemList:
@@ -28638,6 +28651,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5f71a720111f42440a2323ea2bd7bc86, type: 2}
   - {fileID: 11400000, guid: 228e6cb3e99ffb3418b963e1db7a8fcf, type: 2}
   - {fileID: 11400000, guid: 8179442cffb3b9d4a86b26283130c3b7, type: 2}
+  Scenes: 0
 --- !u!4 &2038419612
 Transform:
   m_ObjectHideFlags: 0

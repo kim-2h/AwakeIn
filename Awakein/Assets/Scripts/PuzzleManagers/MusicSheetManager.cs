@@ -25,9 +25,10 @@ public class MusicSheetManager : MonoBehaviour, IPuzzle
         {
             invenManager.ItemMap["OrgelHandle"].IsUsed = true;
             Orgel.SetActive(true);
-
+            SoundManager.Instance.PlaySFX(6);
             if (!IsSolved)
             {
+                
                 StartCoroutine(SolvingAnim());
                 Debug.Log("Orgel Puzzle anime Started!!!");
             }
@@ -44,6 +45,7 @@ public class MusicSheetManager : MonoBehaviour, IPuzzle
     // Update is called once per frame
     public void ExitPuzzle()
     {
+        SoundManager.Instance.StopSFX(6);
         Orgel.SetActive(false);
         canvas.gameObject.SetActive(false);
     }

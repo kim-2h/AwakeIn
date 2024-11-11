@@ -39,8 +39,10 @@ public class BedManager : MonoBehaviour, IPuzzle
     public void CoverClicked()
     {
         Debug.Log("Cover Clicked");
+        SoundManager.Instance.PlaySFX(7);
         if (!CoverOpen)
         {
+           
             ImageChange.GetComponent<ImageChange>().SwitchSprite(
                 canvas.gameObject.transform.Find("Cover").gameObject, "Bedcover2");
             CoverOpen = true;
@@ -48,6 +50,7 @@ public class BedManager : MonoBehaviour, IPuzzle
         }
         else if (CoverOpen)
         {
+          
             ImageChange.GetComponent<ImageChange>().SwitchSprite(
             canvas.gameObject.transform.Find("Cover").gameObject, "Bedcover1");
             Text.text = "I want to make it tidy";
@@ -56,7 +59,7 @@ public class BedManager : MonoBehaviour, IPuzzle
     }
     public void DrawerClicked()
     {
-
+         SoundManager.Instance.PlaySFX(2);
         if (!DrawerOpen && DrawerUnLocked)
         {
             StartCoroutine(DrawerOpenAnimation());
@@ -170,12 +173,14 @@ public class BedManager : MonoBehaviour, IPuzzle
             BtDrawer.GetComponent<RectTransform>().anchoredPosition);
         if (CoverOpen && distance < 200)
         {
+                    
+
             Debug.Log("Key Unlocked : " + distance);
 
             Key.SetActive(false);
             Lock.SetActive(false);
             DrawerUnLocked = true;
-            SoundManager.Instance.PlaySFX(2);
+            
             ItemMap["Clock_Key"].IsUsed = true;
             InvenManager.GetComponent<InvenManager>().RemoveItem("Clock_Key");
         }

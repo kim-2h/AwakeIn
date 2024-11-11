@@ -13,9 +13,11 @@ public class FishBowlManager : MonoBehaviour, IPuzzle
         Debug.Log("FishBowl Puzzle Started");
         canvas.gameObject.SetActive(true);
         FishFood.GetComponent<Fish>().InitPuzzle();
+        SoundManager.Instance.PlaySFX(11);
     }
     public void ExitPuzzle()
     {
+        SoundManager.Instance.StopSFX(11);
         Debug.Log("FishBowl Puzzle Exit");
         canvas.gameObject.SetActive(false);
         Camera.main.gameObject.transform.position = CameraPosition;

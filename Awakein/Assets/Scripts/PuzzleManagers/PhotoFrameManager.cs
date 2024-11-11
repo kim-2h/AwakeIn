@@ -53,6 +53,7 @@ public class PhotoFrameManager : MonoBehaviour
         var rect = BackPlate.GetComponent<RectTransform>();
         rect.anchoredPosition = pos0.Item1;
         rect.rotation = Quaternion.Euler(pos0.Item2);
+        SoundManager.Instance.PlaySFX(6);
         while (elapsedTime < time)
         {
             rect.anchoredPosition = Vector3.Lerp(pos0.Item1, pos1.Item1, elapsedTime / time);

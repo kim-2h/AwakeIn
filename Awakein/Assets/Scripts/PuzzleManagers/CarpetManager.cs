@@ -64,6 +64,7 @@ public class CarpetManager : MonoBehaviour, IPuzzle
 
     public void ChangeCarpetImage()
     {
+        SoundManager.Instance.PlaySFX(7);
         int currentTextureIndex = System.Array.IndexOf(carpetTextures, hitCarpetImage.texture);
         int nextTextureIndex = (currentTextureIndex + 1) % carpetTextures.Length;
         hitCarpetImage.texture = carpetTextures[nextTextureIndex];

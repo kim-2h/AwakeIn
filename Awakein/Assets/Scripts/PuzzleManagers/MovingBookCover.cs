@@ -19,6 +19,7 @@ public class MovingBookCover : MonoBehaviour
    
    public void ThroughPages()
     {
+        SoundManager.Instance.PlaySFX(8);
         Once = true;
         //Transform[] children = transform.GetComponentsInChildren<Transform>();
         if(Once==true && gameObject.activeSelf==true ){

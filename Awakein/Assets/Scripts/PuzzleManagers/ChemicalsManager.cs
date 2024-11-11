@@ -71,7 +71,7 @@ public Color32 Yellow = new Color32(230, 220, 80, 200);
     public void GetPoison()
     {
         Cylinder.transform.name = "PoisonGas";
-        
+        SoundManager.Instance.PlaySFX(10);
         InvenManager.RemoveItem("GasMask");
         InvenManager.RemoveItem("BottleA");
         InvenManager.RemoveItem("BottleB");
@@ -116,7 +116,7 @@ public Color32 Yellow = new Color32(230, 220, 80, 200);
         BeakerM.transform.GetChild(1).gameObject.SetActive(true);
         BeakerS.transform.GetChild(1).gameObject.SetActive(true);
         //Cylinder.transform.GetChild(1).gameObject.SetActive(true);
-
+        SoundManager.Instance.PlaySFX(4);
         GasMasKPOV.SetActive(true);
         GasMask.SetActive(false);
 
@@ -147,7 +147,7 @@ public Color32 Yellow = new Color32(230, 220, 80, 200);
         BottleA.GetComponent<Button>().interactable = false;
         BottleB.GetComponent<Button>().interactable = false;
         //Debug.Log("Clicked : " + EventSystem.current.currentSelectedGameObject.name);
-
+        SoundManager.Instance.StopSFX(2);
         BeakerL.transform.GetChild(0).GetComponent<Slider>().value = 70f;
         // BeakerL.transform.GetChild(0).GetComponent<Slider>().transform.GetChild(1).transform.GetChild(0).
         // GetComponent<Image>().color = Color.cyan;

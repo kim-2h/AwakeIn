@@ -47,12 +47,12 @@ public class DialControl: MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
         newZRotation = newZRotation % 360;
 
         transform.eulerAngles = new Vector3(0, 0, newZRotation);
-
+        
         if ((newZRotation >= 0 && newZRotation < Offset) || (newZRotation <= 360 && newZRotation > 360 - Offset))
         {
             transform.eulerAngles = new Vector3(0, 0, 0);
             if (NumBefore != 12 && Numbers.Count < Password.Length)
-            {
+            {    SoundManager.Instance.PlaySFX(9);
                 Numbers.Add(12);
                 Debug.Log("12");
                 NumBefore = 12;
@@ -66,7 +66,7 @@ public class DialControl: MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
         {
             transform.eulerAngles = new Vector3(0, 0, 90);
             if (NumBefore != 9 && Numbers.Count < Password.Length)
-            {
+            {SoundManager.Instance.PlaySFX(9);
                 Numbers.Add(9);
                 Debug.Log("9");
                 NumBefore = 9;
@@ -80,7 +80,7 @@ public class DialControl: MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
         {
             transform.eulerAngles = new Vector3(0, 0, 180);
             if (NumBefore != 6 && Numbers.Count < Password.Length)
-            {
+            {SoundManager.Instance.PlaySFX(9);
                 Numbers.Add(6);
                 Debug.Log("6");
                 NumBefore = 6;
@@ -91,10 +91,11 @@ public class DialControl: MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
             }
         }
         else if (newZRotation >= 270 - Offset && newZRotation <= 270 + Offset)
-        {
+        {SoundManager.Instance.PlaySFX(9);
             transform.eulerAngles = new Vector3(0, 0, 270);
             if (NumBefore != 3 && Numbers.Count < Password.Length)
             {
+                SoundManager.Instance.PlaySFX(9);
                 Numbers.Add(3);
                 Debug.Log("3");
                 NumBefore = 3;

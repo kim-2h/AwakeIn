@@ -84,6 +84,7 @@ public void OnBeginDrag(PointerEventData eventData)
                 else
                 {
                     IMG.color = Yellow;
+                    SoundManager.Instance.PlaySFX(2);
                     Cslider.value = 60; 
                     ChemicalsManager.Amount[0] = 60;
                 }
@@ -91,6 +92,7 @@ public void OnBeginDrag(PointerEventData eventData)
             }
             else if (ChemicalsManager.Amount[1] == 50 && IMG2.color == Blue)
             {
+                 
                 Debug.Log("Beaker over : Cylinder");
                 //ChemicalsManager.Calc(Idx, 0);
                 ChemicalsManager.BottleB.GetComponent<Button>().interactable = false;

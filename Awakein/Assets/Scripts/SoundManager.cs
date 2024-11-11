@@ -50,8 +50,10 @@ public class SoundManager : MonoBehaviour
 
     public void PlaySFX(int idx)
     {
-        Debug.Log(SFXs[idx].name);
+        //Debug.Log(SFXs[idx].name);
         SFXs[idx].Play();
     }
-
+    public void StopSFX(int idx){
+        SFXs[idx].Stop();
+    }
 }

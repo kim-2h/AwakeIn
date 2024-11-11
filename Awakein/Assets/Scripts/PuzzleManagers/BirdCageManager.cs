@@ -22,6 +22,7 @@ public class BirdCageManager : MonoBehaviour, IPuzzle
         PoisonRect.anchoredPosition = PoisonPos;
         if (!IsSolved)
         {
+            SoundManager.Instance.PlaySFX(9);
             Bird.GetComponent<RectTransform>().anchoredPosition = BirdPosition;
             DeadBird.SetActive(false);
             
@@ -44,7 +45,7 @@ public class BirdCageManager : MonoBehaviour, IPuzzle
     {
         RutineOn = false;
         StopAllCoroutines();
-        
+        SoundManager.Instance.StopSFX(9);
         Camera.main.transform.position = CameraPosition;
         canvas.gameObject.SetActive(false);
     }
@@ -112,6 +113,8 @@ public class BirdCageManager : MonoBehaviour, IPuzzle
         if (Vector3.Distance(PoisonRect.anchoredPosition, DispenserPos) < 100f)
         {   
             Debug.Log("Poisoned !!!!");
+            SoundManager.Instance.StopSFX(9);
+            SoundManager.Instance.PlaySFX(5);
             PoisonRect.anchoredPosition = DispenserPos;
             Poison.GetComponent<RawImage>().raycastTarget = false;
             StopAllCoroutines();
@@ -144,6 +147,7 @@ public class BirdCageManager : MonoBehaviour, IPuzzle
 
     public void NoteClicked()
     {
+        SoundManager.Instance.StopSFX(5);
         InvenManager.ItemAdder("Bird_Note");
     }
 

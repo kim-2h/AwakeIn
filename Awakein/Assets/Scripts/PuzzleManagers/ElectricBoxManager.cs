@@ -81,7 +81,7 @@ public class ElectricBoxManager : MonoBehaviour, IPuzzle
     public void ToggleClicked()
     {
         int Idx = EventSystem.current.currentSelectedGameObject.name[6] - '0';
-        
+        SoundManager.Instance.PlaySFX(8);
         if (BulbStates[Idx - 1] == 0)
         {
             BulbNum++;

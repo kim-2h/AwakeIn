@@ -53,12 +53,14 @@ public class VentDragHandler : MonoBehaviour,IBeginDragHandler, IDragHandler, IE
           Debug.Log("Distant : " + Dist + " pos : " + Pos + " Bolt pos : " + Bolts[i].GetComponent<RectTransform>().anchoredPosition);
             if (Dist < 100f)
             {
+                SoundManager.Instance.PlaySFX(13);
                 StartCoroutine(BoltRotating(Bolts[i]));
             }
           if (BoltsDone == 4){
+            SoundManager.Instance.PlaySFX(2);
              StartCoroutine(MovingVent(Vent));
              transform.position = beginposition;
-              SoundManager.Instance.PlaySFX(2);
+              
              invenManager.ItemMap["Driver"].IsUsed = true;
              invenManager.RemoveItem("Driver");
             isCleared=true;

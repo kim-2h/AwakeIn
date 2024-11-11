@@ -27,7 +27,9 @@ public class GameFlowManager : MonoBehaviour
     public string ReturnDialogue(string _object)
     {
         string Ret = "";
-        switch (_object)   
+      
+        if (gameObject.scene.name=="2hBuildTest2"){
+            switch (_object)   
         {
             case "Window":
                 if (true)
@@ -106,8 +108,41 @@ public class GameFlowManager : MonoBehaviour
                 break;
 
 
-        }
+        }}
+        else if (gameObject.scene.name=="2hRoom2Backup"){
+           switch (_object)   
+        {
+            case "Bird":
+                if (!PuzzleMap["BirdCage"].IsSolved){
+                    //Debug.Log("BirdNotYetDied");
+                Ret="The bird is very restless. I need to calm it down to get that note tied in bird's leg.";
+                 DialogueMap["BirdNotKilled"] = true;
+                }
+                break;
+            case "Chemicals":
+             if (!ItemMap["BottleB"].InInventory||!ItemMap["BottleA"].InInventory) {
+                Ret="There's no scale on the beaker?";
+                 DialogueMap["ChemicalsNotStarted"] = true;
+                
+             }   
+             break;
+              case "BirdCage":
+                if (!PuzzleMap["BirdCage"].IsSolved){
+                    //Debug.Log("BirdNotYetDied");
+                Ret="The bird is very restless. I need to calm it down to get that note tied in bird's leg.";
+                 DialogueMap["BirdNotKilled"] = true;
+                }
+                break;
+                
+
+            default:
+            Ret=null;
+            break;
+            
+        }}
         return Ret;
+        //
+        
     }
 
     public void ChairBreaking()
@@ -223,7 +258,10 @@ public class GameFlowManager : MonoBehaviour
         DialogueMap.Add("DollShiny", false);
         DialogueMap.Add("WindowSunny", false);
         DialogueMap.Add("VentNotDone", false);
-
+        DialogueMap.Add("BirdNotKilled", false);
+        DialogueMap.Add("ChemicalsNotStarted", false);
+        DialogueMap.Add("NicknameRevealed", false);
+        DialogueMap.Add("FInalPuzzleDone", false);
 
     }
 

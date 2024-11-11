@@ -37,6 +37,7 @@ public class ChalkboardManager : MonoBehaviour
         {
             dialogueManager.Panel.SetActive(true);
           StartCoroutine(dialogueManager.PlayDialogue("Huh, I can reach up to here."));
+           
           StartCoroutine(DropingBoard());
         }
             
@@ -51,7 +52,7 @@ public class ChalkboardManager : MonoBehaviour
         float elapsedTime=0f;
         float duration=2f;
          while (elapsedTime < duration)
-        {
+        {   SoundManager.Instance.PlaySFX(4);
             //float progress = elapsedTime / duration;
           transform.position=Vector3.Lerp(initialposition,targetposition, elapsedTime/duration);
            elapsedTime+=Time.deltaTime;

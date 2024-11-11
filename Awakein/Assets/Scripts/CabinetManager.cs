@@ -24,8 +24,11 @@ public class CabinetManager : MonoBehaviour,IPuzzle
     {
          Debug.Log(invenManager.ItemMap["Cabinet_Key"].IsUsed);
          Debug.Log("Key is used! Cabinet");
-        if (invenManager.ItemMap["Cabinet_Key"].IsUsed)
-        StartCoroutine(ScaleOverTime(2.0f));
+        if (invenManager.ItemMap["Cabinet_Key"].IsUsed){
+            StartCoroutine(ScaleOverTime(2.0f));
+            SoundManager.Instance.PlaySFX(7);
+        }
+        
         
     }
 public void StartPuzzle()

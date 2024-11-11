@@ -20,7 +20,7 @@ public class FamilyPhotoManager : MonoBehaviour, IPuzzle
     void Start()
     {
         gameFlowManager.DialogueMap.Add("SecondWindowDone", false);
-        gameFlowManager.DialogueMap.Add("SecondWindowing", false);
+        
     }
 
     public void StartPuzzle()
@@ -62,6 +62,7 @@ public class FamilyPhotoManager : MonoBehaviour, IPuzzle
     {
         if (photoDragHandler.Nickname.gameObject.activeSelf == true)
         {
+            gameFlowManager.DialogueMap.Add("SecondWindowing", false);
           //  IsDone = false;
             Ret = "FOREST CHILD LIKE COYOTE...\nI created my dad's nickname using the Air Force voice phonetic alphabet.";
 

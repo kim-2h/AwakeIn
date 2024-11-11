@@ -112,7 +112,7 @@ public class ClockManager : MonoBehaviour, IPuzzle
         if (imageChanger != null && clock != null)
         {
             string temp = hitClockImage.texture.name == "clockbackside" ? "clock" : "clockbackside";
-           
+            SoundManager.Instance.PlaySFX(10);
             imageChanger.SwitchImage(ClockInPopUp, temp);
         }
         else
