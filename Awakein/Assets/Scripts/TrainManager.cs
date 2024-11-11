@@ -221,13 +221,14 @@ public IEnumerator Bleeding(){
           newColor.a+=Time.deltaTime*fadeSpeed;
           Blood.color=newColor;
 
-          if (newColor.a >0.6f) Cabinet_Key.gameObject.SetActive(true);
+          
 
          yield return null;
        }
-       if (!invenManager.ItemMap["Cabinet_Key"].InInventory && !invenManager.ItemMap["Cabinet_Key"].IsUsed 
-          && !Cabinet_Key.gameObject.activeSelf) 
-            Cabinet_Key.gameObject.SetActive(true);
+       if (newColor.a >0.6f) Cabinet_Key.gameObject.SetActive(true);
+      //  if (!invenManager.ItemMap["Cabinet_Key"].InInventory && !invenManager.ItemMap["Cabinet_Key"].IsUsed 
+      //     && !Cabinet_Key.gameObject.activeSelf) 
+      //       Cabinet_Key.gameObject.SetActive(true);
        Debug.Log("Family died");
 }
 }

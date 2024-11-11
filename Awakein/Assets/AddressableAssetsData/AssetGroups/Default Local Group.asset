@@ -16,7 +16,12 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: e70bb0d4bb5cbeb4c9e273c0d4374715
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: 526b769c4e1e177469ef21f2f82f8ac9
+    m_Address: Assets/TextMesh Pro/Fonts/IM_Hyemin-Regular SDF Variant 1.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 10003a0a5902d8449b248651e3070137, type: 2}
   m_SchemaSet:

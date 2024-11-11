@@ -14,6 +14,7 @@ using System.Numerics;
 using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
 using UnityEngine.SceneManagement;
+using System.ComponentModel.Design.Serialization;
 public class InvenManager : MonoBehaviour,  IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     /*
@@ -36,6 +37,13 @@ public class InvenManager : MonoBehaviour,  IBeginDragHandler, IDragHandler, IEn
     public int NowMove = -1;
     private ChairPlaceManager ChairPlaceManager;
     private CombiningManager CombiningManager;
+
+
+
+    void Awake()
+    {
+
+    }
     public void SlotClicked()
     {
         string sName = EventSystem.current.currentSelectedGameObject.name;
@@ -326,9 +334,70 @@ public class InvenManager : MonoBehaviour,  IBeginDragHandler, IDragHandler, IEn
         CombiningManager = transform.GetComponent<CombiningManager>();
         string scene = SceneManager.GetActiveScene().name;
         if (scene == "2hBuildTest2" || scene == "SecondRoom") ChairPlaceManager = GameObject.Find("Room1").transform.Find("ChairNPlaceholder").GetComponent<ChairPlaceManager>();
+        if (scene == "2hRoom2Backup") LoadInven();
     }
-    void Update()
+
+    public void SaveInven()
     {
-        
+        for (int i = 0; i<Slots.Length; i++)
+        {
+            PlayerPrefs.SetInt("SlotOccu" + i.ToString("D2"), SlotOccu[i]);
+            PlayerPrefs.SetString("Slot" + i.ToString("D2"), Slots[i].transform.Find("Text (TMP)").GetComponent<TextMeshProUGUI>().text);
+            Debug.Log("Slot " + i + "  with " + PlayerPrefs.GetString("Slot" + i.ToString("D2")));
+
+        }
+    }
+
+    public void LoadInven()
+    {
+        for (int i = 0; i<Slots.Length; i++)
+        {
+            SlotOccu[i] = PlayerPrefs.GetInt("SlotOccu" + i.ToString("D2"));
+            Slots[i].transform.Find("Text (TMP)").GetComponent<TextMeshProUGUI>().text = PlayerPrefs.GetString("Slot" + i.ToString("D2"));
+            if (Slots[i].transform.Find("Text (TMP)").GetComponent<TextMeshProUGUI>().text != "")
+            {
+                Debug.Log("Slot " + i + " loaded with " + Slots[i].transform.Find("Text (TMP)").GetComponent<TextMeshProUGUI>().text);
+                SlotNum--;
+                SlotOccu[i] = 1;
+
+                TextMeshProUGUI Text = Slots[i].transform.Find("Text (TMP)").GetComponent<TextMeshProUGUI>(); 
+
+                Text.text = PlayerPrefs.GetString("Slot" + i.ToString("D2"));
+                SlotNum--;
+                SlotOccu[i] = 1;
+
+                //클릭된 아이템의 이름을 받아와서, 월드에 그런 아이템이 있는지 확인 후 인벤에 추가. 월드에서는 비활성화
+                foreach (KeyValuePair<string, Item> item in ItemMap)
+                {
+                    string iName = PlayerPrefs.GetString("Slot" + i.ToString("D2"));
+                    if (item.Key == iName)
+                    {  //여기 아래 두줄은 에디터상에서만 이용가능함
+                        #if UNITY_EDITOR
+                            string path = "Assets/CustomSprites/" + iName + ".png";
+                            Sprite newSprite = AssetDatabase.LoadAssetAtPath<Sprite>(path);
+                        #else
+                            string path = "CustomSprites/" + iName;
+                            Sprite newSprite = Resources.Load<Sprite>(path);
+                        #endif
+                        if (newSprite == null)
+                        {
+                            Debug.Log("Sprite not found at path: " + path);
+                        }
+                        else
+                        {
+                            // Slots[i].GetComponent<RawImage>().texture = newSprite;
+                            // Slots[i].GetComponent<RawImage>().color = new Color(255, 255, 255, 255);
+                            Slots[i].GetComponent<Image>().sprite = newSprite;
+                            Slots[i].GetComponent<Image>().color = new Color(255, 255, 255, 255);
+                            Slots[i].GetComponent<Image>().preserveAspect = true;
+                            
+                            ItemMap[iName].InInventory = true;
+                        }
+  
+                    }
+                }
+            }
+
+        }
     }
 }

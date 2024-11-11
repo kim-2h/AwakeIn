@@ -19,9 +19,9 @@ public class SoundManager : MonoBehaviour
 
     void Start()
     {
-        GameObject[] AAudios = GameObject.FindGameObjectsWithTag("Audio");
-        if (AAudios.Length >=2) Destroy(this.gameObject);
-        else DontDestroyOnLoad(this.gameObject);
+        // GameObject[] AAudios = GameObject.FindGameObjectsWithTag("Audio");
+        // if (AAudios.Length >=2) Destroy(this.gameObject);
+        // else DontDestroyOnLoad(this.gameObject);
  
         BGMs[0].Play();
     }

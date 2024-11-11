@@ -40,19 +40,20 @@ public class UISetting : MonoBehaviour
         SetRes();
         OnPreCull();
         
-        GameObject[] SETTT = GameObject.FindGameObjectsWithTag("Setting");
-        if (SETTT.Length >= 2) 
-        {
-            Destroy(this.gameObject);
-            // for (int i = 1; i < SETTT.Length; i++)
-            // {
-            //     if (SETTT[i] != this.gameObject)
-            //         Destroy(SETTT[i]);
-            // }
-        }
-        else DontDestroyOnLoad(this.gameObject);
+        // GameObject[] SETTT = GameObject.FindGameObjectsWithTag("Setting");
+        // if (SETTT.Length >= 2) 
+        // {
+        //     Destroy(this.gameObject);
+        //     // for (int i = 1; i < SETTT.Length; i++)
+        //     // {
+        //     //     if (SETTT[i] != this.gameObject)
+        //     //         Destroy(SETTT[i]);
+        //     // }
+        // }
+        // else DontDestroyOnLoad(this.gameObject);
 
         this.gameObject.SetActive(true);
+        this.GetComponent<Canvas>().enabled = false;
 
         // if (LocalizationSettings.SelectedLocale != LocalizationSettings.AvailableLocales.Locales[0])
         // {
@@ -91,7 +92,7 @@ public class UISetting : MonoBehaviour
         ButtonContents[2] = LanguagesChild;
         ButtonContents[3] = ScreensChild;
 
-        ButtonFX = GameObject.FindGameObjectWithTag("Audio").GetComponent<SoundManager>().SFXs[0];
+        ButtonFX = GameObject.FindGameObjectWithTag("Audio").GetComponent<SoundManager>().SFXs[14];
     }
     void Start()
     {
@@ -99,7 +100,7 @@ public class UISetting : MonoBehaviour
 
         Debug.Log("Setting Started !!!!!!!!");
 
-        SettingCanvas.enabled = false;
+        SettingCanvas.enabled = true;
         if (!PlayerPrefs.HasKey("FirstPlay")) PlayerPrefs.SetInt("FirstPlay", 1);
         //IsFirstPlay = PlayerPrefs.GetInt("FirstPlay") == 1 ? true : false;
 
@@ -156,7 +157,8 @@ public class UISetting : MonoBehaviour
         // if (GVolume != null) GVolume.SetActive(VolumeToggle.isOn);
 
         InitSetting();
-        SettingCanvas.enabled = false;
+        //SettingCanvas.enabled = false;
+        ExitSetting();
         // Selected = SoundBT;
         // SelectedIndex = 0;
 
@@ -432,7 +434,13 @@ public class UISetting : MonoBehaviour
 
     public void ToRoom2()
     {
+        InvenManager.SaveInven();
         StartCoroutine(LoadScene(2));
+    }
+
+    public void SaveInven()
+    {
+        InvenManager.SaveInven();
     }
 
     IEnumerator LoadScene(int Idx)
@@ -447,13 +455,13 @@ public class UISetting : MonoBehaviour
         switch (Idx) 
         {
             case 0:
-                nextScene = "Title Test";
+                nextScene = "TitleScene";
                 break;
             case 1:
                 nextScene = "2hBuildTest2";
                 break;
             case 2:
-                nextScene = "2hRoom2Test";
+                nextScene = "2hRoom2Backup";
                 break;
         }
 
@@ -484,6 +492,11 @@ public class UISetting : MonoBehaviour
             }
         }
         InitSetting();
+        if (Idx == 2)
+        {
+            InvenManager.LoadInven();
+            Debug.Log("Inven Load called!");
+        }
         if (timer < minimumLoadingTime)
         {
             yield return new WaitForSeconds(minimumLoadingTime - timer);

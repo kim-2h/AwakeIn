@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class UINoteManager : MonoBehaviour
 {
@@ -53,6 +54,21 @@ public class UINoteManager : MonoBehaviour
         UpdateBook(Name[4] - '1');
 
     }
+
+    public void Book2Clicked()
+    {
+        NoteCanvas.enabled = false;
+        Books[1].SetActive(true);
+        UpdateBook(1);
+    }
+
+    public void Book1Clicked()
+    {
+        NoteCanvas.enabled = false;
+        Books[0].SetActive(true);
+        UpdateBook(0);
+    }
+
     public void DirectBook()
     {
         Time.timeScale = 0;
@@ -71,11 +87,16 @@ public class UINoteManager : MonoBehaviour
     {
         foreach (Transform content in Books[Idx].transform)
         {
+            if (content.name.Contains("Note") || content.name.Contains("BookCard")) 
+            {
+                content.GetComponent<Button>().onClick.AddListener(() => ClickContent(content.name));
+            }
+
             if (GameFlow.ItemMap.ContainsKey(content.name) && (GameFlow.ItemMap[content.name].InInventory ||
                 GameFlow.ItemMap[content.name].IsUsed))
             {
                 content.gameObject.SetActive(true);
-                content.GetComponent<Button>().onClick.AddListener(() => ClickContent(content.name));
+                
             }
         }
     }
@@ -106,9 +127,9 @@ public class UINoteManager : MonoBehaviour
     void Start()
     {
         this.gameObject.SetActive(true);
-        GameObject[] NNotes = GameObject.FindGameObjectsWithTag("NoteCanvas");
-        if (NNotes.Length >1) Destroy(this.gameObject);
-        else DontDestroyOnLoad(this.gameObject);
+        // GameObject[] NNotes = GameObject.FindGameObjectsWithTag("NoteCanvas");
+        // if (NNotes.Length >1) Destroy(this.gameObject);
+        // else DontDestroyOnLoad(this.gameObject);
 
         Books[0].SetActive(false);
         Books[1].SetActive(false);
@@ -116,6 +137,9 @@ public class UINoteManager : MonoBehaviour
         BookButtons[0].interactable = true;
         BookButtons[1].interactable = false;
         BookButtons[2].interactable = false;
+        
+        if (SceneManager.GetActiveScene().name == "2hRoom2Backup") SceneNum = 2;
+        if (SceneNum == 2) BookButtons[1].interactable = true;
 
         NoteCanvas.gameObject.SetActive(true);
         NoteCanvas.enabled = false;
@@ -139,7 +163,7 @@ public class UINoteManager : MonoBehaviour
 
         BookButtons[0].onClick.AddListener(() => BookClicked());
         BookButtons[1].onClick.AddListener(() => BookClicked());
-        BookButtons[2].onClick.AddListener(() => BookClicked());
+        //BookButtons[2].onClick.AddListener(() => BookClicked());
     }
 
 }

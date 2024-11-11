@@ -4,11 +4,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEditor;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class TitleSceneManager : MonoBehaviour
 {   
     public SoundManager SoundManager;
     public GameObject OptionCanvas;
+    public Camera cam;
     public string nextScene;
     //[SerializeField] 
     //Image progressBar;
@@ -17,13 +20,59 @@ public class TitleSceneManager : MonoBehaviour
     {
         
     }
+
+    void Update()
+    {
+        if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
+        {
+            Clicked();
+        }
+
+    
+    }
+
+    public void Clicked()
+    {
+        RaycastHit hit;
+        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+        Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 10f);
+
+
+
+        if (Physics.Raycast(ray, out hit))
+        {
+            if (hit.transform.name == "StartButton")
+            {
+                Debug.Log("StartButton");
+                SoundManager.PlaySFX(0);
+                StartButton();
+            }
+            else if (hit.transform.name == "ExitButton")
+            {
+                Debug.Log("ExitButton");
+                SoundManager.PlaySFX(0);
+                ExitButton();
+            }
+            else if (hit.transform.name == "Window")
+            {
+                Debug.Log("Window");
+                SoundManager.PlaySFX(1);
+            }
+            else if (hit.transform.name == "Grass1" || hit.collider.gameObject.name == "Grass2")
+            {
+                Debug.Log("Grass");
+                SoundManager.PlaySFX(1);
+                
+            }
+        }
+    }
     void Start()
     {
         SoundManager.Scenes = SoundManager.EScenes.Title;
-        OptionCanvas.SetActive(true);
-        OptionCanvas.GetComponent<Canvas>().enabled = false;
+        //OptionCanvas.SetActive(true);
+        //OptionCanvas.GetComponent<Canvas>().enabled = false;
         Time.timeScale = 1;
-        OptionCanvas.GetComponent<UISetting>().InitSetting();
+        //OptionCanvas.GetComponent<UISetting>().InitSetting();
     }
 
     public void StartButton()

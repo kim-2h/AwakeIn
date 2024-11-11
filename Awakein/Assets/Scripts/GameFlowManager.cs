@@ -4,6 +4,7 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEditor.Localization.Plugins.XLIFF.V12;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 public class GameFlowManager : MonoBehaviour
@@ -17,6 +18,7 @@ public class GameFlowManager : MonoBehaviour
     public Dictionary<string, Item> ItemMap = new Dictionary<string, Item>();
     public Dictionary<string, bool> DialogueMap = new Dictionary<string, bool>();
 
+
     public enum EScenes
     {
         Title, Room1, Room2, Room3, Ending
@@ -28,7 +30,7 @@ public class GameFlowManager : MonoBehaviour
     {
         string Ret = "";
       
-        if (gameObject.scene.name=="2hBuildTest2"){
+        if (Scenes == EScenes.Room1){
             switch (_object)   
         {
             case "Window":
@@ -109,7 +111,7 @@ public class GameFlowManager : MonoBehaviour
 
 
         }}
-        else if (gameObject.scene.name=="2hRoom2Backup"){
+        else if (Scenes ==   EScenes.Room1){
            switch (_object)   
         {
             case "Bird":
@@ -221,6 +223,20 @@ public class GameFlowManager : MonoBehaviour
     void Awake()
     {
         string TempName = "";
+        if (SceneManager.GetActiveScene().name == "2hBuildTest2")
+        {
+            Scenes = EScenes.Room1;
+        }
+        else if (SceneManager.GetActiveScene().name == "2hRoom2Backup")
+        {
+            Scenes = EScenes.Room2;
+        }
+        else
+        {
+            Scenes = EScenes.Title;
+        }
+
+
         for (int i = 0; i<PuzzleList.Count; i++)
         {
             TempName = PuzzleList[i].gameObject.name;
@@ -232,6 +248,7 @@ public class GameFlowManager : MonoBehaviour
                 //Debug.Log(TempName + " Added");
             }
         }
+
         for (int i = 0; i<ItemList.Count; i++)
         {
             TempName = ItemList[i].ItemName;

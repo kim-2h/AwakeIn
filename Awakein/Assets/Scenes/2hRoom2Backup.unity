@@ -1227,6 +1227,9 @@ MonoBehaviour:
   - {fileID: 2776427200270983622}
   - {fileID: 4583460809722987478}
   - {fileID: 2776427200270983622}
+  - {fileID: 1778742231}
+  - {fileID: 819220081}
+  - {fileID: 984974052}
 --- !u!4 &37206841
 Transform:
   m_ObjectHideFlags: 0
@@ -8421,7 +8424,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -12631,7 +12634,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 90, y: 80, z: 90, w: 120}
+  m_RaycastPadding: {x: 120, y: 100, z: 120, w: 150}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -15534,7 +15537,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &819220077
 RectTransform:
   m_ObjectHideFlags: 0
@@ -15602,7 +15605,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 819220081}
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
@@ -15788,7 +15791,7 @@ GameObject:
   - component: {fileID: 826904360}
   - component: {fileID: 826904362}
   m_Layer: 5
-  m_Name: Book2
+  m_Name: Book3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16043,7 +16046,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -16245,8 +16248,8 @@ MonoBehaviour:
   - {fileID: 226507647}
   BookButtons:
   - {fileID: 1704042869}
-  - {fileID: 826904362}
   - {fileID: 1365782467}
+  - {fileID: 826904362}
   GameFlow: {fileID: 2038419611}
   Contents:
   - {fileID: 445487727}
@@ -16592,7 +16595,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -17775,7 +17778,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -18777,7 +18780,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &984974048
 RectTransform:
   m_ObjectHideFlags: 0
@@ -18845,7 +18848,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 984974052}
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
@@ -19999,6 +20002,8 @@ MonoBehaviour:
   - {fileID: 1116415648}
   - {fileID: 61062043}
   - {fileID: 148351969}
+  - {fileID: 1252292289}
+  - {fileID: 1252292289}
   Scenes: 0
 --- !u!1 &1060484645
 GameObject:
@@ -20421,7 +20426,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1097231109
 Transform:
   m_ObjectHideFlags: 0
@@ -21004,7 +21009,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.29124632, b: 0.29124632, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 90, y: 80, z: 90, w: 80}
   m_Maskable: 1
@@ -24456,7 +24461,7 @@ GameObject:
   - component: {fileID: 1365782465}
   - component: {fileID: 1365782467}
   m_Layer: 5
-  m_Name: Book3
+  m_Name: Book2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30451,7 +30456,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1778742227
 RectTransform:
   m_ObjectHideFlags: 0
@@ -30519,7 +30524,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 1778742231}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -35649,6 +35654,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 228e6cb3e99ffb3418b963e1db7a8fcf, type: 2}
   - {fileID: 11400000, guid: 6f736233b4d721242b752972e7250f8f, type: 2}
   - {fileID: 11400000, guid: 6c2f627530ec0e04a83eef812a9705e7, type: 2}
+  - {fileID: 11400000, guid: 4b1aac8e98aa1bf4eab3c0c24bd6d60c, type: 2}
+  - {fileID: 11400000, guid: 8d092d6ecfcf9ca4eb6284b560eb8375, type: 2}
+  - {fileID: 11400000, guid: 5d1fd28faaf854a439a599e2f3fa2800, type: 2}
   Scenes: 0
 --- !u!4 &2038419612
 Transform:
@@ -37561,7 +37569,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2116249452
 Transform:
   m_ObjectHideFlags: 0
@@ -38761,7 +38769,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_HighlightedColor: {r: 0.73333335, g: 0.73333335, b: 0.73333335, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
@@ -41421,7 +41429,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_HighlightedColor: {r: 0.73333335, g: 0.73333335, b: 0.73333335, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
@@ -42666,7 +42674,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_HighlightedColor: {r: 0.73333335, g: 0.73333335, b: 0.73333335, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
@@ -43561,7 +43569,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_HighlightedColor: {r: 0.73333335, g: 0.73333335, b: 0.73333335, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
