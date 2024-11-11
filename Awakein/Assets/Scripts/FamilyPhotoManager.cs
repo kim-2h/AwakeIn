@@ -12,33 +12,29 @@ public class FamilyPhotoManager : MonoBehaviour, IPuzzle
     public PhotoDragHandler photoDragHandler;
     public Canvas canvas;
     string Ret = "";
-    int n=-1;
+    //int n=-1;
    // private bool IsDone = true;
     private bool IsFirst = false;
     private bool hasTriggeredUpdatePuzzle = false; // 추가된 변수
 
     void Start()
     {
-        gameFlowManager.DialogueMap.Add("SecondWindowDone", false);
+        //gameFlowManager.DialogueMap.Add("SecondWindowDone", false);
         
     }
 
     public void StartPuzzle()
     {
         //canvas.gameObject.SetActive(true);
-        Debug.Log("하고 있니");
+        //Debug.Log("하고 있니");
 
-        if (invenManager.ItemMap["FamilyPhoto"].InInventory && !invenManager.ItemMap["FamilyPhoto"].IsUsed)
-        {
-            canvas.gameObject.SetActive(true);
-            UpdatePuzzle();
-            
-        }
-        else if (IsFirst && !gameFlowManager.DialogueMap["SecondWindowDone"] && 
+        
+         if (IsFirst  && 
                 (invenManager.ItemMap["FamilyPhoto"].IsUsed || !invenManager.ItemMap["FamilyPhoto"].InInventory))
         {
             Ret = "The sunlight is already beating down strongly!";
             dialogue.CallRoutine(Ret);
+            canvas.gameObject.SetActive(true);
         }
         else if (!IsFirst)
         {
@@ -49,6 +45,8 @@ public class FamilyPhotoManager : MonoBehaviour, IPuzzle
             Ret="I think there was a similar phrase in a note from the previous room...";
             dialogue.CallRoutine(Ret);
             IsFirst=true;
+            canvas.gameObject.SetActive(true);
+            StartCoroutine(CheckNicknameActive());
         }
         
     }
@@ -58,31 +56,38 @@ public class FamilyPhotoManager : MonoBehaviour, IPuzzle
         canvas.gameObject.SetActive(false);
     }
 
-    public void UpdatePuzzle()
+    public void TriggerDialogue()
     {
         if (photoDragHandler.Nickname.gameObject.activeSelf == true)
-        {
+        { 
+            invenManager.ItemMap["FamilyPhoto"].IsUsed = true;
+            invenManager.RemoveItem("FamilyPhoto");
             gameFlowManager.DialogueMap.Add("SecondWindowing", false);
           //  IsDone = false;
             Ret = "FOREST CHILD LIKE COYOTE...\nI created my dad's nickname using the Air Force voice phonetic alphabet.";
 
 
             dialogue.CallRoutine(Ret);
-            gameFlowManager.DialogueMap["SecondWindowing"] = true;
+           gameFlowManager.DialogueMap["SecondWindowing"] = true;
 
-            invenManager.ItemMap["FamilyPhoto"].IsUsed = true;
-            invenManager.RemoveItem("FamilyPhoto");
+           
             //IsDone = true;
             hasTriggeredUpdatePuzzle = true; 
        }
     }
 
-    // void Update() 
-    // {
-    //     // photoDragHandler.Nickname이 활성화되었을 때만 UpdatePuzzle을 실행하도록 체크
-    //     if (canvas.gameObject.activeSelf && !hasTriggeredUpdatePuzzle)
-    //     {
-    //         UpdatePuzzle();
-    //     }
-    // }
+    private IEnumerator CheckNicknameActive()
+    {
+        while (canvas.gameObject.activeSelf && !hasTriggeredUpdatePuzzle)
+        {
+            if (photoDragHandler.Nickname.gameObject.activeSelf)
+            {
+                TriggerDialogue();
+                hasTriggeredUpdatePuzzle = true; 
+                yield break; 
+            }
+            yield return new WaitForSeconds(0.5f); 
+        }
+    }
+
 }

@@ -34,9 +34,10 @@ public class PhotoDragHandler : MonoBehaviour,IBeginDragHandler ,IDragHandler, I
             transform.position=PhotoPlace.transform.position;
             IsPlaced=true;
            StartCoroutine(FadeOut());
-                      
-
-            
+           
+            //Debug.Log("히히 포토 나타났지롱");
+             invenManager.ItemMap["FamilyPhoto"].IsUsed = true;
+            invenManager.RemoveItem("FamilyPhoto");
         }
         else transform.position=DefaultPos;
         }

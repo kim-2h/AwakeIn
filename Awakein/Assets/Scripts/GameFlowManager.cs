@@ -133,8 +133,7 @@ public class GameFlowManager : MonoBehaviour
                  DialogueMap["BirdNotKilled"] = true;
                 }
                 break;
-                
-
+               
             default:
             Ret=null;
             break;
