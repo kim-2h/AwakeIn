@@ -52,6 +52,7 @@ public class SecondBookShelf : MonoBehaviour
              item.GetComponent<Image>().raycastTarget = false;
          }
           bookShelfManager.gameObject.GetComponent<IPuzzle>().IsSolved = true;
+          SoundManager.Instance.PlaySFX(6);
            //Debug.Log("Done");
          
         }

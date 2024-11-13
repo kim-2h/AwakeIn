@@ -150,6 +150,7 @@ public class DialControl: MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
                 RadioManager.gameObject.GetComponent<IPuzzle>().IsSolved = true;
                 isSolved = true;
                 RM.DriverHandle.GetComponent<Button>().interactable = true;
+                SoundManager.Instance.PlaySFX(6);
             }
             else
             {

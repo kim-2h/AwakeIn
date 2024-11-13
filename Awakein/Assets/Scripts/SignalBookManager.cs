@@ -46,6 +46,7 @@ public class SignalBookManager : MonoBehaviour, IPuzzle
 
     public void BookClicked()
     {
+      SoundManager.Instance.PlaySFX(13);
         BookFront.SetActive(!BookFront.activeSelf);
         BookBack.SetActive(!BookBack.activeSelf);
     }

@@ -9,7 +9,7 @@ public class VentDragHandler : MonoBehaviour,IBeginDragHandler, IDragHandler, IE
    private int BoltsDone=0;
    private float timer=2f;
    public bool CoroutineStarted=false;
-   public float fadeSpeed = 0.5f;
+   public float fadeSpeed = 10f;
    public VentManager ventManager;
    public InvenManager invenManager;
    public GameObject Vent;
@@ -47,17 +47,17 @@ public class VentDragHandler : MonoBehaviour,IBeginDragHandler, IDragHandler, IE
         //    StartCoroutine(BoltRotating(Bolts[i]));
         // }
         
-        for (int i = 0; i<4; i++)
+       foreach (GameObject bo in Bolts)
         {
-          var Dist = Vector2.Distance(Pos, Bolts[i].GetComponent<RectTransform>().anchoredPosition);
-          Debug.Log("Distant : " + Dist + " pos : " + Pos + " Bolt pos : " + Bolts[i].GetComponent<RectTransform>().anchoredPosition);
-            if (Dist < 100f)
+          var Dist = Vector2.Distance(Pos, bo.GetComponent<RectTransform>().anchoredPosition);
+          //Debug.Log("Distant : " + Dist + " pos : " + Pos + " Bolt pos : " + Bolts[i].GetComponent<RectTransform>().anchoredPosition);
+            if ( Dist< 150f)
             {
-                SoundManager.Instance.PlaySFX(13);
-                StartCoroutine(BoltRotating(Bolts[i]));
+                StartCoroutine(BoltRotating(bo));
             }
           if (BoltsDone == 4){
-            SoundManager.Instance.PlaySFX(2);
+            
+            
              StartCoroutine(MovingVent(Vent));
              transform.position = beginposition;
               
@@ -75,20 +75,18 @@ public class VentDragHandler : MonoBehaviour,IBeginDragHandler, IDragHandler, IE
     }
    
     IEnumerator BoltRotating(GameObject tf){
-     
-      if (CoroutineStarted) yield break;
+      //if (CoroutineStarted) yield break;
        BoltsDone++;
-      CoroutineStarted=true;
-      //Debug.Log(CoroutineStarted);
+      //CoroutineStarted=true;
+      SoundManager.Instance.PlaySFX(13);
         float elapsedTime = 0f;
        while (elapsedTime < timer)
         {
-            tf.transform.Rotate(new Vector3(0f, 0f,30f) * Time.deltaTime);
+            tf.transform.Rotate(new Vector3(0f, 0f,30f) * Time.deltaTime*fadeSpeed);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
         StartCoroutine(FadeOut(tf));
-        
          Debug.Log(BoltsDone);
     }
     IEnumerator FadeOut(GameObject tf){
@@ -101,8 +99,6 @@ public class VentDragHandler : MonoBehaviour,IBeginDragHandler, IDragHandler, IE
          yield return null;
        }
      tf.SetActive(false);
-     
-     CoroutineStarted=false;
       Debug.Log(CoroutineStarted);
     }
     IEnumerator MovingVent(GameObject tf){
@@ -112,7 +108,7 @@ public class VentDragHandler : MonoBehaviour,IBeginDragHandler, IDragHandler, IE
       Vector3 startPosition = tf.transform.position;
         Vector3 endPosition = new Vector3(tf.transform.position.x+50 , tf.transform.position.y-50, tf.transform.position.z);
         float elapsedTime = 0f;
-
+       SoundManager.Instance.PlaySFX(2);
         while (elapsedTime < timer)
         {
             tf.transform.position = Vector3.Lerp(startPosition, endPosition, elapsedTime / timer);
@@ -120,7 +116,9 @@ public class VentDragHandler : MonoBehaviour,IBeginDragHandler, IDragHandler, IE
             yield return null;
         }
         tf.transform.position = endPosition;
-         StartCoroutine(FadeOut(tf));
+         foreach (Transform holes in tf.GetComponentsInChildren<Transform>()){
+           StartCoroutine(FadeOut(holes.gameObject));
+         }
         
     }
 
