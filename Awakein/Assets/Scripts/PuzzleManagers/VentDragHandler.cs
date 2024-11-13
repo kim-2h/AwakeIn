@@ -119,7 +119,7 @@ public class VentDragHandler : MonoBehaviour,IBeginDragHandler, IDragHandler, IE
          foreach (Transform holes in tf.GetComponentsInChildren<Transform>()){
            StartCoroutine(FadeOut(holes.gameObject));
          }
-        CoroutineStarted=false;
+        
     }
 
    
