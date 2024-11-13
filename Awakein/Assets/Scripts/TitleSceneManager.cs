@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 using UnityEditor;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using TMPro;
+using UnityEngine.Video;
 
 public class TitleSceneManager : MonoBehaviour
 {   
@@ -78,7 +80,7 @@ public class TitleSceneManager : MonoBehaviour
     public void StartButton()
     {
         nextScene = "2hBuildTest2";
-        StartCoroutine(LoadScene(1));
+        StartCoroutine(LoadFirstScene());
     }
 
     public void OptionButton()
@@ -98,14 +100,112 @@ public class TitleSceneManager : MonoBehaviour
             Application.Quit();
         #endif
     }
+
+    IEnumerator LoadFirstScene()
+    {
+        SkipDone = false;
+
+        yield return null;
+        string nextScene = "2hBuildTest2";
+
+        #if UNITY_EDITOR
+            string path = "Assets/Prefabs/TutorialCanvas.prefab";
+            GameObject LoadingCanvas = AssetDatabase.LoadAssetAtPath<GameObject>(path);
+        #else
+            string path = "CustomSprites/TutorialCanvas";
+            GameObject LoadingCanvas = Resources.Load(path) as GameObject;
+        #endif
+
+
+
+        GameObject Loading = Instantiate(LoadingCanvas);
+        Loading.SetActive(true);
+        Loading.GetComponent<Canvas>().enabled = true;
+
+        TextMeshProUGUI LoadingText = GameObject.Find("Text (TMP)").GetComponent<TextMeshProUGUI>();
+        LoadingText.text = "Loading...";
+        //Loading.transform.GetChild(0).gameObject.SetActive(false);
+
+        VideoPlayer LoadingVideo;
+        Button SkipButton;
+        LoadingVideo = GameObject.Find("VideoPlayer").GetComponent<VideoPlayer>();
+
+        SkipButton = GameObject.Find("SkipButton").GetComponent<Button>();
+        GameObject Screen = LoadingCanvas.transform.GetChild(1).gameObject;
+        SkipButton.onClick.AddListener(() => SkipPressed(Screen, LoadingVideo));
+
+        LoadingVideo.time = 0.0f;
+        LoadingVideo.Play();
+
+
+        UnityEngine.AsyncOperation op = SceneManager.LoadSceneAsync(nextScene);
+        op.allowSceneActivation = false;
+        float minimumLoadingTime = 3.0f;
+
+        float timer = 0.0f;
+        while (!op.isDone)
+        {
+            yield return null;
+        
+            timer += Time.deltaTime;
+            if (op.progress < 0.9f)
+            {
+                if (SkipDone)
+                {
+                    LoadingVideo.Stop();
+                    LoadingVideo.time = LoadingVideo.clip.length - 0.1f;
+
+                    //Loading.transform.GetChild(0).gameObject.SetActive(true);
+                }
+            }
+            else if (SkipDone)
+            {
+                LoadingVideo.Stop();
+                op.allowSceneActivation = true;
+                //Loading.transform.GetChild(0).gameObject.SetActive(true);
+            }
+            else if (LoadingVideo.time >= LoadingVideo.clip.length - 0.1f)
+            {
+                op.allowSceneActivation = true;
+            }
+            // else
+            // {
+            //     op.allowSceneActivation = true;
+            // }
+        }
+        
+        if (timer < minimumLoadingTime)
+        {
+            yield return new WaitForSeconds(minimumLoadingTime - timer);
+        }
+
+        
+        Destroy(Loading);
+
+    }
+
     IEnumerator LoadScene(int Idx)
     {
         yield return null;
         string nextScene = "";
-        GameObject LoadingCanvas = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/LoadingCanvas.prefab");
+
+        #if UNITY_EDITOR
+            string path = "Assets/Prefabs/LoadingCanvas.prefab";
+            GameObject LoadingCanvas = AssetDatabase.LoadAssetAtPath<GameObject>(path);
+        #else
+            string path = "CustomSprites/LoadingCanvas";
+            GameObject LoadingCanvas = Resources.Load(path) as GameObject;
+        #endif
+
+
+
+
         GameObject Loading = Instantiate(LoadingCanvas);
         Loading.SetActive(true);
         Loading.GetComponent<Canvas>().enabled = true;
+
+        TextMeshProUGUI LoadingText = GameObject.Find("Text (TMP)").GetComponent<TextMeshProUGUI>();
+        LoadingText.text = "Loading...";
 
         switch (Idx) 
         {
@@ -150,6 +250,16 @@ public class TitleSceneManager : MonoBehaviour
         Destroy(Loading);
 
 
+    }
+
+    public bool SkipDone = false;
+    public void SkipPressed(GameObject Go, VideoPlayer VP)
+    {
+        Go.SetActive(false);
+        VP.Stop();
+        VP.time = VP.clip.length - 0.1f;
+    
+        SkipDone = true;
     }
 }
 

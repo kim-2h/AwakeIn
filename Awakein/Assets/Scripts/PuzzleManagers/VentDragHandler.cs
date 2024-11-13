@@ -95,7 +95,7 @@ public class VentDragHandler : MonoBehaviour,IBeginDragHandler, IDragHandler, IE
        Image image = tf.GetComponent<Image>(); 
       Color newColor = image.color;           
         newColor.a = 1f;
-       while(newColor.a>0){
+       while(newColor.a>0.01f){
           newColor.a-=Time.deltaTime*fadeSpeed;
           image.color=newColor;
          yield return null;

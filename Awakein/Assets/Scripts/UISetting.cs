@@ -9,7 +9,6 @@ using UnityEngine.EventSystems;
 using UnityEditor.Rendering;
 using UnityEngine.SocialPlatforms;
 using TMPro;
-using UnityEditor.AddressableAssets.Build;
 using System.ComponentModel;
 using UnityEngine.SceneManagement;
 using UnityEditor;
@@ -18,6 +17,7 @@ using UnityEditor;
 //using UnityEditor.Localization.Editor;
 public class UISetting : MonoBehaviour
 {
+    public static UISetting Instance;
     public Canvas SettingCanvas;
     public Camera cam;
     [SerializeField] private Button Selected;
@@ -447,28 +447,42 @@ public class UISetting : MonoBehaviour
     {
         yield return null;
         string nextScene = "";
-        GameObject LoadingCanvas = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/LoadingCanvas.prefab");
+
+        #if UNITY_EDITOR
+            string path = "Assets/Prefabs/LoadingCanvas.prefab";
+            GameObject LoadingCanvas = AssetDatabase.LoadAssetAtPath<GameObject>(path);
+        #else
+            string path = "CustomSprites/LoadingCanvas";
+            GameObject LoadingCanvas = Resources.Load(path) as GameObject;
+        #endif
+
+
+
+
         GameObject Loading = Instantiate(LoadingCanvas);
         Loading.SetActive(true);
         Loading.GetComponent<Canvas>().enabled = true;
+
+        TextMeshProUGUI LoadingText = GameObject.Find("Text (TMP)").GetComponent<TextMeshProUGUI>();
+        LoadingText.text = "Loading...";
 
         switch (Idx) 
         {
             case 0:
                 nextScene = "TitleScene";
+                LoadingText.text = "Going back to the title scene...";
                 break;
             case 1:
                 nextScene = "2hBuildTest2";
                 break;
             case 2:
                 nextScene = "2hRoom2Backup";
+                LoadingText.text = "...So I escaped from the room.\n" +
+                "But I still have to find the way out of this strange building!";
                 break;
         }
 
-        // if (Idx != 0)
-        // {
-        //     InvenManager.SaveInven();
-        // }
+
 
         UnityEngine.AsyncOperation op = SceneManager.LoadSceneAsync(nextScene);
         op.allowSceneActivation = false;

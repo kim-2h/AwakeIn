@@ -102,6 +102,8 @@ public class DialogueManager : MonoBehaviour
             PlayDialogue(QDialogue.Peek());
         }
 
+
+
         StopDialogue = false;
         IsDialoguePlaying = false;
     }
