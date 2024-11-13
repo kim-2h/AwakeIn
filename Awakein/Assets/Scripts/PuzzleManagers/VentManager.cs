@@ -9,7 +9,7 @@ public class VentManager : MonoBehaviour, IPuzzle
     public Canvas canvas;
     private Vector3 CameraPosition;
    public GameObject Over;
-     VentDragHandler ventDragHandler;
+    public VentDragHandler ventDragHandler;
      public GameFlowManager gameflow;
      public GameObject Driver;
     
@@ -24,24 +24,37 @@ public class VentManager : MonoBehaviour, IPuzzle
         if  (gameflow.ItemMap["Driver"].InInventory) 
         {
           Driver.SetActive(true);
+
         }
         else Driver.SetActive(false);
+
+
     }
     void Start()
     {
         CameraPosition = Camera.main.gameObject.transform.position;
+        
     }
     public void ExitPuzzle()
     {
       
-     ventDragHandler = FindObjectOfType<VentDragHandler>(); 
+     // ventDragHandler = FindObjectOfType<VentDragHandler>(); 
+          if (ventDragHandler.isCleared)
+          {
+              ventDragHandler.ClearPuzzle();
+          }
         //Debug.Log(ventDragHandler.CoroutineStarted);
                 
 
-       if (ventDragHandler&&!ventDragHandler.CoroutineStarted||Driver.activeSelf==false) canvas.gameObject.SetActive(false);
-         else  Debug.Log("Wait");
-        //secondBookShelf.GetComponent<SecondBookShelf>().BookShelfFinished();
+       if (!ventDragHandler.CoroutineStarted)
+       {
+        canvas.gameObject.SetActive(false);
         Camera.main.gameObject.transform.position = CameraPosition;
+       }
+        
+      else  Debug.Log("Wait");
+        //secondBookShelf.GetComponent<SecondBookShelf>().BookShelfFinished();
+        
     }
     
    /* public void OnClick(){

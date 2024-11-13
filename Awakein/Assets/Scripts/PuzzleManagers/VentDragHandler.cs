@@ -14,6 +14,13 @@ public class VentDragHandler : MonoBehaviour,IBeginDragHandler, IDragHandler, IE
    public InvenManager invenManager;
    public GameObject Vent;
    public GameObject[] Bolts;
+   public DialogueManager Dialogue;
+   public UISetting UISetting;
+
+   public GameFlowManager GameFlow;
+    public Dictionary<string, IPuzzle> PuzzleMap = new Dictionary<string, IPuzzle>();
+    public Dictionary<string, Item> ItemMap = new Dictionary<string, Item>();
+
    Vector3 beginposition;
    void Start()
    {
@@ -21,6 +28,8 @@ public class VentDragHandler : MonoBehaviour,IBeginDragHandler, IDragHandler, IE
     //invenManager=GetComponent<InvenManager>();
     Bolts=GameObject.FindGameObjectsWithTag("Bolt");
      beginposition=transform.position;
+     PuzzleMap = GameFlow.PuzzleMap;
+     ItemMap = invenManager.ItemMap;
    }
     public void OnBeginDrag(PointerEventData eventData)
     { 
@@ -75,6 +84,7 @@ public class VentDragHandler : MonoBehaviour,IBeginDragHandler, IDragHandler, IE
     }
    
     IEnumerator BoltRotating(GameObject tf){
+      CoroutineStarted=true;
       //if (CoroutineStarted) yield break;
        BoltsDone++;
       //CoroutineStarted=true;
@@ -88,8 +98,10 @@ public class VentDragHandler : MonoBehaviour,IBeginDragHandler, IDragHandler, IE
         }
         StartCoroutine(FadeOut(tf));
          Debug.Log(BoltsDone);
+    
     }
     IEnumerator FadeOut(GameObject tf){
+    
        Image image = tf.GetComponent<Image>(); 
       Color newColor = image.color;           
         newColor.a = 1f;
@@ -100,10 +112,12 @@ public class VentDragHandler : MonoBehaviour,IBeginDragHandler, IDragHandler, IE
        }
      tf.SetActive(false);
       Debug.Log(CoroutineStarted);
+      CoroutineStarted=false;
     }
     IEnumerator MovingVent(GameObject tf){
-       yield return new WaitForSeconds(3f);
       CoroutineStarted=true;
+       yield return new WaitForSeconds(3f);
+      
       
       Vector3 startPosition = tf.transform.position;
         Vector3 endPosition = new Vector3(tf.transform.position.x+50 , tf.transform.position.y-50, tf.transform.position.z);
@@ -116,11 +130,38 @@ public class VentDragHandler : MonoBehaviour,IBeginDragHandler, IDragHandler, IE
             yield return null;
         }
         tf.transform.position = endPosition;
+        
          foreach (Transform holes in tf.GetComponentsInChildren<Transform>()){
            StartCoroutine(FadeOut(holes.gameObject));
          }
+
         
     }
+
+    public void ClearPuzzle()
+    {
+        Bolts[0].SetActive(false);
+        Bolts[1].SetActive(false);
+        Bolts[2].SetActive(false);
+        Bolts[3].SetActive(false);
+
+        Vent.SetActive(false);
+    }
+
+  public void MoveRoom()
+  {
+
+      if (!GameFlow.Room2Test())
+      {
+          string text = "I can't leave yet.\n I need to solve the puzzle first.";
+          Dialogue.CallRoutine(text);
+      }
+      else if (GameFlow.Room2Test())
+      {
+          string text = "I can get out through the vent!";
+          Dialogue.CallRoutine(text);
+      }
+  }
 
    
     }

@@ -101,7 +101,7 @@ public class GameFlowManager : MonoBehaviour
                 }
                 else
                 {
-                    Ret = "I can finally get out of here!";
+                    //Ret = "I can finally get out of here!";
                 }
                 break;
             default:
@@ -143,6 +143,26 @@ public class GameFlowManager : MonoBehaviour
         return Ret;
         //
         
+    }
+
+    public void VentClicked()
+    {
+
+        string Ret = "";
+        if (PuzzleMap["Vent"].IsSolved && (!ItemMap["OrgelWhole"].InInventory || !ItemMap["FamilyPhoto"].InInventory
+        || !(ItemMap["Carpet_Note"].InInventory || ItemMap["Carpet_Note"].IsUsed) ||
+        !(ItemMap["Photo_Note"].InInventory || ItemMap["Photo_Note"].IsUsed) || !ItemMap["Gear"].InInventory
+        || !ItemMap["GasMask"].InInventory))
+        {
+            Ret = "I think I need to look around more...";
+            DialogueManager.CallRoutine(Ret);
+        }
+        else
+        {
+            Ret = "I can finally get out of here!";
+            DialogueManager.CallRoutine(Ret);
+
+        }
     }
 
     public void ChairBreaking()
@@ -192,6 +212,23 @@ public class GameFlowManager : MonoBehaviour
             yield return null;
         }
     }
+
+    public bool Room2Test()
+    {
+                if (PuzzleMap["Vent"].IsSolved && (!ItemMap["OrgelWhole"].InInventory || !ItemMap["FamilyPhoto"].InInventory
+                || !(ItemMap["Carpet_Note"].InInventory || ItemMap["Carpet_Note"].IsUsed) ||
+                !(ItemMap["Photo_Note"].InInventory || ItemMap["Photo_Note"].IsUsed) || !ItemMap["Gear"].InInventory
+                || !ItemMap["GasMask"].InInventory))
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+    }
+
+    
     void Start()
     {
         SoundManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<SoundManager>();

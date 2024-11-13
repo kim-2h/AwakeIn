@@ -457,6 +457,7 @@ public class UISetting : MonoBehaviour
         #endif
 
 
+        //여기서 2초정도 기다리고 넘어가게
 
 
         GameObject Loading = Instantiate(LoadingCanvas);
