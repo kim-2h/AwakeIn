@@ -38,7 +38,7 @@ public class VentManager : MonoBehaviour, IPuzzle
         //Debug.Log(ventDragHandler.CoroutineStarted);
                 
 
-       if (ventDragHandler&&!ventDragHandler.CoroutineStarted||Driver.activeSelf==false) canvas.gameObject.SetActive(false);
+       if (ventDragHandler&&!ventDragHandler.CoroutineStarted) canvas.gameObject.SetActive(false);
          else  Debug.Log("Wait");
         //secondBookShelf.GetComponent<SecondBookShelf>().BookShelfFinished();
         Camera.main.gameObject.transform.position = CameraPosition;
