@@ -4,6 +4,8 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
+using UnityEngine.UI;
 
 
 public class GameFlowManager : MonoBehaviour
@@ -16,6 +18,8 @@ public class GameFlowManager : MonoBehaviour
     public Dictionary<string, IPuzzle> PuzzleMap = new Dictionary<string, IPuzzle>();
     public Dictionary<string, Item> ItemMap = new Dictionary<string, Item>();
     public Dictionary<string, bool> DialogueMap = new Dictionary<string, bool>();
+
+    private bool ToTitle = false;
 
 
     public enum EScenes
@@ -110,7 +114,7 @@ public class GameFlowManager : MonoBehaviour
 
 
         }}
-        else if (Scenes ==   EScenes.Room1){
+        else if (Scenes ==   EScenes.Room2){
            switch (_object)   
         {
             case "Bird":
@@ -134,7 +138,10 @@ public class GameFlowManager : MonoBehaviour
                  DialogueMap["BirdNotKilled"] = true;
                 }
                 break;
-               
+            case "DoorBack":
+            Debug.Log("Ending clicked!!");
+                Ret = "Finally I can get out of here!";
+            break;   
             default:
             Ret=null;
             break;
@@ -233,9 +240,10 @@ public class GameFlowManager : MonoBehaviour
     {
         SoundManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<SoundManager>();
     }
+
+
     public void PrintProgress()
     {
-        /*아무 버튼이랑 연결해서 모든 퍼즐의 완료 여부를 출력함. 디버그용*/
         Debug.Log("===== ~~Printing Progress~~ =====");
         foreach (KeyValuePair<string, IPuzzle> puzzle in PuzzleMap)
         {
@@ -252,10 +260,85 @@ public class GameFlowManager : MonoBehaviour
         }
         Debug.Log("=================================");
     }
-    void Update()
+
+
+    public void Ending()
     {
-        
+        StartCoroutine(EndLoadTitle());
     }
+
+    public void ToTitleDone()
+    {
+        ToTitle = true;
+    }
+
+    IEnumerator EndLoadTitle()
+    {
+        yield return null;
+        string nextScene = "";
+
+        #if UNITY_EDITOR
+            string path = "Assets/Prefabs/LoadingCanvas.prefab";
+            GameObject LoadingCanvas = AssetDatabase.LoadAssetAtPath<GameObject>(path);
+        #else
+            string path = "CustomSprites/LoadingCanvas";
+            GameObject LoadingCanvas = Resources.Load(path) as GameObject;
+        #endif
+
+
+        nextScene = "TitleScene";
+        yield return new WaitForSeconds(3f);
+
+
+        GameObject Loading = Instantiate(LoadingCanvas);
+        Loading.SetActive(true);
+        Loading.GetComponent<Canvas>().enabled = true;
+
+        GameObject Credit = FindObjectOfType<RawImage>(true).gameObject;
+        if (Credit) Credit.SetActive(true);
+
+        Button ToTitleButton = FindObjectOfType<Button>(true);
+        ToTitleButton.gameObject.SetActive(true);
+        
+        ToTitleButton.onClick.AddListener(ToTitleDone);
+        
+
+        TextMeshProUGUI LoadingText = GameObject.Find("Text (TMP)").GetComponent<TextMeshProUGUI>();
+        LoadingText.text = "Loading...";
+
+
+
+        UnityEngine.AsyncOperation op = SceneManager.LoadSceneAsync(nextScene);
+        op.allowSceneActivation = false;
+        float minimumLoadingTime = 5.0f;
+
+        float timer = 0.0f;
+        while (!op.isDone)
+        {
+            yield return null;
+
+
+            timer += Time.deltaTime;
+            if (op.progress < 0.9f)
+            {
+
+            }
+            else if (ToTitle)
+            {
+                op.allowSceneActivation = true;
+            }
+        }
+
+        if (timer < minimumLoadingTime)
+        {
+            yield return new WaitForSeconds(minimumLoadingTime - timer);
+        }
+
+        
+        Destroy(Loading);
+
+    }
+
     void Awake()
     {
         string TempName = "";

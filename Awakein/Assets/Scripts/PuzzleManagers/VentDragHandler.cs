@@ -160,6 +160,7 @@ public class VentDragHandler : MonoBehaviour,IBeginDragHandler, IDragHandler, IE
       {
           string text = "I can get out through the vent!";
           Dialogue.CallRoutine(text);
+          UISetting.ToRoom2();
       }
   }
 

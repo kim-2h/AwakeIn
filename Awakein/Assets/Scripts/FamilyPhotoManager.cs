@@ -48,6 +48,7 @@ public class FamilyPhotoManager : MonoBehaviour, IPuzzle
             canvas.gameObject.SetActive(true);
             StartCoroutine(CheckNicknameActive());
         }
+        canvas.gameObject.SetActive(true);
         
     }
 

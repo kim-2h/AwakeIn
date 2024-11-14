@@ -34,8 +34,8 @@ public Color32 Yellow = new Color32(230, 220, 80, 200);
         if (!IsSolved)
         {
             GasMasKPOV.SetActive(false);
-            GasMask.SetActive(InvenManager.ItemMap["GasMask"].InInventory ? true : false);
-
+            //GasMask.SetActive(InvenManager.ItemMap["GasMask"].InInventory ? true : false);
+            GasMask.SetActive(true);
             
             BottleA.SetActive(InvenManager.ItemMap["BottleA"].InInventory ? true : false);
             BottleB.SetActive(InvenManager.ItemMap["BottleB"].InInventory ? true : false);

@@ -11,8 +11,8 @@ public class ChalkboardManager : MonoBehaviour
 
     public DialogueManager dialogueManager;
     public bool IsDropped=false;
-    public Material material;
-    public Sprite sprite;
+    //public Material material;
+    //public Sprite sprite;
     public GameObject other1, other2, other3;
     public InvenManager invenManager;
     
@@ -58,7 +58,7 @@ public class ChalkboardManager : MonoBehaviour
            elapsedTime+=Time.deltaTime;
             //Debug.Log(Train.transform.position);
     }
-    gameObject.GetComponent<SpriteRenderer>().sprite=sprite;
+    //gameObject.GetComponent<SpriteRenderer>().sprite=sprite;
     IsDropped=true;
 }
 }

@@ -30,7 +30,8 @@ public class BirdCageManager : MonoBehaviour, IPuzzle
             StartCoroutine(BirdMove(new Vector3(BirdPosition.x-200f, BirdPosition.y, BirdPosition.z), 
             BirdPosition, 25f, 5f, 10f, 10f));
 
-            Poison.SetActive(InvenManager.ItemMap["PoisonGas"].InInventory ? true : false);
+            Poison.SetActive(InvenManager.ItemMap["PoisonGas"].InInventory|| 
+            InvenManager.ItemMap["PoisonGas"].IsUsed ? true : false);
         }
         else
         {
@@ -120,6 +121,7 @@ public class BirdCageManager : MonoBehaviour, IPuzzle
             StopAllCoroutines();
             StartCoroutine(BirdDying());
             IsSolved = true;
+            InvenManager.RemoveItem("PoisonGas");
         }
         else
         {
