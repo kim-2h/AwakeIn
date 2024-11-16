@@ -14,10 +14,10 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
-  m_Fog: 0
-  m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  m_Fog: 1
+  m_FogColor: {r: 0.5411765, g: 0.63227737, b: 0.69803923, a: 1}
   m_FogMode: 3
-  m_FogDensity: 0.01
+  m_FogDensity: 0.02
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: 0.54088044, g: 0.51502705, b: 0.5085637, a: 1}
@@ -269,7 +269,7 @@ GameObject:
   - component: {fileID: 7645979}
   - component: {fileID: 7645980}
   m_Layer: 0
-  m_Name: BGM_Am1
+  m_Name: BGM_Room2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -301,7 +301,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -7243407378214761792, guid: cecd30bf5a6ba714aa901c308cff569f,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: ecd6c73ef961741318a0a17b6291c9e5, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 5bceefdad32a1c943a03957d52ac175d, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -1563,7 +1563,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 2923b4a257262d440baab4de644ed6a5, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.9685534, g: 0.8750578, b: 0.8619516, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -8341,7 +8341,7 @@ MonoBehaviour:
     "The executives have instructed you to direct the train towards the suspect''s
     family. They promised you a citizenship award and a promotion."
 
-    
+
 
     Which
     direction will you pull the lever?'
@@ -13324,7 +13324,7 @@ MonoBehaviour:
     "The executives have instructed you to direct the train towards the suspect''s
     family. They promised you a citizenship award and a promotion."
 
-    
+
 
     Which
     direction will you pull the lever?'
@@ -14105,7 +14105,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 503ee15be5ecc4e4c9bd71eeb8e63fe3, type: 3}
-  m_Color: {r: 0.7735849, g: 0.7735849, b: 0.7735849, a: 1}
+  m_Color: {r: 1, g: 0.93729097, b: 0.85849047, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -21372,7 +21372,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 2fcc85dbbaa64a243bc4b645ef455020, type: 3}
-  m_Color: {r: 0.75924397, g: 0.7550729, b: 0.7924528, a: 1}
+  m_Color: {r: 0.93710685, g: 0.90978444, b: 0.8987974, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -33219,10 +33219,10 @@ MonoBehaviour:
     was the absence of birdsong. As chemical gas was primarily used, all life that
     did not wear gas masks perished.
 
-    
 
-    **Mixing 60Y and 50B can create
-    a chemical gas just as potent.'
+
+    **Mixing 60Y and 50B can create a chemical
+    gas just as potent.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e00444d128019444493709f67bbaa63f, type: 2}
   m_sharedMaterial: {fileID: -3113507471561227131, guid: e00444d128019444493709f67bbaa63f,
@@ -41740,7 +41740,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 66ee02e7296efb944885f7b2fbf73ebc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6e36b48406dbf3d41ba5a32c89d71ee4, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -45190,7 +45190,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 5e23b91e64f69664591bfc10fb9e6b6f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.8490566, g: 0.8490566, b: 0.8490566, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -47589,7 +47589,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 0.65054774, g: 0.7229927, b: 0.7987421, a: 1}
-  m_Intensity: 20
+  m_Intensity: 50.32
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -47632,7 +47632,7 @@ Light:
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
-  m_ColorTemperature: 5197
+  m_ColorTemperature: 3518
   m_UseColorTemperature: 1
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
@@ -51541,7 +51541,7 @@ Light:
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
-  m_Color: {r: 0.6415094, g: 0.6415094, b: 0.6415094, a: 1}
+  m_Color: {r: 0.59748423, g: 0.5502662, b: 0.50166124, a: 1}
   m_Intensity: 25
   m_Range: 20
   m_SpotAngle: 30

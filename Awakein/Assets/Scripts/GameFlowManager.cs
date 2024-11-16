@@ -125,7 +125,8 @@ public class GameFlowManager : MonoBehaviour
                 }
                 break;
             case "Chemicals":
-             if (!ItemMap["BottleB"].InInventory||!ItemMap["BottleA"].InInventory) {
+             if ((!ItemMap["BottleB"].InInventory||!ItemMap["BottleA"].InInventory) || !PuzzleMap["Chemicals"].IsSolved){
+
                 Ret="There's no scale on the beaker?";
                  DialogueMap["ChemicalsNotStarted"] = true;
                 

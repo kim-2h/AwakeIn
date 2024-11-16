@@ -513,7 +513,7 @@ GameObject:
   - component: {fileID: 7645979}
   - component: {fileID: 7645980}
   m_Layer: 0
-  m_Name: BGM_Am1
+  m_Name: BGM_Room1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -545,7 +545,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -7243407378214761792, guid: cecd30bf5a6ba714aa901c308cff569f,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: ecd6c73ef961741318a0a17b6291c9e5, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 3a3189dd4a20aa44192ed5512251bee2, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

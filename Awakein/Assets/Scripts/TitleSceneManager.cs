@@ -63,7 +63,7 @@ public class TitleSceneManager : MonoBehaviour
             else if (hit.transform.name == "Grass1" || hit.collider.gameObject.name == "Grass2")
             {
                 Debug.Log("Grass");
-                SoundManager.PlaySFX(1);
+                SoundManager.PlaySFX(2);
                 
             }
         }
@@ -107,6 +107,8 @@ public class TitleSceneManager : MonoBehaviour
 
         yield return null;
         string nextScene = "2hBuildTest2";
+
+        SoundManager.StopBGM();
 
         #if UNITY_EDITOR
             string path = "Assets/Prefabs/TutorialCanvas.prefab";

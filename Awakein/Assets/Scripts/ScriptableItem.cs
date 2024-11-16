@@ -5,14 +5,14 @@ using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 [CreateAssetMenu(menuName = "ScriptableObject/Item")]
+
+
+
 public class Item : ScriptableObject
 {
     [SerializeField] private string itemName; 
     public string ItemName { get { return itemName; } } 
     
-   // [SerializeField] private Sprite itemImage;
-   // public Sprite ItemImage { get { return itemImage; } }
-
     [SerializeField] private Material itemMaterial;
     public Material ItemMaterial { get { return itemMaterial; } }
 

@@ -26,6 +26,14 @@ public class SoundManager : MonoBehaviour
         BGMs[0].Play();
     }
 
+    public void StopBGM()
+    {
+        for (int i = 0; i < BGMs.Length; i++)
+        {
+            BGMs[i].Stop();
+        }
+    }
+
     public void ChangeBGM()
     {
         switch (Scenes)
