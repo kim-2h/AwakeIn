@@ -16808,9 +16808,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2012264108}
-        m_TargetAssemblyTypeName: UIPauseManager, Assembly-CSharp
-        m_MethodName: ExitClicked
+      - m_Target: {fileID: 707435791}
+        m_TargetAssemblyTypeName: UISetting, Assembly-CSharp
+        m_MethodName: ToMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
