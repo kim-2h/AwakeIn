@@ -1703,7 +1703,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.003921569}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3383,8 +3383,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    rgba: 20066866
+  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 0.003921569}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -8311,7 +8311,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 20, y: -23.660671}
-  m_SizeDelta: {x: 800, y: 500}
+  m_SizeDelta: {x: 807.2, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &419963298
 MonoBehaviour:
@@ -8334,17 +8334,16 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: 'A broken train is speeding down the tracks. There are two diverging paths:
-    on one side, an innocent citizen stands, while on the other, there are three
-    family members of a terrorism suspect. If the suspect''s family members are harmed,
-    the shock might lead the suspect to confess his crimes. You are holding the lever
-    to change the train''s direction. Your superior has relayed a message, saying,
-    "The executives have instructed you to direct the train towards the suspect''s
-    family. They promised you a citizenship award and a promotion."
+    on one side, an <size=49>innocent citizen</size> stands, while on the other,
+    there are <size=49>three family members of a terrorism suspect</size>. If the
+    suspect''s family members are harmed, the shock might lead the suspect to confess
+    his crimes. You are holding the lever to change the train''s direction. Your
+    superior has relayed a message, saying, "The executives have instructed you to
+    direct the train towards the suspect''s family. They promised you a citizenship
+    award and a promotion."
 
 
-
-    Which
-    direction will you pull the lever?'
+    <size=49>Which direction will you pull the lever?</size>'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e00444d128019444493709f67bbaa63f, type: 2}
   m_sharedMaterial: {fileID: -3113507471561227131, guid: e00444d128019444493709f67bbaa63f,
@@ -13294,7 +13293,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 20, y: -23.660671}
-  m_SizeDelta: {x: 800, y: 500}
+  m_SizeDelta: {x: 801.73, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &737059276
 MonoBehaviour:
@@ -13317,17 +13316,16 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: 'A broken train is speeding down the tracks. There are two diverging paths:
-    on one side, an innocent citizen stands, while on the other, there are three
-    family members of a terrorism suspect. If the suspect''s family members are harmed,
-    the shock might lead the suspect to confess his crimes. You are holding the lever
-    to change the train''s direction. Your superior has relayed a message, saying,
-    "The executives have instructed you to direct the train towards the suspect''s
-    family. They promised you a citizenship award and a promotion."
+    on one side, an <size=49>innocent citizen</size> stands, while on the other,
+    there are <size=49>three family members of a terrorism suspect</size>. If the
+    suspect''s family members are harmed, the shock might lead the suspect to confess
+    his crimes. You are holding the lever to change the train''s direction. Your
+    superior has relayed a message, saying, "The executives have instructed you to
+    direct the train towards the suspect''s family. They promised you a citizenship
+    award and a promotion."
 
 
-
-    Which
-    direction will you pull the lever?'
+    <size=49>Which direction will you pull the lever?</size>'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e00444d128019444493709f67bbaa63f, type: 2}
   m_sharedMaterial: {fileID: -3113507471561227131, guid: e00444d128019444493709f67bbaa63f,
@@ -14577,8 +14575,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    rgba: 20066866
+  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 0.003921569}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -16144,7 +16142,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.67583, y: 0.67583, z: 0.67583}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1709378620}
   m_Father: {fileID: 662902144}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -17520,7 +17519,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.003921569}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -28334,7 +28333,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.003921569}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -29514,6 +29513,78 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &1709378619
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1709378620}
+  - component: {fileID: 1709378622}
+  - component: {fileID: 1709378621}
+  m_Layer: 5
+  m_Name: RawImage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1709378620
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1709378619}
+  m_LocalRotation: {x: -0, y: -0, z: 0.80808944, w: 0.58905995}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 831777260}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 107.819}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -314, y: -257}
+  m_SizeDelta: {x: 1920, y: 1080}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1709378621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1709378619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Texture: {fileID: 2800000, guid: 42f2f760a63d68d4b843c02f1e0cb7c9, type: 3}
+  m_UVRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+--- !u!222 &1709378622
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1709378619}
+  m_CullTransparentMesh: 1
 --- !u!1 &1718666962
 GameObject:
   m_ObjectHideFlags: 0
@@ -30657,6 +30728,7 @@ MonoBehaviour:
   invenManager: {fileID: 1358391612}
   Orgel: {fileID: 1737474350}
   answer: {fileID: 1851482170}
+  SoundManager: {fileID: 1053859912}
 --- !u!1 &1778742226
 GameObject:
   m_ObjectHideFlags: 0
@@ -31787,7 +31859,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.003921569}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -32054,8 +32126,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    rgba: 20066866
+  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 0.003921569}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -33191,7 +33263,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 16.032055, y: -22.444895}
-  m_SizeDelta: {x: 600, y: 500}
+  m_SizeDelta: {x: 605, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1878171872
 MonoBehaviour:
@@ -33213,16 +33285,12 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'In war, chemical agents are major weapons. The remarkable progress in
-    the field of chemistry was achieved through the long-lasting "War of Freedom."
-    However, the areas swept by chemical weapons were devastating. One common characteristic
-    was the absence of birdsong. As chemical gas was primarily used, all life that
-    did not wear gas masks perished.
-
-
-
-    **Mixing 60Y and 50B can create a chemical
-    gas just as potent.'
+  m_text: "In war, chemical agents are major weapons. The remarkable progress in
+    the field of chemistry was achieved through the long-lasting <size=45>\"War of
+    Freedom.\"</size> \nHowever, the areas swept by chemical weapons were devastating.
+    One common characteristic was the absence of birdsong. As chemical gas was primarily
+    used, all life that did not wear gas masks perished.\n\n<size=45>*Mixing 60Y
+    and 50B can create a chemical gas just as potent.</size>"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e00444d128019444493709f67bbaa63f, type: 2}
   m_sharedMaterial: {fileID: -3113507471561227131, guid: e00444d128019444493709f67bbaa63f,
@@ -36541,8 +36609,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    rgba: 20066866
+  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 0.003921569}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -39391,16 +39459,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 521294229834388263}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.008001868, y: 0.010525184, z: 0.03934438, w: 0.9991383}
+  m_LocalPosition: {x: 0, y: 0, z: -0}
   m_LocalScale: {x: 0.25678948, y: 0.23410472, z: 0.25678948}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3377554866147542501}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0.869, y: 1.241, z: 4.52}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -9.2, y: -7}
+  m_AnchoredPosition: {x: -10.7, y: -10.4}
   m_SizeDelta: {x: 160, y: 126.9047}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1243908944804724222
@@ -41364,8 +41432,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 20
+    m_Font: {fileID: 12800000, guid: 4532b281e8a1f734bb379dce4e4d2f4a, type: 3}
+    m_FontSize: 24
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 2
@@ -41376,7 +41444,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Forest \nChild \nLike \nCoyote"
+  m_Text: "Forest \n     Child \nLike \n  Coyote"
 --- !u!1 &2627471717996540043
 GameObject:
   m_ObjectHideFlags: 0
@@ -51211,6 +51279,7 @@ MonoBehaviour:
   IsPlaced: 0
   Nickname: {fileID: 2590320730680688409}
   Father: {fileID: 789407726182888946}
+  coroutineING: 0
 --- !u!114 &8805416393710849077
 MonoBehaviour:
   m_ObjectHideFlags: 0

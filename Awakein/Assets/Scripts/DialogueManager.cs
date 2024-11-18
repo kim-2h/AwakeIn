@@ -72,10 +72,11 @@ public class DialogueManager : MonoBehaviour
         dialogue = QDialogue.Peek();
         TargetText = dText;
         TargetText.text = dialogue;
+        dText.text = "";
         yield return new WaitForSeconds(0.1f);
         IsDialoguePlaying = true;
         Panel.SetActive(true);
-        dText.text = "";
+        //dText.text = "";
         for (int i = 0; i < dialogue.Length; i++)
         {
             dText.text += dialogue[i];

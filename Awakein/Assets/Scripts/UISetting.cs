@@ -457,8 +457,6 @@ public class UISetting : MonoBehaviour
         #endif
 
 
-        //여기서 2초정도 기다리고 넘어가게
-
 
         GameObject Loading = Instantiate(LoadingCanvas);
         Loading.SetActive(true);
@@ -466,6 +464,7 @@ public class UISetting : MonoBehaviour
 
         TextMeshProUGUI LoadingText = GameObject.Find("Text (TMP)").GetComponent<TextMeshProUGUI>();
         LoadingText.text = "Loading...";
+        float minimumLoadingTime = 2f;
 
         switch (Idx) 
         {
@@ -480,46 +479,43 @@ public class UISetting : MonoBehaviour
                 nextScene = "2hRoom2Backup";
                 LoadingText.text = "...So I escaped from the room.\n" +
                 "But I still have to find the way out of this strange building!";
+                minimumLoadingTime = 3.0f;
+                GameObject Narration = FindObjectOfType<Mask>(true).gameObject;
+                if (Narration) Narration.SetActive(true);
                 break;
         }
 
-
+        
 
         UnityEngine.AsyncOperation op = SceneManager.LoadSceneAsync(nextScene);
         op.allowSceneActivation = false;
-        float minimumLoadingTime = 3.0f;
+        
 
         float timer = 0.0f;
         while (!op.isDone)
         {
             yield return null;
+            timer += Time.unscaledDeltaTime;
 
- 
-        
-            timer += Time.deltaTime;
-            if (op.progress < 0.9f)
-            {
+            Debug.Log("Loading Time : " + timer);
 
-            }
-            else 
+            if (op.progress >= 0.9f && timer >= minimumLoadingTime)
             {
                 op.allowSceneActivation = true;
             }
         }
         InitSetting();
+        Debug.Log("init");
         if (Idx == 2)
         {
             InvenManager.LoadInven();
             Debug.Log("Inven Load called!");
         }
-        if (timer < minimumLoadingTime)
-        {
-            yield return new WaitForSeconds(minimumLoadingTime - timer);
-        }
-
+        
+        
         
         Destroy(Loading);
-
+        Debug.Log("Scene Loaded! screen destroyed!!");
 
     }
 

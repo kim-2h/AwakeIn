@@ -13,6 +13,7 @@ public class PhotoDragHandler : MonoBehaviour,IBeginDragHandler ,IDragHandler, I
      public Text Nickname;
     public GameObject Father;
      private float fadeSpeed=0.3f;
+     public bool coroutineING = false;
 
     // Start is called before the first frame update
     public void OnBeginDrag(PointerEventData eventData)
@@ -57,8 +58,10 @@ public class PhotoDragHandler : MonoBehaviour,IBeginDragHandler ,IDragHandler, I
        while(newColor.a<1f){
           newColor.a+=Time.deltaTime*fadeSpeed*2f;
          Nickname.color = newColor;
+         coroutineING = true;
          yield return null;
        }
+        coroutineING = false;
      Nickname.gameObject.SetActive(true);
     }
    IEnumerator FadeOut(){
@@ -68,8 +71,10 @@ public class PhotoDragHandler : MonoBehaviour,IBeginDragHandler ,IDragHandler, I
        while(newColor.a>0.65f){
           newColor.a-=Time.deltaTime*fadeSpeed;
          Father.GetComponent<Image>().color = newColor;
+         coroutineING = true;
          yield return null;
        }
+        coroutineING = false;
        StartCoroutine(FadeIn());
      //Nickname.gameObject.SetActive(true);
     }

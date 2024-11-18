@@ -10,6 +10,7 @@ public class MusicSheetManager : MonoBehaviour, IPuzzle
     public InvenManager invenManager;
     public GameObject Orgel;
     public UnityEngine.UI.Image answer;
+    public SoundManager SoundManager;
 
     // Start is called before the first frame update
     public void StartPuzzle()
@@ -24,6 +25,7 @@ public class MusicSheetManager : MonoBehaviour, IPuzzle
         {
             invenManager.ItemMap["OrgelHandle"].IsUsed = true;
             Orgel.SetActive(true);
+            SoundManager.StopBGM();
             SoundManager.Instance.PlaySFX(6);
             if (!IsSolved)
             {
@@ -45,6 +47,7 @@ public class MusicSheetManager : MonoBehaviour, IPuzzle
     public void ExitPuzzle()
     {
         SoundManager.Instance.StopSFX(6);
+        SoundManager.PlayBGM(0);
         Orgel.SetActive(false);
         canvas.gameObject.SetActive(false);
     }
@@ -58,6 +61,7 @@ public class MusicSheetManager : MonoBehaviour, IPuzzle
 
     IEnumerator SolvingAnim()
     {
+        
         float elapsedTime = 0f;
         float duration = 4f;
 
@@ -81,6 +85,7 @@ public class MusicSheetManager : MonoBehaviour, IPuzzle
         IsSolved = true;
         invenManager.RemoveItem("OrgelWhole");
         invenManager.RemoveItem("OrgelHandle");
+        
     }
 }
 

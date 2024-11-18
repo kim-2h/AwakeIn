@@ -94,6 +94,7 @@ public class VentDragHandler : MonoBehaviour,IBeginDragHandler, IDragHandler, IE
         {
             tf.transform.Rotate(new Vector3(0f, 0f,30f) * Time.deltaTime*fadeSpeed);
             elapsedTime += Time.deltaTime;
+            CoroutineStarted=true;
             yield return null;
         }
         StartCoroutine(FadeOut(tf));
@@ -108,6 +109,7 @@ public class VentDragHandler : MonoBehaviour,IBeginDragHandler, IDragHandler, IE
        while(newColor.a>0.01f){
           newColor.a-=Time.deltaTime*fadeSpeed;
           image.color=newColor;
+          CoroutineStarted=true;
          yield return null;
        }
      tf.SetActive(false);
@@ -125,6 +127,7 @@ public class VentDragHandler : MonoBehaviour,IBeginDragHandler, IDragHandler, IE
        SoundManager.Instance.PlaySFX(2);
         while (elapsedTime < timer)
         {
+          CoroutineStarted=true;
             tf.transform.position = Vector3.Lerp(startPosition, endPosition, elapsedTime / timer);
             elapsedTime += Time.deltaTime;
             yield return null;
@@ -153,7 +156,7 @@ public class VentDragHandler : MonoBehaviour,IBeginDragHandler, IDragHandler, IE
 
       if (!GameFlow.Room2Test())
       {
-          string text = "I can't leave yet.\n I need to solve the puzzle first.";
+          string text = "I can't leave yet.\nI think I need to look around more.";
           Dialogue.CallRoutine(text);
       }
       else if (GameFlow.Room2Test())

@@ -142,14 +142,14 @@ public class TitleSceneManager : MonoBehaviour
 
         UnityEngine.AsyncOperation op = SceneManager.LoadSceneAsync(nextScene);
         op.allowSceneActivation = false;
-        float minimumLoadingTime = 3.0f;
+        float minimumLoadingTime = 2f;
 
         float timer = 0.0f;
         while (!op.isDone)
         {
             yield return null;
         
-            timer += Time.deltaTime;
+            timer += Time.unscaledDeltaTime;
             if (op.progress < 0.9f)
             {
                 if (SkipDone)
@@ -225,14 +225,14 @@ public class TitleSceneManager : MonoBehaviour
 
         UnityEngine.AsyncOperation op = SceneManager.LoadSceneAsync(nextScene);
         op.allowSceneActivation = false;
-        float minimumLoadingTime = 3.0f;
+        float minimumLoadingTime = 2.5f;
 
         float timer = 0.0f;
         while (!op.isDone)
         {
             yield return null;
         
-            timer += Time.deltaTime;
+            timer += Time.unscaledDeltaTime;
             if (op.progress < 0.9f)
             {
 

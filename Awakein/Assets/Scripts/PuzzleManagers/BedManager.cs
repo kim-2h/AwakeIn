@@ -59,15 +59,17 @@ public class BedManager : MonoBehaviour, IPuzzle
     }
     public void DrawerClicked()
     {
-         SoundManager.Instance.PlaySFX(2);
+        
         if (!DrawerOpen && DrawerUnLocked)
         {
+             SoundManager.Instance.PlaySFX(2);
             StartCoroutine(DrawerOpenAnimation());
             DrawerOpen = true;
             Text.text = "What's inside?";
         }
         else if (DrawerOpen)
         {
+             SoundManager.Instance.PlaySFX(2);
             StartCoroutine(DrawerOpenAnimation());
             //BtDrawer.transform.position = DrawerPlace;
             DrawerOpen = false;

@@ -304,6 +304,7 @@ RectTransform:
   - {fileID: 4643622611491540989}
   - {fileID: 7641146205427005050}
   - {fileID: 8942459593758046940}
+  - {fileID: 7265695512176789892}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -374,6 +375,95 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!1 &4302500206873427615
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7265695512176789892}
+  - component: {fileID: 2754494484357866685}
+  - component: {fileID: 8649062126278421504}
+  - component: {fileID: 8786793449964290643}
+  m_Layer: 5
+  m_Name: ToRoom2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &7265695512176789892
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4302500206873427615}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3929039396492979135}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &2754494484357866685
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4302500206873427615}
+  m_CullTransparentMesh: 1
+--- !u!114 &8649062126278421504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4302500206873427615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 09a87742aa44d214ea12330962f2f9b6, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!114 &8786793449964290643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4302500206873427615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31a19414c41e5ae4aae2af33fee712f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShowMaskGraphic: 1
 --- !u!1 &4311670045701614350
 GameObject:
   m_ObjectHideFlags: 0
@@ -482,7 +572,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 59}
-  m_SizeDelta: {x: 700, y: 1000}
+  m_SizeDelta: {x: 1000, y: 1000}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8073401647837867950
 CanvasRenderer:
@@ -512,12 +602,15 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC800\uD76C \uAC8C\uC784\uC744 \uC990\uACA8\uC8FC\uC154\uC11C \uAC10\uC0AC\uD569\uB2C8\uB2E4.\n\uC9C4\uC9DC
-    \uAC10\uC0AC\uD569\uB2C8\uB2E4 \u3139\u3148\u3137\uB85C \uAC10\uC0AC\uD569\uB2C8\uB2E4.\n\uC0AC\uC2E4
-    3\uBC88\uC9F8 \uC2A4\uD14C\uC774\uC9C0\uB294 \uAC1C\uBC1C\uC911\uC5D0 \uC788\uC2B5\uB2C8\uB2E4\n\uC5D4\uB529\uB3C4
-    \uAC70\uAE30\uC788\uC2B5\uB2C8\uB2E4 \u314E\u314E;;\n\n\n\n\n\n\uAE40\uC774\uD604,
-    \uC190\uC9C0\uD6A8, \uC624\uD604\uC11C, \uC774\uC608\uC6D0, \uC870\uD6A8\uC6D0\nTeam
-    \uCC38\uAE68\uC218\uB2EC \uC77C\uB3D9"
+  m_text: "\uC800\uD76C \uAC8C\uC784\uC744 \uC990\uACA8\uC8FC\uC154\uC11C \uAC10\uC0AC\uD569\uB2C8\uB2E4!\n<Awake
+    in Veil>\uC740 \uCD1D \uC138\uAC00\uC9C0 \uC2A4\uD14C\uC774\uC9C0\uB85C \uAD6C\uC131\uB418\uC5B4
+    \uC788\uC73C\uBA70,\n\uC5D4\uB529\uC744 \uD3EC\uD568\uD55C \uC644\uC804\uD310\uC740
+    \uC544\uC9C1 \uCD9C\uC2DC \uC608\uC815\uC778 \uC0C1\uD0DC\uC785\uB2C8\uB2E4.\n\n\uC7AC\uBC0C\uAC8C
+    \uD50C\uB808\uC774\uD558\uC168\uB2E4\uBA74 \uC18C\uAC10 \uD639\uC740 \uB2E4\uB978
+    \uC804\uC2DC \uAD00\uB78C\uAC1D\uC744 \uC704\uD55C\n\uD78C\uD2B8\uB97C \uBC29\uBA85\uB85D\uC5D0
+    \uB0A8\uACA8\uC8FC\uC138\uC694!\n\n\n\n\uAE40\uC774\uD604, \uC190\uC9C0\uD6A8,
+    \uC624\uD604\uC11C, \uC774\uC608\uC6D0, \uC870\uD6A8\uC6D0\nTeam \uCC38\uAE68\uC218\uB2EC
+    \uC77C\uB3D9"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c654cde908b8c414f84a2b5343a3bb29, type: 2}
   m_sharedMaterial: {fileID: 4544982091788975379, guid: c654cde908b8c414f84a2b5343a3bb29,

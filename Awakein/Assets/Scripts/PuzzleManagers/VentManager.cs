@@ -37,6 +37,8 @@ public class VentManager : MonoBehaviour, IPuzzle
     }
     public void ExitPuzzle()
     {
+      if (ventDragHandler.CoroutineStarted) return;
+
       
      // ventDragHandler = FindObjectOfType<VentDragHandler>(); 
           if (ventDragHandler.isCleared)

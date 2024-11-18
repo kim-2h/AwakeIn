@@ -34,6 +34,12 @@ public class SoundManager : MonoBehaviour
         }
     }
 
+    public void PlayBGM(int idx)
+    {
+        BGMs[idx].Play();
+    }
+    
+
     public void ChangeBGM()
     {
         switch (Scenes)

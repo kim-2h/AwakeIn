@@ -120,8 +120,10 @@ public class HanoiManager : MonoBehaviour
     {
         StartCoroutine(AnswerAnim());
     }
+    public bool coroutineING = false;
     IEnumerator AnswerAnim()
     {
+        coroutineING = true;
         float time = 2f;
         float elapsedTime = 0f;
         Color Transparent = new Color(255, 255, 255, 0);
@@ -144,6 +146,7 @@ public class HanoiManager : MonoBehaviour
 
             yield return null;
         }
+        coroutineING = false;
 
     }
 

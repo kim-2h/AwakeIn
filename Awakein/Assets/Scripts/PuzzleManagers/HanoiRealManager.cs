@@ -31,6 +31,8 @@ public class HanoiRealManager : MonoBehaviour, IPuzzle
         if (canvas.gameObject.activeInHierarchy)
         {
             Debug.Log("Hanoi Puzzle Exit");
+            if (Manager.coroutineING) return;
+
             canvas.gameObject.SetActive(false);
             Camera.main.gameObject.transform.position = CameraPosition;
         }

@@ -54,6 +54,7 @@ public class FamilyPhotoManager : MonoBehaviour, IPuzzle
 
     public void ExitPuzzle()
     {
+        if (photoDragHandler.coroutineING) return;
         canvas.gameObject.SetActive(false);
     }
 
